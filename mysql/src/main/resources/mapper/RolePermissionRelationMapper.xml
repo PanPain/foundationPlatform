@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.xd.ridelab.foundationplatform.mapperInterface.RolePermissionRelationMapper">
+  <resultMap id="BaseResultMap" type="edu.xd.ridelab.foundationplatform.mysql.vo.RolePermissionRelation">
+    <id column="RELATION_ID" jdbcType="BIGINT" property="relationId" />
+    <result column="FK_ROLE_ID" jdbcType="BIGINT" property="fkRoleId" />
+    <result column="FK_PERMISSION_ID" jdbcType="BIGINT" property="fkPermissionId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="MODIFY_TIME" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    RELATION_ID, FK_ROLE_ID, FK_PERMISSION_ID, CREATE_TIME, MODIFY_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ROLE_PERMISSION_RELATION
+    where RELATION_ID = #{relationId,jdbcType=BIGINT}
+  </select>
+  <select id="selectByRoleId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ROLE_PERMISSION_RELATION
+    where FK_ROLE_ID = #{roleId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ROLE_PERMISSION_RELATION
+    where RELATION_ID = #{relationId,jdbcType=BIGINT}
+  </delete>
+  <delete id="batchDeleteByRelationIds" parameterType="java.util.List">
+    delete from ROLE_PERMISSION_RELATION
+    where  RELATION_ID in
+    <foreach collection="list" item="id" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+
+  </delete>
+  <delete id="batchDeleteByRoleId" parameterType="java.util.List">
+    delete from ROLE_PERMISSION_RELATION
+    where FK_ROLE_ID
+    in
+    <foreach collection="list" item="id" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+  </delete>
+  <insert id="insert" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.RolePermissionRelation" useGeneratedKeys="true" keyProperty="relationId" keyColumn="RELATION_ID">
+    insert into ROLE_PERMISSION_RELATION (RELATION_ID, FK_ROLE_ID, FK_PERMISSION_ID, 
+      CREATE_TIME, MODIFY_TIME)
+    values (#{relationId,jdbcType=BIGINT}, #{fkRoleId,jdbcType=BIGINT}, #{fkPermissionId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.RolePermissionRelation">
+    insert into ROLE_PERMISSION_RELATION
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="relationId != null">
+        RELATION_ID,
+      </if>
+      <if test="fkRoleId != null">
+        FK_ROLE_ID,
+      </if>
+      <if test="fkPermissionId != null">
+        FK_PERMISSION_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="relationId != null">
+        #{relationId,jdbcType=BIGINT},
+      </if>
+      <if test="fkRoleId != null">
+        #{fkRoleId,jdbcType=BIGINT},
+      </if>
+      <if test="fkPermissionId != null">
+        #{fkPermissionId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.RolePermissionRelation">
+    update ROLE_PERMISSION_RELATION
+    <set>
+      <if test="fkRoleId != null">
+        FK_ROLE_ID = #{fkRoleId,jdbcType=BIGINT},
+      </if>
+      <if test="fkPermissionId != null">
+        FK_PERMISSION_ID = #{fkPermissionId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where RELATION_ID = #{relationId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.RolePermissionRelation">
+    update ROLE_PERMISSION_RELATION
+    set FK_ROLE_ID = #{fkRoleId,jdbcType=BIGINT},
+      FK_PERMISSION_ID = #{fkPermissionId,jdbcType=BIGINT},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+    where RELATION_ID = #{relationId,jdbcType=BIGINT}
+  </update>
+</mapper>

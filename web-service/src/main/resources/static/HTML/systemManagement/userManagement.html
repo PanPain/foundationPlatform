@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>用户管理</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+    <!-- bootstrap & fontawesome -->
+    <link rel="stylesheet" href="../../static/assets/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../static/assets/css/font-awesome.css" />
+
+    <!-- page specific plugin styles -->
+
+    <!-- text fonts -->
+    <link rel="stylesheet" href="../../static/assets/css/ace-fonts.css" />
+
+    <!-- ace styles -->
+    <link rel="stylesheet" href="../../static/assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+    <script src="../../static/assets/js/ace-extra.js"></script>
+
+</head>
+
+<body class="no-skin">
+    <!-- #section:basics/head 头部 -->
+    <div id="navbar" class="navbar navbar-default">
+        <script type="text/javascript">
+            try {
+                ace.settings.check('navbar', 'fixed')
+            } catch (e) {
+            }
+        </script>
+
+        <div class="navbar-container" id="navbar-container">
+
+            <!-- /section:basics/sidebar.mobile.toggle -->
+            <div class="navbar-header pull-left">
+                <!-- #section:basics/navbar.layout.brand -->
+                <a href="#" class="navbar-brand">
+                    <small>
+                        <i class="fa fa-flag"></i>
+                        公共场所无线上网安全管控系统
+                    </small>
+                </a>
+
+                <!-- /section:basics/navbar.layout.brand -->
+
+                <!-- #section:basics/navbar.toggle -->
+
+                <!-- /section:basics/navbar.toggle -->
+            </div>
+
+            <!-- #section:basics/navbar.dropdown -->
+            <div class="navbar-buttons navbar-header pull-right" role="navigation">
+                <ul class="nav ace-nav">
+
+                    <li class="purple">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <i class="ace-icon fa fa-bell icon-animated-bell"></i>
+                            <span class="badge badge-important">8</span>
+                        </a>
+
+                        <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+                            <li class="dropdown-header">
+                                <i class="ace-icon fa fa-exclamation-triangle"></i>
+                                8 Notifications
+                            </li>
+
+                            <li class="dropdown-content">
+                                <ul class="dropdown-menu dropdown-navbar navbar-pink">
+                                    <li>
+                                        <a href="#">
+                                            <div class="clearfix">
+                                                <span class="pull-left">
+                                                    <i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
+                                                    New Comments
+                                                </span>
+                                                <span class="pull-right badge badge-info">+12</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown-footer">
+                                <a href="#">
+                                    See all notifications
+                                    <i class="ace-icon fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="green">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
+                            <span class="badge badge-success">5</span>
+                        </a>
+
+                        <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+                            <li class="dropdown-header">
+                                <i class="ace-icon fa fa-envelope-o"></i>
+                                5 Messages
+                            </li>
+
+                            <li class="dropdown-content">
+                                <ul class="dropdown-menu dropdown-navbar">
+                                    <li>
+                                        <a href="#" class="clearfix">
+                                            <img src="../../static/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+                                            <span class="msg-body">
+                                                <span class="msg-title">
+                                                    <span class="blue">Alex:</span>
+                                                    Message Summary
+                                                </span>
+
+                                                <span class="msg-time">
+                                                    <i class="ace-icon fa fa-clock-o"></i>
+                                                    <span>Message Time</span>
+                                                </span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown-footer">
+                                <a href="javascript:;">
+                                    See all messages
+                                    <i class="ace-icon fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- #section:basics/navbar.user_menu -->
+                    <li class="light-blue">
+                        <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                            <img class="nav-user-photo" src="../../static/assets/avatars/xidian.jpg" alt="Stanny's Photo" />
+                            <span class="user-info">
+                                <small>Welcome,</small>
+                                xidian
+                            </span>
+
+                            <i class="ace-icon fa fa-caret-down"></i>
+                        </a>
+
+                        <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
+                            <li>
+                                <a href="#">
+                                    <i class="ace-icon fa fa-cog"></i>
+                                    Settings
+                                </a>
+                            </li>
+
+                            <li class="divider"></li>
+
+                            <li>
+                                <a href="#">
+                                    <i class="ace-icon fa fa-power-off"></i>
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- /section:basics/navbar.user_menu -->
+                </ul>
+            </div>
+
+            <!-- /section:basics/navbar.dropdown -->
+        </div>
+        <!-- /.navbar-container -->
+    </div>
+
+    <div class="main-container" id="main-container">
+        <!-- #section:basics/sidebar 菜单-->
+        <div id="sidebar" class="sidebar responsive">
+            <script type="text/javascript">
+                try {
+                    ace.settings.check('sidebar', 'fixed')
+                } catch (e) {
+                }
+            </script>
+
+            <ul class="nav nav-list">
+                <li class="">
+                    <a href="../../HTML/systemBasicFunction/firstPage.html">
+                        <i class="menu-icon fa fa-home"></i>
+                        <span class="menu-text"> 首页 </span>
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="../../HTML/operationStatistics/operationStatistics.html">
+                        <i class="menu-icon fa fa-desktop"></i>
+                        <span class="menu-text"> 运维统计 </span>
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-desktop"></i>
+                        <span class="menu-text"> 研判分析 </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="../../HTML/judgementAnalysis/trajectoryQuery.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                轨迹查询
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li class="">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-desktop"></i>
+                        <span class="menu-text"> 布控管理 </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="../../HTML/controlManagement/controlSetting.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                布控设置
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="../../HTML/controlManagement/controlAlert.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                布控告警
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-desktop"></i>
+                        <span class="menu-text"> 采集记录查询 </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="../../HTML/recordQuery/mobileTerminalQuery.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                移动终端查询
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="../../HTML/recordQuery/logQuery.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                上网日志查询
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-desktop"></i>
+                        <span class="menu-text"> 统计报表 </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="../../HTML/statisticalStatement/deviceStatusStatistic.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                设备状态统计
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="../../HTML/statisticalStatement/safeVendorStatistic.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                安全厂商统计
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+
+                        <li class="">
+                            <a href="../../HTML/statisticalStatement/placeStatistic.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                场所统计
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="../../HTML/statisticalStatement/placeDevStatistic.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                场所设备统计
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-desktop"></i>
+                        <span class="menu-text"> 设备管理 </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="../../HTML/deviceManagement/deviceManagement.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                设备管理
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="../../HTML/deviceManagement/onOfflineLog.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                上下线日志
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                    <li class="">
+                        <a href="#" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-desktop"></i>
+                            <span class="menu-text"> 基础信息管理 </span>
+
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+
+                        <b class="arrow"></b>
+                        <ul class="submenu">
+                            <li class="">
+                                <a href="../../HTML/basicInfoManagement/districtManagement.html">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    区域管理
+                                </a>
+
+                                <b class="arrow"></b>
+                            </li>
+
+                            <li class="">
+                                <a href="../../HTML/basicInfoManagement/policeOfficeManagement.html">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    单位管理
+                                </a>
+
+                                <b class="arrow"></b>
+                            </li>
+
+                            <li class="">
+                                <a href="../../HTML/basicInfoManagement/safeVendorManagement.html">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    安全厂商管理
+                                </a>
+
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="">
+                                <a href="../../HTML/basicInfoManagement/placeManagement.html">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    场所管理
+                                </a>
+
+                                <b class="arrow"></b>
+                            </li>
+
+                            <li class="">
+                                <a href="../../HTML/basicInfoManagement/peopleManagement.html">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    人员管理
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                        </ul>
+                    </li>
+                </li>
+
+                <li class="">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-desktop"></i>
+                        <span class="menu-text"> 系统管理 </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="../../HTML/systemManagement/roleManagement.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                角色管理
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="../../HTML/systemManagement/userManagement.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                用户管理
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="../../HTML/systemManagement/systemLog.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                系统日志
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+            <!-- /.nav-list -->
+
+            <!-- #section:basics/sidebar.layout.minimize -->
+            <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+                <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+            </div>
+
+            <!-- /section:basics/sidebar.layout.minimize -->
+            <script type="text/javascript">
+                try {
+                    ace.settings.check('sidebar', 'collapsed')
+                } catch (e) {
+                }
+            </script>
+        </div>
+
+        <!-- /section:.main-content -->
+        <div class="main-content">
+            <!-- 主内容区域 title 栏 -->
+            <div class="breadcrumbs" id="breadcrumbs">
+                <script type="text/javascript">
+                    try { ace.settings.check('breadcrumbs', 'fixed') } catch (e) { }
+                </script>
+
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="ace-icon fa fa-home home-icon"></i>
+                        <a href="#">首页</a>
+                    </li>
+
+                    <li>
+                        <a href="#">系统管理</a>
+                    </li>
+                    <li class="active">用户管理</li>
+                </ul>
+                <!-- /.breadcrumb -->
+            </div>
+
+            <div class="page-content" id="userManage">
+                <!-- PAGE CONTENT BEGINS -->
+                <div class="userManagement" style="margin-bottom: 20px;padding: 20px; width: 100%;float: left;">
+                    <div class="col-xs-12">
+                        <form class="form-search">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-5 col-md-5">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            登录帐号
+                                        </span>
+
+                                        <input type="text" class="form-control search-query" id="usrsearchText" autocomplete="on" />
+                                        <span class="input-group-btn">
+                                            <button id='usrchaxun1' data-toggle="dropdown" class="btn btn-success btn-sm dropdown-toggle" >
+                                                查询
+                                                <span class="ace-icon fa fa-caret-down icon-on-right"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-6 pull-right">
+
+                                    <div class="btn-group pull-right">
+                                        <button data-toggle="dropdown" class="btn btn-sm btn-success dropdown-toggle">
+                                            <i class="ace-icon glyphicon glyphicon-list"></i>
+                                            选择列
+                                            <span class="ace-icon fa fa-caret-down icon-on-right"></span>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-success dropdown-menu-right">
+                                            <li class='selectCol'>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input name="form-field-checkbox" type="checkbox" class="ace all" />
+                                                        <span class="lbl" id='all'> 全选/反选</span>
+                                                    </label>
+                                                </div>
+                                            </li>
+                                            <li class='selectCol'>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input id='usridNumber' name="form-field-checkbox" type="checkbox" class="ace items usridNumber" checked />
+                                                        <span class="lbl tblItems" id='usrnumber11'> 登录帐号</span>
+                                                    </label>
+                                                </div>
+                                            </li>
+                                            <li class='selectCol'>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input name="form-field-checkbox" type="checkbox" class="ace name items" checked />
+                                                        <span class="lbl tblItems" id='usrname11'> 用户姓名 </span>
+                                                    </label>
+                                                </div>
+                                            </li>
+                                            <li class='selectCol'>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input name="form-field-checkbox" type="checkbox" class="ace items usrunit" checked />
+                                                        <span class="lbl tblItems" id='usroffice11'> 所属单位</span>
+                                                    </label>
+                                                </div>
+                                            </li>
+                                            <li class='selectCol'>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input name="form-field-checkbox" type="checkbox" class="ace items usrauthor" checked />
+                                                        <span class="lbl tblItems" id='usrrole11'> 角色</span>
+                                                    </label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="btn-group pull-right">
+                                        <button data-toggle="dropdown" class="btn btn-sm btn-grey dropdown-toggle">
+                                            更多
+                                            <span class="ace-icon fa fa-caret-down icon-on-right"></span>
+                                        </button>
+
+                                        <ul class="dropdown-menu dropdown-warning">
+
+                                        </ul>
+                                    </div>
+
+                                    <div class="btn-group pull-right">
+
+                                        <button id='usraddRow' type="button" class="btn btn-sm btn-success" data-toggle="button">
+                                            <i class="ace-icon glyphicon glyphicon-plus"></i>新增</button>
+                                        <button id='usreditRow' type="button" class="btn btn-sm btn-Primary" data-toggle="button">
+                                            <i class="menu-icon fa fa-pencil-square-o"></i>编辑</button>
+                                        <button id='usrviewRow' type="button" class="btn btn-sm btn-info" data-toggle="button">
+                                            <i class="ace-icon glyphicon glyphicon-th"></i>明细</button>
+                                        <button id='usrdelRow' type="button" class="btn btn-sm btn-warning" data-toggle="button">
+                                            <i class="ace-icon glyphicon glyphicon-remove"></i>删除</button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </form>
+                        <p></p>
+                        <div>
+
+
+
+                            <div class="table-header" style="margin-top:12px;">
+                                用户管理表
+                            </div>
+                            <div>
+                                <table id="usrdynamic-table" class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="center checkboxTbl"><label class="pos-rel" style="display:block;">
+                                                    <input type="checkbox" class="ace" id="usrcheckAll"/><span class="lbl"></span></label>
+                                            </th>
+                                            <th class="center index">序号</th>
+                                            <th class="center usrnumber11">登录帐号</th>
+                                            <th class="hidden-480 center usrname11">用户姓名</th>
+
+                                            <th class="center usroffice11">
+                                                <i class="ace-icon fa fa-clock-o bigger-110 hidden-480 "></i>
+                                                所属单位
+                                            </th>
+                                            <th class="hidden-480 center usrrole11">角色</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody align="center">
+                                      
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--弹出框-->
+                            <div id="usrmodal-table" class="modal fade" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content" style="width:500px;">
+                                        <div class="modal-header no-padding">
+                                            <div class="table-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                    <span class="white usrdelEdit">&times;</span>
+                                                </button>
+                                                编辑
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-body no-padding">
+                                            <div class="row">
+                                                <div class="col-xs-12 col-center-block">
+                                                    <!-- PAGE CONTENT BEGINS -->
+                                                    <form class="form-horizontal" role="form" style="padding-top:10px;padding-left:20px;">
+                                                        <!-- #section:elements.form -->
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label no-padding-right" for="form-field-3"> 用户姓名：</label>
+
+                                                            <div class="col-sm-9">
+                                                                <input type="text" id="usrename" placeholder="用户姓名" class="col-xs-10 col-sm-5" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 电话号码： </label>
+
+                                                            <div class="col-sm-9">
+                                                                <input type="text" id="usrephone" placeholder="电话号码" class="col-xs-10 col-sm-5" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="space-4"></div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label no-padding-right" for="form-field-4"> 所属单位： </label>
+
+                                                            <div class="col-sm-9">
+                                                                <!-- <input type="text" id="eoffice" placeholder="所属单位" class="col-xs-10 col-sm-5" /> -->
+                                                                <select   id="usreoffice" >
+                                                                    <option value='' disabled selected style='display:none;'>所属单位</option>
+                                                                    <option value='长安区公安局'>长安区公安局</option>
+                                                                    <option value='雁塔区公安局'>雁塔区公安局</option>
+                                                                    <option value='高新区公安局'>高新区公安局</option>
+                                                                    <!-- <option value='西安市局'>西安市局</option> -->
+                                                                    </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label no-padding-right" for="form-field-5"> 角色： </label>
+
+                                                            <div class="col-sm-9">
+                                                                <!-- <input type="text" id="erole" placeholder="角色" class="col-xs-10 col-sm-5" /> -->
+                                                                <select id="usrerole">
+                                                                    <option value='' disabled selected style='display:none;'>角色</option>
+                                                                    <option value='系统管理员'>系统管理员</option>
+                                                                    <option value='普通用户'>普通用户</option>
+                                                                    </select>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            <div class="clearfix form-actions">
+                                                <div class="col-md-offset-2 col-md-5">
+                                                    
+                                                    <button class="btn btn-sm btn-primary pull-left" data-dismiss="modal" id="usrsaveEdit">
+                                                        <i class="ace-icon fa fa-times"></i>
+                                                        确定
+                                                    </button>
+                                                    &nbsp;&nbsp;&nbsp;
+                                                    <button class="btn btn-sm btn-danger pull-right usrdelEdit" data-dismiss="modal">
+                                                        <i class="ace-icon fa fa-times"></i>
+                                                        取消
+                                                    </button>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div id="usrmodal-table2" class="modal fade" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content" style="width:500px;">
+                                        <div class="modal-header no-padding">
+                                            <div class="table-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                    <span class="white usrdelAdd">&times;</span>
+                                                </button>
+                                                新增
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-body no-padding">
+                                            <div class="row">
+                                                <div class="col-xs-12 col-center-block">
+                                                    <!-- PAGE CONTENT BEGINS -->
+                                                    <form class="form-horizontal" role="form" style="padding-top:10px;padding-left:20px;">
+                                                        <!-- #section:elements.form -->
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 登录帐号： </label>
+
+                                                            <div class="col-sm-9">
+                                                                <input type="text" id="usraccount" placeholder="登录帐号" class="col-xs-10 col-sm-5" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="space-4"></div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 密码： </label>
+
+                                                            <div class="col-sm-9">
+                                                                <input type="text" id="usrpassword" placeholder="密码" class="col-xs-10 col-sm-5" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label no-padding-right" for="form-field-3"> 用户姓名：</label>
+
+                                                            <div class="col-sm-9">
+                                                                <input type="text" id="usrusername" placeholder="用户姓名" class="col-xs-10 col-sm-5" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label no-padding-right" for="form-field-3"> 电话号码：</label>
+
+                                                            <div class="col-sm-9">
+                                                                <input type="text" id="usrphone" placeholder="电话号码" class="col-xs-10 col-sm-5" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label no-padding-right" for="form-field-4"> 所属单位： </label>
+
+                                                            <div class="col-sm-9">
+                                                                <!-- <input type="text" id="officename" placeholder="所属单位" class="col-xs-10 col-sm-5" /> -->
+                                                               <select   id="usrofficename" >
+                                                                <option value='' disabled selected style='display:none;'>所属单位</option>
+                                                                <option value='长安区公安局'>长安区公安局</option>
+                                                                <option value='雁塔区公安局'>雁塔区公安局</option>
+                                                                <option value='高新区公安局'>高新区公安局</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label no-padding-right" for="form-field-5"> 角色： </label>
+
+                                                            <div class="col-sm-9">
+                                                                <!-- <input type="text" id="role" placeholder="角色" class="col-xs-10 col-sm-5" /> -->
+                                                                <select   id="usrrole" >
+                                                                    <option value='' disabled selected style='display:none;'>角色</option>
+                                                                    <option value='系统管理员'>系统管理员</option>
+                                                                    <option value='普通用户'>普通用户</option>
+                                                                    </select>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        
+                                            <div class="clearfix form-actions">
+                                                <div class="col-md-offset-2 col-md-5">
+                                                    
+                                                    <button class="btn btn-sm btn-primary pull-left" data-dismiss="modal" id='usraddUser'>
+                                                        <i class="ace-icon fa fa-times"></i>
+                                                        确定
+                                                    </button>
+                                                    &nbsp;&nbsp;&nbsp;
+                                                    <button class="btn btn-sm btn-danger pull-right usrdelAdd" data-dismiss="modal">
+                                                        <i class="ace-icon fa fa-times"></i>
+                                                        取消
+                                                    </button>
+                                                </div>
+                                            </div>
+
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="usrmodal-table3" class="modal fade" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content" style="width:500px;">
+                                <div class="modal-header no-padding">
+                                    <div class="table-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                            <span class="white usrdelView">&times;</span>
+                                        </button>
+                                        明细
+                                    </div>
+                                </div>
+
+                                <div class="modal-body no-padding">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-center-block">
+                                            <!-- PAGE CONTENT BEGINS -->
+                                            <form class="form-horizontal" role="form" style="padding-top:10px;padding-left:20px;">
+                                                <!-- #section:elements.form -->
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 序号： </label>
+
+                                                    <div class="col-xs-10 col-sm-5" id="usrmnum">
+                                                        
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-2" > 登录帐号： </label>
+
+                                                    <div class="col-xs-10 col-sm-5 " id="usrmacc">
+                                                       
+                                                    </div>
+                                                </div>
+                                                <div class="space-4"></div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-3 "> 用户姓名：</label>
+
+                                                    <div class="col-xs-10 col-sm-5" id="usrmname">
+                                                       
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-4"> 所属单位： </label>
+
+                                                    <div class="col-xs-10 col-sm-5" id="usrmoffice">
+                                                       
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-5"> 用户电话： </label>
+
+                                                    
+                                                        <div class="col-xs-10 col-sm-5" id="usrmphone">
+                                                       
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-5"> 角色： </label>
+
+                                                    <div class="col-xs-10 col-sm-5" id="usrmrole">
+                                                       
+                                                    </div>
+                                                </div>
+
+
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="clearfix form-actions">
+                                    <div class="col-md-offset-2 col-md-5">
+
+                                        <button class="btn btn-sm btn-info center-block usrdelView" data-dismiss="modal">
+                                            <i class="ace-icon fa fa-times"></i>
+                                            返回列表
+                                        </button>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <!-- PAGE CONTENT ENDS -->
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-inner">
+                <!-- #section:basics/footer -->
+                <div class="footer-content">
+                    <span class="bigger-120">
+                        <span class="blue bolder">物联网基础平台</span>
+                        &copy; 2018 Ride Lab
+                    </span>
+
+                    &nbsp; &nbsp;
+                    <span class="action-buttons">
+                        <a href="#">
+                            <i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="ace-icon fa fa-rss-square orange bigger-150"></i>
+                        </a>
+                    </span>
+                </div>
+
+                <!-- /section:basics/footer -->
+            </div>
+        </div>
+    </div>
+
+    <!-- /.main-content -->
+    </div>
+
+
+    <!--[if !IE]> 这行代码兼容 IE -->
+
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='../../static/assets/js/jquery.js'>" + "<" + "/script>");
+    </script>
+
+    <!-- <![endif]-->
+
+    <script type="text/javascript">
+        if ('ontouchstart' in document.documentElement) document.write("<script src='../../static/assets/js/jquery.mobile.custom.js'>" + "<" + "/script>");
+    </script>
+
+
+    <script src="../../static/assets/js/bootstrap.js"></script>
+    <!-- ace scripts -->
+    <script src="../../static/assets/js/ace/elements.scroller.js"></script>
+    <script src="../../static/assets/js/ace/elements.colorpicker.js"></script>
+    <script src="../../static/assets/js/ace/elements.fileinput.js"></script>
+    <script src="../../static/assets/js/ace/elements.typeahead.js"></script>
+    <script src="../../static/assets/js/ace/elements.wysiwyg.js"></script>
+    <script src="../../static/assets/js/ace/elements.spinner.js"></script>
+    <script src="../../static/assets/js/ace/elements.treeview.js"></script>
+    <script src="../../static/assets/js/ace/elements.wizard.js"></script>
+    <script src="../../static/assets/js/ace/elements.aside.js"></script>
+    <script src="../../static/assets/js/ace/ace.js"></script>
+    <script src="../../static/assets/js/ace/ace.ajax-content.js"></script>
+    <script src="../../static/assets/js/ace/ace.touch-drag.js"></script>
+    <script src="../../static/assets/js/ace/ace.sidebar.js"></script>
+    <script src="../../static/assets/js/ace/ace.sidebar-scroll-1.js"></script>
+    <script src="../../static/assets/js/ace/ace.submenu-hover.js"></script>
+    <script src="../../static/assets/js/ace/ace.widget-box.js"></script>
+    <script src="../../static/assets/js/ace/ace.settings.js"></script>
+    <script src="../../static/assets/js/ace/ace.settings-rtl.js"></script>
+    <script src="../../static/assets/js/ace/ace.settings-skin.js"></script>
+    <script src="../../static/assets/js/ace/ace.widget-on-reload.js"></script>
+    <script src="../../static/assets/js/ace/ace.searchbox-autocomplete.js"></script>
+    <!-- inline scripts related to this page -->
+    <script src="../../JavaScript/systemManagement/userManagement.js"></script>
+</body>
+
+</html>

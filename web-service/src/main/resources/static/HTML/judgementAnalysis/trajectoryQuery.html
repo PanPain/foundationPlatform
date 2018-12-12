@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>首页</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+    <!-- bootstrap & fontawesome -->
+    <link rel="stylesheet" href="../../static/assets/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../static/assets/css/font-awesome.css" />
+
+    <!-- page specific plugin styles -->
+
+    <!-- text fonts -->
+    <link rel="stylesheet" href="../../static/assets/css/ace-fonts.css" />
+
+    <!-- ace styles -->
+    <link rel="stylesheet" href="../../static/assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+    <script src="../../static/assets/js/ace-extra.js"></script>
+
+</head>
+
+<body class="no-skin">
+    <!-- #section:basics/head 头部 -->
+    <div id="navbar" class="navbar navbar-default">
+        <script type="text/javascript">
+            try {
+                ace.settings.check('navbar', 'fixed')
+            } catch (e) {
+            }
+        </script>
+
+        <div class="navbar-container" id="navbar-container">
+
+            <!-- /section:basics/sidebar.mobile.toggle -->
+            <div class="navbar-header pull-left">
+                <!-- #section:basics/navbar.layout.brand -->
+                <a href="#" class="navbar-brand">
+                    <small>
+                        <i class="fa fa-flag"></i>
+                        公共场所无线上网安全管控系统
+                    </small>
+                </a>
+
+                <!-- /section:basics/navbar.layout.brand -->
+
+                <!-- #section:basics/navbar.toggle -->
+
+                <!-- /section:basics/navbar.toggle -->
+            </div>
+
+            <!-- #section:basics/navbar.dropdown -->
+            <div class="navbar-buttons navbar-header pull-right" role="navigation">
+                <ul class="nav ace-nav">
+
+                    <li class="purple">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <i class="ace-icon fa fa-bell icon-animated-bell"></i>
+                            <span class="badge badge-important">8</span>
+                        </a>
+
+                        <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+                            <li class="dropdown-header">
+                                <i class="ace-icon fa fa-exclamation-triangle"></i>
+                                8 Notifications
+                            </li>
+
+                            <li class="dropdown-content">
+                                <ul class="dropdown-menu dropdown-navbar navbar-pink">
+                                    <li>
+                                        <a href="#">
+                                            <div class="clearfix">
+                                                <span class="pull-left">
+                                                    <i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
+                                                    New Comments
+                                                </span>
+                                                <span class="pull-right badge badge-info">+12</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown-footer">
+                                <a href="#">
+                                    See all notifications
+                                    <i class="ace-icon fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="green">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
+                            <span class="badge badge-success">5</span>
+                        </a>
+
+                        <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+                            <li class="dropdown-header">
+                                <i class="ace-icon fa fa-envelope-o"></i>
+                                5 Messages
+                            </li>
+
+                            <li class="dropdown-content">
+                                <ul class="dropdown-menu dropdown-navbar">
+                                    <li>
+                                        <a href="#" class="clearfix">
+                                            <img src="../../static/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+                                            <span class="msg-body">
+                                                <span class="msg-title">
+                                                    <span class="blue">Alex:</span>
+                                                    Message Summary
+                                                </span>
+
+                                                <span class="msg-time">
+                                                    <i class="ace-icon fa fa-clock-o"></i>
+                                                    <span>Message Time</span>
+                                                </span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown-footer">
+                                <a href="javascript:;">
+                                    See all messages
+                                    <i class="ace-icon fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- #section:basics/navbar.user_menu -->
+                    <li class="light-blue">
+                        <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                            <img class="nav-user-photo" src="../../static/assets/avatars/xidian.jpg" alt="Stanny's Photo" />
+                            <span class="user-info">
+                                <small>Welcome,</small>
+                                xidian
+                            </span>
+
+                            <i class="ace-icon fa fa-caret-down"></i>
+                        </a>
+
+                        <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
+                            <li>
+                                <a href="#">
+                                    <i class="ace-icon fa fa-cog"></i>
+                                    Settings
+                                </a>
+                            </li>
+
+                            <li class="divider"></li>
+
+                            <li>
+                                <a href="#">
+                                    <i class="ace-icon fa fa-power-off"></i>
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- /section:basics/navbar.user_menu -->
+                </ul>
+            </div>
+
+            <!-- /section:basics/navbar.dropdown -->
+        </div>
+        <!-- /.navbar-container -->
+    </div>
+
+    <div class="main-container" id="main-container">
+        <!-- #section:basics/sidebar 菜单-->
+        <div id="sidebar" class="sidebar responsive">
+            <script type="text/javascript">
+                try {
+                    ace.settings.check('sidebar', 'fixed')
+                } catch (e) {
+                }
+            </script>
+
+            <ul class="nav nav-list">
+                <li class="">
+                    <a href="../../HTML/systemBasicFunction/firstPage.html">
+                        <i class="menu-icon fa fa-home"></i>
+                        <span class="menu-text"> 首页 </span>
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="../../HTML/operationStatistics/operationStatistics.html">
+                        <i class="menu-icon fa fa-desktop"></i>
+                        <span class="menu-text"> 运维统计 </span>
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="active open">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-desktop"></i>
+                        <span class="menu-text"> 研判分析 </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+                    <ul class="submenu">
+                        <li class="active">
+                            <a href="../../HTML/judgementAnalysis/trajectoryQuery.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                轨迹查询
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li class="">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-desktop"></i>
+                        <span class="menu-text"> 布控管理 </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="../../HTML/controlManagement/controlSetting.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                布控设置
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="../../HTML/controlManagement/controlAlert.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                布控告警
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-desktop"></i>
+                        <span class="menu-text"> 采集记录查询 </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="../../HTML/recordQuery/mobileTerminalQuery.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                移动终端查询
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="../../HTML/recordQuery/logQuery.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                上网日志查询
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-desktop"></i>
+                        <span class="menu-text"> 统计报表 </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="../../HTML/statisticalStatement/deviceStatusStatistic.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                设备状态统计
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="../../HTML/statisticalStatement/safeVendorStatistic.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                安全厂商统计
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+
+                        <li class="">
+                            <a href="../../HTML/statisticalStatement/placeStatistic.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                场所统计
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="../../HTML/statisticalStatement/placeDevStatistic.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                场所设备统计
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-desktop"></i>
+                        <span class="menu-text"> 设备管理 </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="../../HTML/deviceManagement/deviceManagement.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                设备管理
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="../../HTML/deviceManagement/onOfflineLog.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                上下线日志
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                    <li class="">
+                        <a href="#" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-desktop"></i>
+                            <span class="menu-text"> 基础信息管理 </span>
+
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+
+                        <b class="arrow"></b>
+                        <ul class="submenu">
+                            <li class="">
+                                <a href="../../HTML/basicInfoManagement/districtManagement.html">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    区域管理
+                                </a>
+
+                                <b class="arrow"></b>
+                            </li>
+
+                            <li class="">
+                                <a href="../../HTML/basicInfoManagement/policeOfficeManagement.html">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    单位管理
+                                </a>
+
+                                <b class="arrow"></b>
+                            </li>
+
+                            <li class="">
+                                <a href="../../HTML/basicInfoManagement/safeVendorManagement.html">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    安全厂商管理
+                                </a>
+
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="">
+                                <a href="../../HTML/basicInfoManagement/placeManagement.html">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    场所管理
+                                </a>
+
+                                <b class="arrow"></b>
+                            </li>
+
+                            <li class="">
+                                <a href="../../HTML/basicInfoManagement/peopleManagement.html">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    人员管理
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                        </ul>
+                    </li>
+                </li>
+
+                <li class="">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-desktop"></i>
+                        <span class="menu-text"> 系统管理 </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="../../HTML/systemManagement/roleManagement.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                角色管理
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="../../HTML/systemManagement/userManagement.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                用户管理
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="../../HTML/systemManagement/systemLog.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                系统日志
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+            <!-- /.nav-list -->
+
+            <!-- #section:basics/sidebar.layout.minimize -->
+            <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+                <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+            </div>
+
+            <!-- /section:basics/sidebar.layout.minimize -->
+            <script type="text/javascript">
+                try {
+                    ace.settings.check('sidebar', 'collapsed')
+                } catch (e) {
+                }
+            </script>
+        </div>
+
+        <!-- /section:.main-content -->
+        <div class="main-content">
+            <!-- 主内容区域 title 栏 -->
+            <div class="breadcrumbs" id="breadcrumbs">
+                <script type="text/javascript">
+                    try { ace.settings.check('breadcrumbs', 'fixed') } catch (e) { }
+                </script>
+
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="ace-icon fa fa-home home-icon"></i>
+                        <a href="#">Home</a>
+                    </li>
+
+                    <li>
+                        <a href="#">研判分析</a>
+                    </li>
+                    <li class="active">轨迹查询</li>
+                </ul>
+                <!-- /.breadcrumb -->
+            </div>
+   <div class="page-content" style="padding: 0">
+                <!-- 你的界面复制到这里！ -->
+                <iframe src="mainTrajectoryQuery.html" frameborder="0" style="margin: 0 auto;width: 100%;height: 100vh;"></iframe>
+            </div>
+            </div> 
+            <div class="footer">
+                    <div class="footer-inner">
+                        <!-- #section:basics/footer -->
+                        <div class="footer-content">
+                            <span class="bigger-120">
+                                <span class="blue bolder">物联网基础平台</span>
+                                &copy; 2018 Ride Lab
+                            </span>
+    
+                            &nbsp; &nbsp;
+                            <span class="action-buttons">
+                                <a href="#">
+                                    <i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
+                                </a>
+    
+                                <a href="#">
+                                    <i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
+                                </a>
+    
+                                <a href="#">
+                                    <i class="ace-icon fa fa-rss-square orange bigger-150"></i>
+                                </a>
+                            </span>
+                        </div>
+    
+                        <!-- /section:basics/footer -->
+                    </div>
+                </div>
+        </div>
+
+        <!-- /.main-content -->
+    </div>
+
+
+    <!--[if !IE]> 这行代码兼容 IE -->
+
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='../../static/assets/js/jquery.js'>" + "<" + "/script>");
+    </script>
+
+    <!-- <![endif]-->
+
+    <script type="text/javascript">
+        if ('ontouchstart' in document.documentElement) document.write("<script src='../../static/assets/js/jquery.mobile.custom.js'>" + "<" + "/script>");
+    </script>
+
+
+    <script src="../../static/assets/js/bootstrap.js"></script>
+    <!-- ace scripts -->
+    <script src="../../static/assets/js/ace/elements.scroller.js"></script>
+    <script src="../../static/assets/js/ace/elements.colorpicker.js"></script>
+    <script src="../../static/assets/js/ace/elements.fileinput.js"></script>
+    <script src="../../static/assets/js/ace/elements.typeahead.js"></script>
+    <script src="../../static/assets/js/ace/elements.wysiwyg.js"></script>
+    <script src="../../static/assets/js/ace/elements.spinner.js"></script>
+    <script src="../../static/assets/js/ace/elements.treeview.js"></script>
+    <script src="../../static/assets/js/ace/elements.wizard.js"></script>
+    <script src="../../static/assets/js/ace/elements.aside.js"></script>
+    <script src="../../static/assets/js/ace/ace.js"></script>
+    <script src="../../static/assets/js/ace/ace.ajax-content.js"></script>
+    <script src="../../static/assets/js/ace/ace.touch-drag.js"></script>
+    <script src="../../static/assets/js/ace/ace.sidebar.js"></script>
+    <script src="../../static/assets/js/ace/ace.sidebar-scroll-1.js"></script>
+    <script src="../../static/assets/js/ace/ace.submenu-hover.js"></script>
+    <script src="../../static/assets/js/ace/ace.widget-box.js"></script>
+    <script src="../../static/assets/js/ace/ace.settings.js"></script>
+    <script src="../../static/assets/js/ace/ace.settings-rtl.js"></script>
+    <script src="../../static/assets/js/ace/ace.settings-skin.js"></script>
+    <script src="../../static/assets/js/ace/ace.widget-on-reload.js"></script>
+    <script src="../../static/assets/js/ace/ace.searchbox-autocomplete.js"></script>
+    <!-- inline scripts related to this page -->
+</body>
+
+</html>

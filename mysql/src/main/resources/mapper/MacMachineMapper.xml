@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.xd.ridelab.foundationplatform.mapperInterface.MacMachineMapper">
+  <resultMap id="BaseResultMap" type="edu.xd.ridelab.foundationplatform.mysql.vo.MacMachine">
+    <id column="MAC_MACHINE_ID" jdbcType="BIGINT" property="macMachineId" />
+    <result column="MAC_MACHINE_NO" jdbcType="VARCHAR" property="macMachineNo" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="FK_PLACE_ID" jdbcType="BIGINT" property="fkPlaceId" />
+    <result column="MACHINE_NAME" jdbcType="VARCHAR" property="machineName" />
+    <result column="LONGITUDE" jdbcType="DECIMAL" property="longitude" />
+    <result column="LATITUDE" jdbcType="DECIMAL" property="latitude" />
+    <result column="MACHINE_ADDRESS" jdbcType="VARCHAR" property="machineAddress" />
+    <result column="TYPE" jdbcType="VARCHAR" property="type" />
+    <result column="FK_MF_ID" jdbcType="BIGINT" property="fkMfId" />
+    <result column="TIME_INTERVAL" jdbcType="DECIMAL" property="timeInterval" />
+    <result column="RADIUS" jdbcType="DECIMAL" property="radius" />
+    <result column="BIKE_NO" jdbcType="VARCHAR" property="bikeNo" />
+    <result column="METRO_LINE" jdbcType="VARCHAR" property="metroLine" />
+    <result column="METRO_VEHICLE" jdbcType="VARCHAR" property="metroVehicle" />
+    <result column="CARRIAGE_NO" jdbcType="VARCHAR" property="carriageNo" />
+    <result column="PLATFORM" jdbcType="VARCHAR" property="platform" />
+    <result column="IP" jdbcType="VARCHAR" property="ip" />
+    <result column="LAST_CONNECTION_TIME" jdbcType="TIMESTAMP" property="lastConnectionTime" />
+    <result column="FK_POLICEOFFICE_ID" jdbcType="BIGINT" property="fkPoliceofficeId" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="PLACE_NO" jdbcType="VARCHAR" property="placeNo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MAC_MACHINE_ID as macMachineId, MAC_MACHINE_NO as macMachineNo, STATUS as status, FK_PLACE_ID as fkPlaceId, MACHINE_NAME as machineName, LONGITUDE as longitude, LATITUDE as latitude,
+    MACHINE_ADDRESS as machineAddress, TYPE as type, FK_MF_ID as fkMfId, TIME_INTERVAL as timeInterval, RADIUS as radius, BIKE_NO as bikeNo, METRO_LINE as metroLine, METRO_VEHICLE as metroVehicle,
+    CARRIAGE_NO as carriageNo, PLATFORM as platform, IP as ip, LAST_CONNECTION_TIME as lastConnectionTime, FK_POLICEOFFICE_ID as fkPoliceofficeId, ORG_NUM as orgNum, PLACE_NO as placeNo
+  </sql>
+  <sql id = "All_Column_List">
+    MAC_MACHINE_ID,MAC_MACHINE_NO,STATUS,FK_PLACE_ID,MACHINE_NAME,LONGITUDE,LATITUDE,MACHINE_ADDRESS,TYPE,
+    FK_MF_ID,TIME_INTERVAL,RADIUS,BIKE_NO,METRO_LINE,METRO_VEHICLE,CARRIAGE_NO,PLATFORM,IP,LAST_CONNECTION_TIME,
+    FK_POLICEOFFICE_ID,ORG_NUM,PLACE_NO
+  </sql>
+
+  <select id="selectAll" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.MacMachine" resultType="edu.xd.ridelab.foundationplatform.mysql.vo.MacMachine">
+    SELECT
+    MAC_MACHINE_ID AS macMachineId,
+    MAC_MACHINE_NO AS macMachineNo,
+    STATUS AS status,
+    FK_PLACE_ID AS fkPlaceId,
+    MACHINE_NAME AS machineName,
+    LONGITUDE AS longitude,
+    LATITUDE AS latitude,
+    MACHINE_ADDRESS AS machineAddress,
+    TYPE AS type,
+    FK_MF_ID AS fkMfId,
+    TIME_INTERVAL AS timeInterval,
+    RADIUS AS radius,
+    BIKE_NO AS bikeNo,
+    METRO_LINE AS metroLine,
+    METRO_VEHICLE AS metroVehicle,
+    CARRIAGE_NO AS carriageNo,
+    PLATFORM AS platform,
+    IP AS  ip,
+    LAST_CONNECTION_TIME AS lastConnectionTime,
+    FK_POLICEOFFICE_ID AS fkPoliceofficeId,
+    ORG_NUM AS orgNum,
+    PLACE_NO AS placeNo
+    FROM MAC_MACHINE
+    limit #{offset},#{pageNum}
+  </select>
+  <select id="selectBySomeCondition" parameterType="edu.xd.ridelab.foundationplatform.model.MacInfoModel" resultType="edu.xd.ridelab.foundationplatform.model.MacInfoModel">
+    select DISTINCT
+    A.MAC_MACHINE_ID as macMachineId,
+    A.MAC_MACHINE_NO as macMachineNo,
+    A.STATUS as status,
+    A.MACHINE_NAME as machineName,
+    A.MACHINE_ADDRESS as machineAddress,
+    A.TYPE as type,
+    A.IP as ip,
+    B.PROPERTY as property
+    from MAC_MACHINE AS A,PLACE_INFO AS B,POLICE_OFFICE AS C,MANUFACTURER AS D
+    <where>
+      A.FK_PLACE_ID = B.PLACE_ID AND A.FK_MF_ID = D.MF_ID AND A.FK_POLICEOFFICE_ID= C.POLICE_OFFICE_ID
+      <if test="machineAddress !=null">
+        AND A.MACHINE_ADDRESS= #{machineAddress}
+      </if>
+      <if test="macMachineNo !=null">
+        AND A.MAC_MACHINE_NO = #{macMachineNo}
+      </if>
+      <if test="machineName !=null">
+        AND A.MACHINE_NAME = #{macMachineName}
+      </if>
+      <if test="type !=null">
+        AND A.TYPE = #{type}
+      </if>
+      <if test="status !=null">
+        AND A.STATUS = #{status}
+      </if>
+      <if test="placeNo !=null">
+        AND B.PLACE_NO = #{placeNo}
+      </if>
+      <if test="mfName !=null">
+        AND D.MF_NAME = #{mfName}
+      </if>
+      <if test="policeOfficeName !=null">
+        AND C.POLICE_OFFICE_NAME = #{policeOfficeName}
+      </if>
+
+    </where>
+    limit #{offset},#{pageNum}
+  </select>
+
+  <select id="selectMacInfoByLongitudeAndLatitude" resultType="edu.xd.ridelab.foundationplatform.mysql.vo.MacMachine">
+    select
+    <include refid="Base_Column_List" />
+    from MAC_MACHINE
+    <where>
+      <if test="minLongitude != null">
+        AND LONGITUDE >= #{minLongitude,jdbcType=DECIMAL}
+      </if>
+
+      <if test="maxLongitude != null">
+        AND LONGITUDE &lt;= #{maxLongitude,jdbcType=DECIMAL}
+      </if>
+
+      <if test="minLatitude != null">
+        AND LATITUDE >= #{minLatitude,jdbcType=DECIMAL}
+      </if>
+
+      <if test="maxLatitude != null">
+        AND LATITUDE &lt;= #{maxLatitude,jdbcType=DECIMAL}
+      </if>
+    </where>
+    limit #{offset},#{pageSize}
+  </select>
+
+  <select id="selectMacIdByMacNo" parameterType="java.lang.String" resultType="java.lang.Long">
+    select
+    MAC_MACHINE_ID as macMachineId
+    from MAC_MACHINE
+    where MAC_MACHINE_NO = #{macMachineNo,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getMachineStatusCountByDistrict"  resultType="edu.xd.ridelab.foundationplatform.model.MachineCountByDistrict">
+    SELECT DISTRICT_NAME as districtName,
+    SUM(CASE WHEN status = "00" then 1 ELSE 0 END) as offlineCount,
+    SUM(CASE WHEN status = "01" then 1 ELSE 0 END) as onlineCount
+    FROM MAC_MACHINE,PLACE_INFO,POLICE_OFFICE,DISTRICT
+    WHERE MAC_MACHINE.FK_PLACE_ID = PLACE_INFO.PLACE_ID
+    and PLACE_INFO.FK_POLICE_OFFICE_ID = POLICE_OFFICE.POLICE_OFFICE_ID
+    and POLICE_OFFICE.FK_DISTRICT_ID = DISTRICT.DISTRICT_ID
+    GROUP BY DISTRICT_NAME;
+  </select>
+
+  <select id="getMachineStatusCountByPolice" resultType="edu.xd.ridelab.foundationplatform.model.MachineCountByPolice">
+    SELECT POLICE_OFFICE_NAME as policeName,
+            SUM( CASE WHEN STATUS = "00" THEN 1 ELSE 0 END) as offlineCount,
+            SUM( CASE WHEN STATUS = "01" THEN 1 ELSE 0 END) as onlineCount
+    FROM POLICE_OFFICE,MAC_MACHINE
+    WHERE FK_DISTRICT_ID = #{districtId,jdbcType=BIGINT} and POLICE_OFFICE_ID = FK_POLICEOFFICE_ID
+    GROUP BY POLICE_OFFICE_ID
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="All_Column_List" />
+    from MAC_MACHINE
+    where MAC_MACHINE_ID = #{macMachineId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from MAC_MACHINE
+    where MAC_MACHINE_ID = #{macMachineId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.MacMachine">
+    insert into MAC_MACHINE (MAC_MACHINE_ID, MAC_MACHINE_NO, STATUS, 
+      FK_PLACE_ID, MACHINE_NAME, LONGITUDE, 
+      LATITUDE, MACHINE_ADDRESS, TYPE, 
+      FK_MF_ID, TIME_INTERVAL, RADIUS, 
+      BIKE_NO, METRO_LINE, METRO_VEHICLE, 
+      CARRIAGE_NO, PLATFORM, IP, 
+      LAST_CONNECTION_TIME, FK_POLICEOFFICE_ID, 
+      ORG_NUM, PLACE_NO)
+    values (#{macMachineId,jdbcType=BIGINT}, #{macMachineNo,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR},
+      #{fkPlaceId,jdbcType=BIGINT}, #{machineName,jdbcType=VARCHAR}, #{longitude,jdbcType=DECIMAL}, 
+      #{latitude,jdbcType=DECIMAL}, #{machineAddress,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{fkMfId,jdbcType=BIGINT}, #{timeInterval,jdbcType=DECIMAL}, #{radius,jdbcType=DECIMAL}, 
+      #{bikeNo,jdbcType=VARCHAR}, #{metroLine,jdbcType=VARCHAR}, #{metroVehicle,jdbcType=VARCHAR}, 
+      #{carriageNo,jdbcType=VARCHAR}, #{platform,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, 
+      #{lastConnectionTime,jdbcType=TIMESTAMP}, #{fkPoliceofficeId,jdbcType=BIGINT}, 
+      #{orgNum,jdbcType=VARCHAR}, #{placeNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.MacMachine">
+    insert into MAC_MACHINE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="macMachineId != null">
+        MAC_MACHINE_ID,
+      </if>
+      <if test="macMachineNo != null">
+        MAC_MACHINE_NO,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="fkPlaceId != null">
+        FK_PLACE_ID,
+      </if>
+      <if test="machineName != null">
+        MACHINE_NAME,
+      </if>
+      <if test="longitude != null">
+        LONGITUDE,
+      </if>
+      <if test="latitude != null">
+        LATITUDE,
+      </if>
+      <if test="machineAddress != null">
+        MACHINE_ADDRESS,
+      </if>
+      <if test="type != null">
+        TYPE,
+      </if>
+      <if test="fkMfId != null">
+        FK_MF_ID,
+      </if>
+      <if test="timeInterval != null">
+        TIME_INTERVAL,
+      </if>
+      <if test="radius != null">
+        RADIUS,
+      </if>
+      <if test="bikeNo != null">
+        BIKE_NO,
+      </if>
+      <if test="metroLine != null">
+        METRO_LINE,
+      </if>
+      <if test="metroVehicle != null">
+        METRO_VEHICLE,
+      </if>
+      <if test="carriageNo != null">
+        CARRIAGE_NO,
+      </if>
+      <if test="platform != null">
+        PLATFORM,
+      </if>
+      <if test="ip != null">
+        IP,
+      </if>
+      <if test="lastConnectionTime != null">
+        LAST_CONNECTION_TIME,
+      </if>
+      <if test="fkPoliceofficeId != null">
+        FK_POLICEOFFICE_ID,
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM,
+      </if>
+      <if test="placeNo != null">
+        PLACE_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="macMachineId != null">
+        #{macMachineId,jdbcType=BIGINT},
+      </if>
+      <if test="macMachineNo != null">
+        #{macMachineNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="fkPlaceId != null">
+        #{fkPlaceId,jdbcType=BIGINT},
+      </if>
+      <if test="machineName != null">
+        #{machineName,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=DECIMAL},
+      </if>
+      <if test="machineAddress != null">
+        #{machineAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="fkMfId != null">
+        #{fkMfId,jdbcType=BIGINT},
+      </if>
+      <if test="timeInterval != null">
+        #{timeInterval,jdbcType=DECIMAL},
+      </if>
+      <if test="radius != null">
+        #{radius,jdbcType=DECIMAL},
+      </if>
+      <if test="bikeNo != null">
+        #{bikeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="metroLine != null">
+        #{metroLine,jdbcType=VARCHAR},
+      </if>
+      <if test="metroVehicle != null">
+        #{metroVehicle,jdbcType=VARCHAR},
+      </if>
+      <if test="carriageNo != null">
+        #{carriageNo,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null">
+        #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="lastConnectionTime != null">
+        #{lastConnectionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fkPoliceofficeId != null">
+        #{fkPoliceofficeId,jdbcType=BIGINT},
+      </if>
+      <if test="orgNum != null">
+        #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="placeNo != null">
+        #{placeNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.MacMachine">
+    update MAC_MACHINE
+    <set>
+      <if test="macMachineNo != null">
+        MAC_MACHINE_NO = #{macMachineNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="fkPlaceId != null">
+        FK_PLACE_ID = #{fkPlaceId,jdbcType=BIGINT},
+      </if>
+      <if test="machineName != null">
+        MACHINE_NAME = #{machineName,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        LONGITUDE = #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != null">
+        LATITUDE = #{latitude,jdbcType=DECIMAL},
+      </if>
+      <if test="machineAddress != null">
+        MACHINE_ADDRESS = #{machineAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="fkMfId != null">
+        FK_MF_ID = #{fkMfId,jdbcType=BIGINT},
+      </if>
+      <if test="timeInterval != null">
+        TIME_INTERVAL = #{timeInterval,jdbcType=DECIMAL},
+      </if>
+      <if test="radius != null">
+        RADIUS = #{radius,jdbcType=DECIMAL},
+      </if>
+      <if test="bikeNo != null">
+        BIKE_NO = #{bikeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="metroLine != null">
+        METRO_LINE = #{metroLine,jdbcType=VARCHAR},
+      </if>
+      <if test="metroVehicle != null">
+        METRO_VEHICLE = #{metroVehicle,jdbcType=VARCHAR},
+      </if>
+      <if test="carriageNo != null">
+        CARRIAGE_NO = #{carriageNo,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null">
+        PLATFORM = #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        IP = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="lastConnectionTime != null">
+        LAST_CONNECTION_TIME = #{lastConnectionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fkPoliceofficeId != null">
+        FK_POLICEOFFICE_ID = #{fkPoliceofficeId,jdbcType=BIGINT},
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="placeNo != null">
+        PLACE_NO = #{placeNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MAC_MACHINE_ID = #{macMachineId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.MacMachine">
+    update MAC_MACHINE
+    set MAC_MACHINE_NO = #{macMachineNo,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      FK_PLACE_ID = #{fkPlaceId,jdbcType=BIGINT},
+      MACHINE_NAME = #{machineName,jdbcType=VARCHAR},
+      LONGITUDE = #{longitude,jdbcType=DECIMAL},
+      LATITUDE = #{latitude,jdbcType=DECIMAL},
+      MACHINE_ADDRESS = #{machineAddress,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      FK_MF_ID = #{fkMfId,jdbcType=BIGINT},
+      TIME_INTERVAL = #{timeInterval,jdbcType=DECIMAL},
+      RADIUS = #{radius,jdbcType=DECIMAL},
+      BIKE_NO = #{bikeNo,jdbcType=VARCHAR},
+      METRO_LINE = #{metroLine,jdbcType=VARCHAR},
+      METRO_VEHICLE = #{metroVehicle,jdbcType=VARCHAR},
+      CARRIAGE_NO = #{carriageNo,jdbcType=VARCHAR},
+      PLATFORM = #{platform,jdbcType=VARCHAR},
+      IP = #{ip,jdbcType=VARCHAR},
+      LAST_CONNECTION_TIME = #{lastConnectionTime,jdbcType=TIMESTAMP},
+      FK_POLICEOFFICE_ID = #{fkPoliceofficeId,jdbcType=BIGINT},
+      ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      PLACE_NO = #{placeNo,jdbcType=VARCHAR}
+    where MAC_MACHINE_ID = #{macMachineId,jdbcType=BIGINT}
+  </update>
+
+  <select id="getAllMacMachine" resultMap="BaseResultMap">
+    SELECT
+      <include refid="Base_Column_List" />
+    FROM MAC_MACHINE
+  </select>
+</mapper>

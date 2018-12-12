@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.xd.ridelab.foundationplatform.mapperInterface.ManufacturerMapper">
+  <resultMap id="BaseResultMap" type="edu.xd.ridelab.foundationplatform.mysql.vo.Manufacturer">
+    <id column="MF_ID" jdbcType="BIGINT" property="mfId" />
+    <result column="MF_NAME" jdbcType="VARCHAR" property="mfName" />
+    <result column="MF_ORG_NO" jdbcType="VARCHAR" property="mfOrgNo" />
+    <result column="MF_ADDRESS" jdbcType="VARCHAR" property="mfAddress" />
+    <result column="MF_CONTACT" jdbcType="VARCHAR" property="mfContact" />
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <resultMap id="ManufacturerCountResultMap" type="edu.xd.ridelab.foundationplatform.model.ManufacturerStatusCount">
+    <result column="mfName"  property="mfName" />
+    <result column="mfOrgNo"  property="mfOrgNo" />
+    <result column="macCount"  property="macCount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MF_ID, MF_NAME, MF_ORG_NO, MF_ADDRESS, MF_CONTACT, PHONE, EMAIL, REMARK
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from MANUFACTURER
+    where MF_ID = #{mfId,jdbcType=BIGINT}
+  </select>
+    <select id="getAllManu" resultType="edu.xd.ridelab.foundationplatform.mysql.vo.Manufacturer">
+        select
+        MF_ID as mfId,
+        MF_NAME as mfName,
+        MF_ORG_NO as mfOrgNo,
+        MF_ADDRESS as mfAddress,
+        MF_CONTACT as mfContact,
+        PHONE as phone,
+        EMAIL as email,
+        REMARK as remark
+        from MANUFACTURER
+        limit #{offset},#{pageNum}
+    </select>
+  <select id="selectMfIdByMfOrgNo" parameterType="java.lang.String" resultType="java.lang.Long">
+    select MF_ID as mfId from MANUFACTURER WHERE MF_ORG_NO=#{mfOrgNo}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from MANUFACTURER
+    where MF_ID = #{mfId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.Manufacturer" useGeneratedKeys="true" keyProperty="mfId" keyColumn="MF_ID" >
+    insert into MANUFACTURER (MF_ID, MF_NAME, MF_ORG_NO, 
+      MF_ADDRESS, MF_CONTACT, PHONE, 
+      EMAIL, REMARK)
+    values (#{mfId,jdbcType=BIGINT}, #{mfName,jdbcType=VARCHAR}, #{mfOrgNo,jdbcType=VARCHAR}, 
+      #{mfAddress,jdbcType=VARCHAR}, #{mfContact,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.Manufacturer"
+          useGeneratedKeys="true" keyProperty="mfId" keyColumn="MF_ID" >
+    insert into MANUFACTURER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mfId != null">
+        MF_ID,
+      </if>
+      <if test="mfName != null">
+        MF_NAME,
+      </if>
+      <if test="mfOrgNo != null">
+        MF_ORG_NO,
+      </if>
+      <if test="mfAddress != null">
+        MF_ADDRESS,
+      </if>
+      <if test="mfContact != null">
+        MF_CONTACT,
+      </if>
+      <if test="phone != null">
+        PHONE,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mfId != null">
+        #{mfId,jdbcType=BIGINT},
+      </if>
+      <if test="mfName != null">
+        #{mfName,jdbcType=VARCHAR},
+      </if>
+      <if test="mfOrgNo != null">
+        #{mfOrgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mfAddress != null">
+        #{mfAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="mfContact != null">
+        #{mfContact,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.Manufacturer">
+    update MANUFACTURER
+    <set>
+      <if test="mfName != null">
+        MF_NAME = #{mfName,jdbcType=VARCHAR},
+      </if>
+      <if test="mfOrgNo != null">
+        MF_ORG_NO = #{mfOrgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mfAddress != null">
+        MF_ADDRESS = #{mfAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="mfContact != null">
+        MF_CONTACT = #{mfContact,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MF_ID = #{mfId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.Manufacturer">
+    update MANUFACTURER
+    set MF_NAME = #{mfName,jdbcType=VARCHAR},
+      MF_ORG_NO = #{mfOrgNo,jdbcType=VARCHAR},
+      MF_ADDRESS = #{mfAddress,jdbcType=VARCHAR},
+      MF_CONTACT = #{mfContact,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where MF_ID = #{mfId,jdbcType=BIGINT}
+  </update>
+    <select id="selectBySomeConditions" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from MANUFACTURER
+        <where>
+            <if test="mfName!=null and mfName!='' ">and MF_NAME=#{mfName}</if>
+            <if test="mfOrgNo!=null and mfOrgNo!='' ">and MF_ORG_NO=#{mfOrgNo}</if>
+            <if test="mfAddress!=null and mfAddress!=''">and MF_ADDRESS=#{mfAddress}</if>
+        </where>
+        limit #{offset},#{pageNum}
+    </select>
+  <select id="getManufacturerStatusCountByMfName" resultType="edu.xd.ridelab.foundationplatform.model.ManufacturerStatusCount">
+  select
+  MANUFACTURER.MF_NAME as mfName,
+  MANUFACTURER.MF_ORG_NO as mfOrgNo,
+  COUNT(*) as count,
+  MAC_MACHINE.`STATUS` as status
+  from MANUFACTURER,MAC_MACHINE
+  <where>
+    <if test="mfName != null"> AND MANUFACTURER.MF_NAME like  CONCAT(CONCAT('%',#{mfName},'%')) </if>
+    <!-- MANUFACTURER.MF_NAME like '%${mfName}%' -->
+    AND MANUFACTURER.MF_ID = MAC_MACHINE.FK_MF_ID
+  </where>
+  GROUP BY MANUFACTURER.MF_NAME , MANUFACTURER.MF_ORG_NO,MAC_MACHINE.`STATUS`
+  limit #{offset},#{pageNum}
+
+</select>
+  <select id="getManufacturerCountByMfName" resultType="edu.xd.ridelab.foundationplatform.model.ManufacturerCount">
+    select
+    MANUFACTURER.MF_NAME as mfName,
+    MANUFACTURER.MF_ORG_NO as mfOrgNo,
+    sum(case when status = "00" then 1 else 0 end) as offlineCount,
+    sum(case when status = "01" then 1 else 0 end) as onlineCount,
+    sum(case when status = "01" or status = "00" then 1 else 0 end) as total
+    from MANUFACTURER,MAC_MACHINE
+    <where>
+      <if test="mfName != null"> AND MANUFACTURER.MF_NAME like  CONCAT(CONCAT('%',#{mfName},'%')) </if>
+      AND MANUFACTURER.MF_ID = MAC_MACHINE.FK_MF_ID
+    </where>
+    GROUP BY MANUFACTURER.MF_NAME , MANUFACTURER.MF_ORG_NO
+    limit #{offset},#{pageNum}
+  </select>
+</mapper>

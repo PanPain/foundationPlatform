@@ -1,0 +1,201 @@
+.login-main{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.login-bg{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* 登录主体部分 */
+.login-box-wrap{
+  position: relative;
+  top: 30%;
+  left: 57%;
+  width: 40%;
+  height: 50%;
+  margin-left: -200px;
+  margin-top: -100px;
+  padding: 20px;
+  border: 2px solid #ffffff;
+  border-radius: 8px;
+  background:rgba(255,255,255,0.1);
+}
+
+.static-form{
+  position: relative;
+  padding: 20px;
+  display: block;
+
+}
+
+/*��¼��*/
+.login-box{
+  width: 100%;
+}
+
+/*标题*/
+.login-title{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 680px;
+  height: 380px;
+  margin-left: -360px;
+  margin-top: -210px;
+
+}
+/*警徽logo*/
+.login-logo img{
+  position: relative;
+  top:  100%;
+  left: 45%;
+  width:80px;
+  height:80px;
+}
+
+/*��¼��Ϣ�?�ύ��*/
+.static-form .field{
+  margin-top: 30px;
+  position: relative;
+
+}
+
+.static-form .field label {
+  display: block;
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  color: #fff;
+  text-align: right;
+  font-size: 18px;
+  position: absolute;
+  left: 100px;
+  top: 1px;
+  outline: 0;
+
+}
+
+.static-form .login-text {
+  position: relative;
+  left: -9px;
+  top:-40px;
+  width: 250px;
+  font-size: 14px;
+  line-height: 18px;
+  height: 38px;
+  padding: 11px 8px 11px 10px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  background:rgba(255,255,255,0.3);
+
+}
+
+/* 登录重置按钮 */
+.static-form .submit {
+  margin:-10px -80px 0;
+  text-align: center;
+
+}
+
+/*��¼��ť*/
+.login-box-wrap .submit .lgbtn {
+  width: 90px;
+  margin: 0 28px;
+  height: 32px;
+  border: 0;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: middle;
+  text-align:center;
+  line-height: 22px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family:Microsoft YaHei ;
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+  zoom: 1;
+  color: #FFFFFF;
+  background: -webkit-gradient(linear, left top, left bottom, from(#0099FF), to(#0033FF));
+  background: -moz-linear-gradient(top,  #0099FF,  #0033FF);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
+}
+
+/*��Ƶ�ؼ�����*/
+.login-main .login-control{
+  position: relative;
+  top: 15px;
+  left: -5px;
+
+}
+
+/*�ײ�����*/
+.login-footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  margin: 0 auto;
+  overflow: hidden;
+  line-height: 50px;
+  font-size: 16px;
+  background: transparent;
+}
+
+/*�ײ�logo�������̺Ͱ汾��*/
+.footer-logo{
+  width: 50px;
+  height: 50px;
+  float: left;
+  margin-left: 20%;
+}
+
+.login-footer .copyright{
+  float: left;
+  color: #ffffff;
+  margin-left: 10px;
+}
+
+.login-footer .version{
+  float: left;
+  color: #ffffff;
+  margin-left: 30%;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  color:    #ffffff;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color:    #ffffff;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color:    #ffffff;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color:    #ffffff;
+}
+
+/*.linear{*/
+/*width:100%;*/
+
+/*height:100%;*/
+
+/*FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#b8c4cb,endColorStr=red); /!*IE 6 7 8*!/*/
+
+/*background: -ms-linear-gradient(top, #fff,  #0000ff);        /!* IE 10 *!/*/
+
+/*background:-moz-linear-gradient(top,#b8c4cb,#f6f6f8);/!*���*!/*/
+
+/*background:-webkit-gradient(linear, 0% 0%, 0% 100%,from(#b8c4cb), to(#f6f6f8));/!*�ȸ�*!/*/
+
+/*background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#0000ff));      /!* Safari 4-5, Chrome 1-9*!/*/
+
+/*background: -webkit-linear-gradient(top, #fff, #0000ff);   /!*Safari5.1 Chrome 10+*!/*/
+
+/*background: -o-linear-gradient(top, #fff, #0000ff);  /!*Opera 11.10+*!/*/
+
+/*}*/

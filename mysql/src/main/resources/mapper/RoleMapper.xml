@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.xd.ridelab.foundationplatform.mapperInterface.RoleMapper">
+  <resultMap id="BaseResultMap" type="edu.xd.ridelab.foundationplatform.mysql.vo.Role">
+    <id column="ROLE_ID" jdbcType="BIGINT" property="roleId" />
+    <result column="ROLE_NAME" jdbcType="VARCHAR" property="roleName" />
+    <result column="ROLE_DESC" jdbcType="VARCHAR" property="roleDesc" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="MODIFY_TIME" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ROLE_ID, ROLE_NAME, ROLE_DESC, CREATE_TIME, MODIFY_TIME
+  </sql>
+  <select id="selectByConds" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.Role" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ROLE
+    <where>
+      <if test="roleId!=null ">and ROLE_ID=#{roleId}</if>
+      <if test="roleName!=null ">and ROLE_NAME=#{roleName}</if>
+      <if test="roleDesc!=null ">and ROLE_DESC=#{roleDesc}</if>
+    </where>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ROLE
+    where ROLE_ID = #{roleId,jdbcType=BIGINT}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ROLE
+    where ROLE_ID = #{roleId,jdbcType=BIGINT}
+  </delete>
+
+  <delete id="batchDeleteByPrimaryKey" parameterType="java.util.List">
+    delete from ROLE
+    where ROLE_ID
+    in
+    <foreach collection="list" item="id" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+  </delete>
+  <insert id="insert" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.Role" useGeneratedKeys="true" keyProperty="roleId" keyColumn="ROLE_ID">
+    insert into ROLE (ROLE_ID, ROLE_NAME, ROLE_DESC, 
+      CREATE_TIME, MODIFY_TIME)
+    values (#{roleId,jdbcType=BIGINT}, #{roleName,jdbcType=VARCHAR}, #{roleDesc,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.Role">
+    insert into ROLE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        ROLE_ID,
+      </if>
+      <if test="roleName != null">
+        ROLE_NAME,
+      </if>
+      <if test="roleDesc != null">
+        ROLE_DESC,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleDesc != null">
+        #{roleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.Role">
+    update ROLE
+    <set>
+      <if test="roleName != null and roleName != '' ">
+        ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleDesc != null">
+        ROLE_DESC = #{roleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ROLE_ID = #{roleId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.Role">
+    update ROLE
+    set ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+      ROLE_DESC = #{roleDesc,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+    where ROLE_ID = #{roleId,jdbcType=BIGINT}
+  </update>
+  <select id="selectRoleIdByRoleName" parameterType="java.lang.String" resultType="java.lang.Long">
+    SELECT ROLE_ID
+    FROM ROLE
+    WHERE ROLE_NAME=#{roleName,jdbcType=VARCHAR}
+  </select>
+</mapper>

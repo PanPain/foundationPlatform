@@ -1,0 +1,285 @@
+<!-- 区域管理 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta charset="utf-8" />
+	<title> foundationPlatform 1.0districtManagement      | 区域管理 </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+	<!-- bootstrap & fontawesome -->
+	<link rel="stylesheet" href="../../static/assets/css/bootstrap.css" />
+	<link rel="stylesheet" href="../../static/assets/css/iconfont/iconfont.css" />
+
+	<link rel="stylesheet" href="../../CSS/basicInfoManagement/districtManagement.css" />
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=2.0&ak=8Bqeqb7iVYhgASeeacBeno7SWc2A3uso"></script>
+
+</head>
+<body>  
+	<div class="page-cont">                                                  
+		<div class="row">
+			<div class="col-md-6 ">
+				<div class="row">
+					<div class="col-md-11 dis-main dis-left">
+						<div class="form-group">
+							<h4  class="dis-left-top" >区域列表
+								<div class="dislefttopbtn   pull-right">
+									<button  type="button" class="btn btn-info addNew" data-toggle="button">
+										<i class="iconfont icon-jiahao"></i>新增</button>
+										<button type="button" class="btn btn-info">
+											<i class="iconfont icon-daochu"></i>导出</button>
+											<button type="button" class="btn  btn-info"> 
+												<i class="iconfont icon-daoru"></i>导入</button>
+											</div></h4>
+										</div>
+										<div class="dis-left-mid col-md-12">
+											<div class="input-group">
+												<input type="text" id='searchInput' class="form-control" placeholder="请输入区域名称">
+												<span class="input-group-btn">
+													<button class="btn btn-info" id='searchDis' type="button">搜索</button>
+												</span>
+											</div><!--/input-group -->
+										</div>
+										<div class="form-group">
+											<div class="dis-left-footer col-md-12">
+												<ul class="list-group" id="distriList" >
+													<li class="list-group-item"> <i class="iconfont icon-fuwuquyu"></i>长安区
+														<button class="btn btn-warning pull-right dropdown-toggle" type="button" data-toggle="dropdown">操作 <span class="caret"></span></button>
+														<ul class="dropdown-menu pull-right">
+															<li><a href="#" class="addNew"> <i class="iconfont icon-jiahao"></i> 新增</a></li>
+															<li><a href="#" class="editNew"> <i class="iconfont icon-bianji"></i>  编辑</a></li>
+															<li><a href="#" class="delRow"><i class="iconfont icon-shanchu"></i> 删除</a></li>
+														</ul>
+													</li>
+													<li class="list-group-item"><i class="iconfont icon-fuwuquyu"></i>雁塔区
+														<button class="btn btn-warning pull-right dropdown-toggle" type="button" data-toggle="dropdown">操作 <span class="caret"></span></button>
+														<ul class="dropdown-menu pull-right">
+															<li><a href="#" class="addNew"> <i class="iconfont icon-jiahao"></i> 新增</a></li>
+															<li><a href="#" class="editNew"> <i class="iconfont icon-bianji"></i>  编辑</a></li>
+															<li><a href="#" class="delRow"><i class="iconfont icon-shanchu"></i> 删除</a></li>
+														</ul>
+													</li>																								
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 dis-main ">
+									<div class="col-md-12  pull-right">
+										<h4  class="dis-left-top" >区域明细</h4>
+									</div>
+									<div class="col-md-12">
+										<form  class="form-horizontal" role='form'>
+											<div class="form-group">
+												<label  class="col-sm-3 control-label no-padding-right" for='form-field-number' >区域编号</label>
+												<div class="col-sm-9">
+													<input type="text" class="form-control" id="form-field-number" >
+												</div>
+											</div><!--/form-group -->
+											<div class="form-group">
+												<label  class="col-sm-3 control-label no-padding-right" for='form-field-name' >区域名称</label>
+												<div class="col-sm-9">
+													<input type="text" class="form-control" id="form-field-name" >
+												</div>
+											</div>
+											<div class="form-group">
+												<label  class="col-sm-3 control-label no-padding-right " for='form-field-longitude' >经度范围</label>
+												<div class="col-sm-9">
+													<div class="input-group" >
+														<input type="text" class="form-control" id="form-field-longitude" >
+														<span class="input-group-btn">
+															<button class="btn btn-sm btn-success btn-map" type="button"> <i class="iconfont icon-fuwuquyu"></i></button>
+														</span>
+													</div><!--/input-group -->
+												</div>
+											</div>
+											<div class="form-group">
+												<label  class="col-sm-3 control-label no-padding-right" for='form-field-latitude' >纬度范围</label>
+												<div class="col-sm-9">
+													<div class="input-group" >
+														<input type="text" class="form-control" id="form-field-latitude" >
+														<span class="input-group-btn">
+															<button class="btn btn-sm btn-success btn-map" type="button"> <i class="iconfont icon-fuwuquyu"></i></button>
+														</span>
+													</div><!--/input-group -->
+												</div>
+											</div><!--/form-group -->
+											<div class="form-group">
+												<label  class="col-sm-3 control-label no-padding-right" for='form-field-level' >区域级别</label>
+												<div class="col-sm-9">
+													<input type="text" class="form-control" id="form-field-level" >
+												</div>
+											</div><!--/form-group -->
+											<div class="form-group">
+												<label  class="col-sm-3 control-label no-padding-right" for='form-field-note' >备注</label>
+												<div class="col-sm-9">
+													<textarea type="text" class="form-control" id="form-field-note" >  </textarea>             
+												</div>
+											</div><!--/form-group -->
+										</form>
+									</div>
+									<div class=" col-md-12"  style="margin: 0 auto; height:300px;"> <div id="map" style="height:100%;"></div>
+										<!-- <div id="r-result">
+											经度: <input id="longitude" type="text" style="width:100px; margin-right:10px;" />
+											纬度: <input id="latitude" type="text" style="width:100px; margin-right:10px;" />
+											<input type="button" value="查询" onclick="theLocation()" />
+										</div> --></div>
+								</div>
+							</div>
+
+							<!-- 点击新增按钮弹出的页面 -->
+							<div id="modal-new" class="modal fade" tabindex="1">
+								<div class="row">
+									<div class="col-md-5" style="margin:0 300px;">
+										<div class="form-group new-h">
+											<h4 class="dis-left-top" style="margin-left: 10px;margin-right: 10px;margin-top:5px;">新增 <i class="ace-icon glyphicon glyphicon-remove pull-right delAdd"></i></h4>
+										</div>
+										<div class="dis-add-main col-md-12">
+											<div class="col-md-12">
+												<form  class="form-horizontal" role='form'>
+													<div class="form-group">
+														<label  class="col-sm-3 control-label no-padding-right" for='NewNumber' >区域编号</label>
+														<div class="col-sm-9">
+															<input type="text" class="form-control" id="NewNumber" >
+														</div>
+													</div><!--/form-group -->
+													<div class="form-group">
+														<label  class="col-sm-3 control-label no-padding-right" for='NewName' >区域名称</label>
+														<div class="col-sm-9">
+															<input type="text" class="form-control" id="NewName" >
+														</div>
+													</div>
+													<div class="form-group">
+														<label  class="col-sm-3 control-label no-padding-right" for='NewLongitude' >经度范围</label>
+														<div class="col-sm-9">
+															<div class="input-group" >
+																<input type="text" onkeyup="value=value.replace(/[^\d\.]/g,'')" class="form-control" id="NewLongitude" placeholder="此框只能输入数字" >
+																<span class="input-group-btn">
+																	<button class="btn btn-sm btn-success" type="button"> <i class="iconfont icon-fuwuquyu"></i></button>
+																</span>
+															</div><!--/input-group -->
+														</div>
+													</div>
+													<div class="form-group">
+														<label  class="col-sm-3 control-label no-padding-right" for='NewLatitude' >纬度范围</label>
+														<div class="col-sm-9">
+															<div class="input-group" >
+																<input type="text" onkeyup="value=value.replace(/[^\d\.]/g,'')" class="form-control" id="NewLatitude" placeholder="此框只能输入数字">
+																<span class="input-group-btn">
+																	<button class="btn btn-sm btn-success" type="button"> <i class="iconfont icon-fuwuquyu"></i></button>
+																</span>
+															</div><!--/input-group -->
+														</div>
+													</div><!--/form-group -->
+													<div class="form-group">
+														<label  class="col-sm-3 control-label no-padding-right" for='NewLevel' >区域级别</label>
+														<div class="col-sm-9">
+															<input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" class="form-control" id="NewLevel" placeholder="此框只能输入数字且不能带小数点" >
+														</div>
+													</div><!--/form-group -->
+													<div class="form-group">
+														<label  class="col-sm-3 control-label no-padding-right" for='NewNote' >备注</label>
+														<div class="col-sm-9">
+															<textarea type="text" class="form-control" id="NewNote" >  </textarea>             
+														</div>
+													</div><!--/form-group -->
+												</form>
+												<div class="clearfix form-actions">
+													<div class="col-md-offset-6 col-md-5">
+														<button class="btn btn-sm btn-success" data-dismiss="modal" id='saveNew'>
+															保存
+														</button>
+														&nbsp;&nbsp;&nbsp;
+														<button class="btn btn-sm btn-danger delAdd" data-dismiss="modal">
+															返回列表
+														</button>
+													</div>
+												</div>
+											</div> <!-- col-md-6 -->
+										</div>
+									</div>
+								</div>
+							</div> <!-- modal-new   -->
+
+
+							<!-- 点击编辑按钮弹出的页面 -->
+							<div id="modal-edit" class="modal fade" tabindex="1">
+								<div class="row">
+									<div class="col-md-5" style="margin:0 300px;">
+										<div class="form-group new-h">
+											<h4 class="dis-left-top" style="margin-left: 10px;margin-right: 10px;margin-top:5px;">编辑 <i class="ace-icon glyphicon glyphicon-remove pull-right delEdit"></i></h4>
+										</div>
+										<div class="dis-add-main col-md-12">
+											<div class="col-md-12">
+												<form  class="form-horizontal" role='form'>
+													<div class="form-group">
+														<label  class="col-sm-3 control-label no-padding-right" for='editNumber' >区域编号</label>
+														<div class="col-sm-9">
+															<input type="text" class="form-control" id="editNumber" >
+														</div>
+													</div><!--/form-group -->
+													<div class="form-group">
+														<label  class="col-sm-3 control-label no-padding-right" for='editName' >区域名称</label>
+														<div class="col-sm-9">
+															<input type="text" class="form-control" id="editName" >
+														</div>
+													</div>
+													<div class="form-group">
+														<label  class="col-sm-3 control-label no-padding-right" for='editLongitude' >经度范围</label>
+														<div class="col-sm-9">
+															<div class="input-group" >
+																<input type="text" onkeyup="value=value.replace(/[^\d\.]/g,'')" class="form-control" id="editLongitude" placeholder="此框只能输入数字" >
+																<span class="input-group-btn">
+																	<button class="btn btn-sm btn-success" type="button"> <i class="iconfont icon-fuwuquyu"></i></button>
+																</span>
+															</div><!--/input-group -->
+														</div>
+													</div>
+													<div class="form-group">
+														<label  class="col-sm-3 control-label no-padding-right" for='editLatitude' >纬度范围</label>
+														<div class="col-sm-9">
+															<div class="input-group" >
+																<input type="text" onkeyup="value=value.replace(/[^\d\.]/g,'')" class="form-control" id="editLatitude" placeholder="此框只能输入数字" >
+																<span class="input-group-btn">
+																	<button class="btn btn-sm btn-success" type="button"> <i class="iconfont icon-fuwuquyu"></i></button>
+																</span>
+															</div><!--/input-group -->
+														</div>
+													</div><!--/form-group -->
+													<div class="form-group">
+														<label  class="col-sm-3 control-label no-padding-right" for='editLevel' >区域级别</label>
+														<div class="col-sm-9">
+															<input type="text"  onkeyup="value=value.replace(/[^\d]/g,'')" class="form-control" id="editLevel" placeholder="此框只能输入数字且不能带小数点">
+														</div>
+													</div><!--/form-group -->
+													<div class="form-group">
+														<label  class="col-sm-3 control-label no-padding-right" for='editNote' >备注</label>
+														<div class="col-sm-9">
+															<textarea type="text" class="form-control" id="editNote" >  </textarea>             
+														</div>
+													</div><!--/form-group -->
+												</form>
+												<div class="clearfix form-actions">
+													<div class="col-md-offset-6 col-md-5">
+														<button class="btn btn-sm btn-success" data-dismiss="modal" id='saveEdit'>
+															保存
+														</button>
+														&nbsp;&nbsp;&nbsp;
+														<button class="btn btn-sm btn-danger delEdit" data-dismiss="modal">
+															返回列表
+														</button>
+													</div>
+												</div>
+											</div> <!-- col-md-6 -->
+										</div>
+									</div>
+								</div>
+							</div> <!-- editNew   -->
+
+						</div><!-- page-cont -->
+						<script src='../../static/assets/js/jquery.js'></script>
+						<script src="../../static/assets/js/bootstrap.js"></script>  
+						<script src="../../JavaScript/basicInfoManagement/districtManagement.js"></script>
+						<!-- <script src="../../JavaScript/basicInfoManagement/beiyong.js"></script> -->
+					</body>
+					</html>

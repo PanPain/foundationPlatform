@@ -1,0 +1,46 @@
+body, html {
+  font: 12px/1.5 "Microsoft YaHei",Arial,Helvetica,sans-serif;
+}
+
+blockquote, body, button, code, dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, legend, li, ol, p, pre, td, textarea, th, ul {
+  margin: 0;
+  padding: 0;
+}
+
+button, input, select, textarea {
+  font: 14px "Microsoft YaHei",Arial,'Hiragino Sans GB','\5b8b\4f53',sans-serif;
+}
+
+* {
+  word-wrap: break-word;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #555;
+  outline:none;
+}
+
+ul li {
+  list-style: none;
+}
+
+em, cite, i {
+  font-style: normal;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+th, td {
+  /* border: 1px solid #666; */
+}

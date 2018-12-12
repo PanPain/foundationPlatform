@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.xd.ridelab.foundationplatform.mapperInterface.PermissionMapper">
+  <resultMap id="BaseResultMap" type="edu.xd.ridelab.foundationplatform.mysql.vo.Permission">
+    <id column="PERMISSION_ID" jdbcType="BIGINT" property="permissionId" />
+    <result column="PERMISSION_URL" jdbcType="VARCHAR" property="permissionUrl" />
+    <result column="PERMISSION_DESC" jdbcType="VARCHAR" property="permissionDesc" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="MODIFY_TIME" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PERMISSION_ID, PERMISSION_URL, PERMISSION_DESC, CREATE_TIME, MODIFY_TIME
+  </sql>
+  <select id = "checkUserHasPermission"  resultMap="BaseResultMap">
+    <!--根据用户id和请求的URL判断用户是否有访问权限-->
+    SELECT *
+    FROM USER_ROLE_RELATION , ROLE_PERMISSION_RELATION , PERMISSION
+    WHERE USER_ROLE_RELATION.FK_USER_ID=#{userId}
+      AND USER_ROLE_RELATION.FK_ROLE_ID=ROLE_PERMISSION_RELATION.FK_ROLE_ID
+      AND ROLE_PERMISSION_RELATION.FK_PERMISSION_ID=PERMISSION.PERMISSION_ID
+      AND PERMISSION.PERMISSION_URL=#{permissionUrl}
+  </select>
+  <select id="selectByConds" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.Permission" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from PERMISSION
+    <where>
+      <if test="permissionId!=null ">and PERMISSION_ID=#{permissionId}</if>
+      <if test="permissionDesc!=null ">and PERMISSION_DESC=#{permissionDesc}</if>
+      <if test="permissionUrl!=null ">and PERMISSION_URL=#{permissionUrl}</if>
+    </where>
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from PERMISSION
+    where PERMISSION_ID = #{permissionId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from PERMISSION
+    where PERMISSION_ID = #{permissionId,jdbcType=BIGINT}
+  </delete>
+
+  <delete id="deleteByPermissionIds" >
+    delete from PERMISSION
+    where PERMISSION_ID in
+    <foreach collection="list" item="id" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+  </delete>
+
+  <insert id="insert" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.Permission" useGeneratedKeys="true" keyProperty="permissionId" keyColumn="PERMISSION_ID">
+    insert into PERMISSION (PERMISSION_ID, PERMISSION_URL, PERMISSION_DESC, 
+      CREATE_TIME, MODIFY_TIME)
+    values (#{permissionId,jdbcType=BIGINT}, #{permissionUrl,jdbcType=VARCHAR}, #{permissionDesc,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.Permission">
+    insert into PERMISSION
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="permissionId != null">
+        PERMISSION_ID,
+      </if>
+      <if test="permissionUrl != null">
+        PERMISSION_URL,
+      </if>
+      <if test="permissionDesc != null">
+        PERMISSION_DESC,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="permissionId != null">
+        #{permissionId,jdbcType=BIGINT},
+      </if>
+      <if test="permissionUrl != null">
+        #{permissionUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionDesc != null">
+        #{permissionDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.Permission">
+    update PERMISSION
+    <set>
+      <if test="permissionUrl != null">
+        PERMISSION_URL = #{permissionUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionDesc != null">
+        PERMISSION_DESC = #{permissionDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where PERMISSION_ID = #{permissionId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.Permission">
+    update PERMISSION
+    set PERMISSION_URL = #{permissionUrl,jdbcType=VARCHAR},
+      PERMISSION_DESC = #{permissionDesc,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+    where PERMISSION_ID = #{permissionId,jdbcType=BIGINT}
+  </update>
+</mapper>

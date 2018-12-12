@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>弹窗测试</title>
+    <link rel="stylesheet" href="../assets/css/jquery-ui.css">
+    <script src="../assets/js/jquery.js"></script>
+    <script src="../assets/js/jquery-ui.js"></script>
+    <link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
+    <!-- <link rel="stylesheet" href="../assets/css/jquery-ui.custom.css"> -->
+    
+    
+</head>
+
+<body>
+
+    <script>
+        function dialog() {
+            $("#dialogDiv").dialog({
+                title: "TEST",
+                height: 420,
+                width: 210,
+                modal: true
+            })
+        }
+    </script>
+    <h2>jquery 弹窗测试</h2>
+    <button onclick="dialog()">弹窗吧</button>
+    <div id="dialogDiv">dialog</div>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.xd.ridelab.foundationplatform.mapperInterface.MachineStatusLogMapper">
+  <resultMap id="BaseResultMap" type="edu.xd.ridelab.foundationplatform.mysql.vo.MachineStatusLog">
+    <id column="ONOFF_ID" jdbcType="BIGINT" property="onoffId" />
+    <result column="FK_MAC_MACHINE_ID" jdbcType="BIGINT" property="fkMacMachineId" />
+    <result column="ONLINE_TIME" jdbcType="TIMESTAMP" property="onlineTime" />
+    <result column="OFFLINE_TIME" jdbcType="TIMESTAMP" property="offlineTime" />
+  </resultMap>
+  <resultMap id="MachineStatusLogModel" type="edu.xd.ridelab.foundationplatform.model.MachineStatusLogModel">
+    <id column="MAC_MACHINE_ID" jdbcType="BIGINT" property="macMachineId" />
+    <result column="MAC_MACHINE_NO" jdbcType="VARCHAR" property="macMachineNo" />
+    <result column="MACHINE_ADDRESS" jdbcType="VARCHAR" property="machineAddress" />
+    <result column="POLICE_OFFICE_NAME" jdbcType="VARCHAR" property="policeOfficeName" />
+    <result column="ONOFF_ID" jdbcType="BIGINT" property="onoffId" />
+    <result column="FK_MAC_MACHINE_ID" jdbcType="BIGINT" property="fkMacMachineId" />
+    <result column="ONLINE_TIME" jdbcType="TIMESTAMP" property="onlineTime" />
+    <result column="OFFLINE_TIME" jdbcType="TIMESTAMP" property="offlineTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ONOFF_ID, FK_MAC_MACHINE_ID, ONLINE_TIME, OFFLINE_TIME
+  </sql>
+
+  <sql id="Model_Column_List">
+    MAC_MACHINE_ID, MAC_MACHINE_NO, MACHINE_ADDRESS, POLICE_OFFICE_NAME, ONLINE_TIME, OFFLINE_TIME
+  </sql>
+
+  <select id="selectMachineStatusLogInfo" resultType="edu.xd.ridelab.foundationplatform.model.MachineStatusLogModel">
+    select
+    mm.MAC_MACHINE_ID as macMachineId,
+    mm.MAC_MACHINE_NO as macMachineNo,
+    mm.MACHINE_ADDRESS as machineAddress,
+    po.POLICE_OFFICE_NAME as policeOfficeName,
+    msl.ONLINE_TIME as onlineTime,
+    msl.OFFLINE_TIME as offlineTime
+    from MACHINE_STATUS_LOG AS msl,MAC_MACHINE AS mm,POLICE_OFFICE AS po
+    <where>
+
+      msl.FK_MAC_MACHINE_ID = mm.MAC_MACHINE_ID AND mm.FK_POLICEOFFICE_ID = po.POLICE_OFFICE_ID
+
+      <if test="macMachineNo != null">
+        AND mm.MAC_MACHINE_NO = #{macMachineNo,jdbcType=VARCHAR}
+      </if>
+
+      <if test="machineAddress != null">
+        AND mm.MACHINE_ADDRESS = #{machineAddress,jdbcType=VARCHAR}
+      </if>
+
+      <if test="policeOfficeName != null">
+        AND po.POLICE_OFFICE_NAME = #{policeOfficeName,jdbcType=VARCHAR}
+      </if>
+
+      <if test="minOnlineTime != null">
+        AND msl.ONLINE_TIME >= str_to_date(#{minOnlineTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')
+      </if>
+
+      <if test="maxOnlineTime != null">
+        AND msl.ONLINE_TIME &lt;= str_to_date(#{maxOnlineTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')
+      </if>
+    </where>
+    limit #{offset},#{pageSize}
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from MACHINE_STATUS_LOG
+    where ONOFF_ID = #{onoffId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from MACHINE_STATUS_LOG
+    where ONOFF_ID = #{onoffId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.MachineStatusLog">
+    insert into MACHINE_STATUS_LOG (ONOFF_ID, FK_MAC_MACHINE_ID, ONLINE_TIME, 
+      OFFLINE_TIME)
+    values (#{onoffId,jdbcType=BIGINT}, #{fkMacMachineId,jdbcType=BIGINT}, #{onlineTime,jdbcType=TIMESTAMP}, 
+      #{offlineTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.MachineStatusLog">
+    insert into MACHINE_STATUS_LOG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="onoffId != null">
+        ONOFF_ID,
+      </if>
+      <if test="fkMacMachineId != null">
+        FK_MAC_MACHINE_ID,
+      </if>
+      <if test="onlineTime != null">
+        ONLINE_TIME,
+      </if>
+      <if test="offlineTime != null">
+        OFFLINE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="onoffId != null">
+        #{onoffId,jdbcType=BIGINT},
+      </if>
+      <if test="fkMacMachineId != null">
+        #{fkMacMachineId,jdbcType=BIGINT},
+      </if>
+      <if test="onlineTime != null">
+        #{onlineTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="offlineTime != null">
+        #{offlineTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.MachineStatusLog">
+    update MACHINE_STATUS_LOG
+    <set>
+      <if test="fkMacMachineId != null">
+        FK_MAC_MACHINE_ID = #{fkMacMachineId,jdbcType=BIGINT},
+      </if>
+      <if test="onlineTime != null">
+        ONLINE_TIME = #{onlineTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="offlineTime != null">
+        OFFLINE_TIME = #{offlineTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ONOFF_ID = #{onoffId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.MachineStatusLog">
+    update MACHINE_STATUS_LOG
+    set FK_MAC_MACHINE_ID = #{fkMacMachineId,jdbcType=BIGINT},
+      ONLINE_TIME = #{onlineTime,jdbcType=TIMESTAMP},
+      OFFLINE_TIME = #{offlineTime,jdbcType=TIMESTAMP}
+    where ONOFF_ID = #{onoffId,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,924 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.xd.ridelab.foundationplatform.mapperInterface.RecordPerDayStatisticsMapper">
+  <resultMap id="BaseResultMap" type="edu.xd.ridelab.foundationplatform.mysql.vo.RecordPerDayStatistics">
+    <id column="RECORD_DATE" jdbcType="DATE" property="recordDate" />
+    <id column="MAC_MACHINE_NO" jdbcType="VARCHAR" property="macMachineNo" />
+    <id column="COMPRESSION" jdbcType="BIT" property="compression" />
+    <result column="MAC_COUNT" jdbcType="INTEGER" property="macCount" />
+    <result column="AP_MAC_COUNT" jdbcType="INTEGER" property="apMacCount" />
+    <result column="VI_COUNT" jdbcType="INTEGER" property="viCount" />
+    <result column="TIAN_YA_LUN_TAN" jdbcType="INTEGER" property="tianYaLunTan" />
+    <result column="BAI_DU_TIE_BA" jdbcType="INTEGER" property="baiDuTieBa" />
+    <result column="MAO_PU" jdbcType="INTEGER" property="maoPu" />
+    <result column="WANG_YI_163" jdbcType="INTEGER" property="wangYi163" />
+    <result column="QQ_KONG_JIAN" jdbcType="INTEGER" property="qqKongJian" />
+    <result column="SINA_WEI_BO" jdbcType="INTEGER" property="sinaWeiBo" />
+    <result column="DOU_BAN" jdbcType="INTEGER" property="douBan" />
+    <result column="TENG_XUN_WEI_BO" jdbcType="INTEGER" property="tengXunWeiBo" />
+    <result column="REN_REN" jdbcType="INTEGER" property="renRen" />
+    <result column="JING_DONG" jdbcType="INTEGER" property="jingDong" />
+    <result column="YOU_KU_MOBILE" jdbcType="INTEGER" property="youKuMobile" />
+    <result column="JING_DONG_MOBILE" jdbcType="INTEGER" property="jingDongMobile" />
+    <result column="TAO_BAO_MOBILE" jdbcType="INTEGER" property="taoBaoMobile" />
+    <result column="MEI_TUAN_MOBILE" jdbcType="INTEGER" property="meiTuanMobile" />
+    <result column="AI_QI_YI_MOBILE" jdbcType="INTEGER" property="aiQiYiMobile" />
+    <result column="KU_GOU_MOBILE" jdbcType="INTEGER" property="kuGouMobile" />
+    <result column="DA_ZHONG_DIAN_PING_MOBILE" jdbcType="INTEGER" property="daZhongDianPingMobile" />
+    <result column="BAI_DU_DI_TU_MOBILE" jdbcType="INTEGER" property="baiDuDiTuMobile" />
+    <result column="BAO_FENG_YING_YIN_MOBILE" jdbcType="INTEGER" property="baoFengYingYinMobile" />
+    <result column="PPTV_MOBILE" jdbcType="INTEGER" property="pptvMobile" />
+    <result column="KU_WO_YIN_YUE_MOBILE" jdbcType="INTEGER" property="kuWoYinYueMobile" />
+    <result column="DUO_MI_YIN_YUE_MOBILE" jdbcType="INTEGER" property="duoMiYinYueMobile" />
+    <result column="QQ_NEWS_MOBILE" jdbcType="INTEGER" property="qqNewsMobile" />
+    <result column="BAI_DU_YIN_YUE_MOBILE" jdbcType="INTEGER" property="baiDuYinYueMobile" />
+    <result column="ALI_YUN_MOBILE" jdbcType="INTEGER" property="aliYunMobile" />
+    <result column="TIAN_TIAN_DONG_TING_MOBILE" jdbcType="INTEGER" property="tianTianDongTingMobile" />
+    <result column="REN_REN_MOBILE" jdbcType="INTEGER" property="renRenMobile" />
+    <result column="WIFI_WAN_NENG_YAO_SHI" jdbcType="INTEGER" property="wifiWanNengYaoShi" />
+    <result column="MO_JI_TIAN_QI_MOBILE" jdbcType="INTEGER" property="moJiTianQiMobile" />
+    <result column="HAO_DOU_CAI_PU_MOBILE" jdbcType="INTEGER" property="haoDouCaiPuMobile" />
+    <result column="LE_AN_QUAN" jdbcType="INTEGER" property="leAnQuan" />
+    <result column="LE_SHI_MOBILE" jdbcType="INTEGER" property="leShiMobile" />
+    <result column="QQ_VIDEO_MOBILE" jdbcType="INTEGER" property="qqVideoMobile" />
+    <result column="TONG_HUA_SHUN_MOBILE" jdbcType="INTEGER" property="tongHuaShunMobile" />
+    <result column="WANG_YI_NEWS_MOBILE" jdbcType="INTEGER" property="wangYiNewsMobile" />
+    <result column="BAI_DU_WEI_SHI" jdbcType="INTEGER" property="baiDuWeiShi" />
+    <result column="MANG_GOU_TV_MOBILE" jdbcType="INTEGER" property="mangGouTvMobile" />
+    <result column="MEI_TU_XIU_XIU_MOBILE" jdbcType="INTEGER" property="meiTuXiuXiuMobile" />
+    <result column="DAI_DU_TIE_BA_MOBILE" jdbcType="INTEGER" property="daiDuTieBaMobile" />
+    <result column="MEI_PAI_MOBILE" jdbcType="INTEGER" property="meiPaiMobile" />
+    <result column="TRAIN_12306_MOBILE" jdbcType="INTEGER" property="train12306Mobile" />
+    <result column="TONG_CHENG_58_MOBILE" jdbcType="INTEGER" property="tongCheng58Mobile" />
+    <result column="QQ_YUE_DU_MOBILE" jdbcType="INTEGER" property="qqYueDuMobile" />
+    <result column="SAN_GUO_SHA_MOBILE" jdbcType="INTEGER" property="sanGuoShaMobile" />
+    <result column="YOU_DAO_CI_DIAN_MOBILE" jdbcType="INTEGER" property="youDaoCiDianMobile" />
+    <result column="HUA_SHU_TV_MOBILE" jdbcType="INTEGER" property="huaShuTvMobile" />
+    <result column="QQ_CHAT" jdbcType="INTEGER" property="qqChat" />
+    <result column="WANG_WANG_CHAT" jdbcType="INTEGER" property="wangWangChat" />
+    <result column="FETION_CHAT" jdbcType="INTEGER" property="fetionChat" />
+    <result column="SMTP" jdbcType="INTEGER" property="smtp" />
+    <result column="POP3" jdbcType="INTEGER" property="pop3" />
+    <result column="QQ_CHAT_MOBILE" jdbcType="INTEGER" property="qqChatMobile" />
+    <result column="SINA_WEIBO_MOBILE" jdbcType="INTEGER" property="sinaWeiboMobile" />
+    <result column="QQ_WEIBO_MOBILE" jdbcType="INTEGER" property="qqWeiboMobile" />
+    <result column="CHANG_BA_MOBILE" jdbcType="INTEGER" property="changBaMobile" />
+    <result column="DI_DI_CHU_XING" jdbcType="INTEGER" property="diDiChuXing" />
+    <result column="E_LE_ME_MOBILE" jdbcType="INTEGER" property="eLeMeMobile" />
+    <result column="YI_XIN" jdbcType="INTEGER" property="yiXin" />
+    <result column="LAI_WANG" jdbcType="INTEGER" property="laiWang" />
+    <result column="MO_MO" jdbcType="INTEGER" property="moMo" />
+    <result column="WEI_XIN_MOBILE" jdbcType="INTEGER" property="weiXinMobile" />
+    <result column="WEI_PIN_HUI_MOBILE" jdbcType="INTEGER" property="weiPinHuiMobile" />
+    <result column="QQ_KONG_JIAN_MOBILE" jdbcType="INTEGER" property="qqKongJianMobile" />
+    <result column="DANG_DANG_MOBILE" jdbcType="INTEGER" property="dangDangMobile" />
+    <result column="YI_HAO_DIAN_MOBILE" jdbcType="INTEGER" property="yiHaoDianMobile" />
+    <result column="MAIL_139_MOBILE" jdbcType="INTEGER" property="mail139Mobile" />
+    <result column="ZHI_FU_BAO_MOBILE" jdbcType="INTEGER" property="zhiFuBaoMobile" />
+    <result column="DING_DING_MOBILE" jdbcType="INTEGER" property="dingDingMobile" />
+    <result column="TOU_TIAO_MOBILE" jdbcType="INTEGER" property="touTiaoMobile" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    RECORD_DATE, MAC_MACHINE_NO, COMPRESSION, MAC_COUNT, AP_MAC_COUNT, VI_COUNT, TIAN_YA_LUN_TAN, 
+    BAI_DU_TIE_BA, MAO_PU, WANG_YI_163, QQ_KONG_JIAN, SINA_WEI_BO, DOU_BAN, TENG_XUN_WEI_BO, 
+    REN_REN, JING_DONG, YOU_KU_MOBILE, JING_DONG_MOBILE, TAO_BAO_MOBILE, MEI_TUAN_MOBILE, 
+    AI_QI_YI_MOBILE, KU_GOU_MOBILE, DA_ZHONG_DIAN_PING_MOBILE, BAI_DU_DI_TU_MOBILE, BAO_FENG_YING_YIN_MOBILE, 
+    PPTV_MOBILE, KU_WO_YIN_YUE_MOBILE, DUO_MI_YIN_YUE_MOBILE, QQ_NEWS_MOBILE, BAI_DU_YIN_YUE_MOBILE, 
+    ALI_YUN_MOBILE, TIAN_TIAN_DONG_TING_MOBILE, REN_REN_MOBILE, WIFI_WAN_NENG_YAO_SHI, 
+    MO_JI_TIAN_QI_MOBILE, HAO_DOU_CAI_PU_MOBILE, LE_AN_QUAN, LE_SHI_MOBILE, QQ_VIDEO_MOBILE, 
+    TONG_HUA_SHUN_MOBILE, WANG_YI_NEWS_MOBILE, BAI_DU_WEI_SHI, MANG_GOU_TV_MOBILE, MEI_TU_XIU_XIU_MOBILE, 
+    DAI_DU_TIE_BA_MOBILE, MEI_PAI_MOBILE, TRAIN_12306_MOBILE, TONG_CHENG_58_MOBILE, QQ_YUE_DU_MOBILE, 
+    SAN_GUO_SHA_MOBILE, YOU_DAO_CI_DIAN_MOBILE, HUA_SHU_TV_MOBILE, QQ_CHAT, WANG_WANG_CHAT, 
+    FETION_CHAT, SMTP, POP3, QQ_CHAT_MOBILE, SINA_WEIBO_MOBILE, QQ_WEIBO_MOBILE, CHANG_BA_MOBILE, 
+    DI_DI_CHU_XING, E_LE_ME_MOBILE, YI_XIN, LAI_WANG, MO_MO, WEI_XIN_MOBILE, WEI_PIN_HUI_MOBILE, 
+    QQ_KONG_JIAN_MOBILE, DANG_DANG_MOBILE, YI_HAO_DIAN_MOBILE, MAIL_139_MOBILE, ZHI_FU_BAO_MOBILE, 
+    DING_DING_MOBILE, TOU_TIAO_MOBILE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.RecordPerDayStatisticsKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from RECORD_PER_DAY_STATISTICS
+    where RECORD_DATE = #{recordDate,jdbcType=DATE}
+      and MAC_MACHINE_NO = #{macMachineNo,jdbcType=VARCHAR}
+      and COMPRESSION = #{compression,jdbcType=BIT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.RecordPerDayStatisticsKey">
+    delete from RECORD_PER_DAY_STATISTICS
+    where RECORD_DATE = #{recordDate,jdbcType=DATE}
+      and MAC_MACHINE_NO = #{macMachineNo,jdbcType=VARCHAR}
+      and COMPRESSION = #{compression,jdbcType=BIT}
+  </delete>
+  <insert id="insert" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.RecordPerDayStatistics">
+    insert into RECORD_PER_DAY_STATISTICS (RECORD_DATE, MAC_MACHINE_NO, COMPRESSION, 
+      MAC_COUNT, AP_MAC_COUNT, VI_COUNT, 
+      TIAN_YA_LUN_TAN, BAI_DU_TIE_BA, MAO_PU, 
+      WANG_YI_163, QQ_KONG_JIAN, SINA_WEI_BO, 
+      DOU_BAN, TENG_XUN_WEI_BO, REN_REN, 
+      JING_DONG, YOU_KU_MOBILE, JING_DONG_MOBILE, 
+      TAO_BAO_MOBILE, MEI_TUAN_MOBILE, AI_QI_YI_MOBILE, 
+      KU_GOU_MOBILE, DA_ZHONG_DIAN_PING_MOBILE, BAI_DU_DI_TU_MOBILE, 
+      BAO_FENG_YING_YIN_MOBILE, PPTV_MOBILE, KU_WO_YIN_YUE_MOBILE, 
+      DUO_MI_YIN_YUE_MOBILE, QQ_NEWS_MOBILE, BAI_DU_YIN_YUE_MOBILE, 
+      ALI_YUN_MOBILE, TIAN_TIAN_DONG_TING_MOBILE, REN_REN_MOBILE, 
+      WIFI_WAN_NENG_YAO_SHI, MO_JI_TIAN_QI_MOBILE, HAO_DOU_CAI_PU_MOBILE, 
+      LE_AN_QUAN, LE_SHI_MOBILE, QQ_VIDEO_MOBILE, 
+      TONG_HUA_SHUN_MOBILE, WANG_YI_NEWS_MOBILE, BAI_DU_WEI_SHI, 
+      MANG_GOU_TV_MOBILE, MEI_TU_XIU_XIU_MOBILE, DAI_DU_TIE_BA_MOBILE, 
+      MEI_PAI_MOBILE, TRAIN_12306_MOBILE, TONG_CHENG_58_MOBILE, 
+      QQ_YUE_DU_MOBILE, SAN_GUO_SHA_MOBILE, YOU_DAO_CI_DIAN_MOBILE, 
+      HUA_SHU_TV_MOBILE, QQ_CHAT, WANG_WANG_CHAT, 
+      FETION_CHAT, SMTP, POP3, 
+      QQ_CHAT_MOBILE, SINA_WEIBO_MOBILE, QQ_WEIBO_MOBILE, 
+      CHANG_BA_MOBILE, DI_DI_CHU_XING, E_LE_ME_MOBILE, 
+      YI_XIN, LAI_WANG, MO_MO, 
+      WEI_XIN_MOBILE, WEI_PIN_HUI_MOBILE, QQ_KONG_JIAN_MOBILE, 
+      DANG_DANG_MOBILE, YI_HAO_DIAN_MOBILE, MAIL_139_MOBILE, 
+      ZHI_FU_BAO_MOBILE, DING_DING_MOBILE, TOU_TIAO_MOBILE
+      )
+    values (#{recordDate,jdbcType=DATE}, #{macMachineNo,jdbcType=VARCHAR}, #{compression,jdbcType=BIT}, 
+      #{macCount,jdbcType=INTEGER}, #{apMacCount,jdbcType=INTEGER}, #{viCount,jdbcType=INTEGER}, 
+      #{tianYaLunTan,jdbcType=INTEGER}, #{baiDuTieBa,jdbcType=INTEGER}, #{maoPu,jdbcType=INTEGER}, 
+      #{wangYi163,jdbcType=INTEGER}, #{qqKongJian,jdbcType=INTEGER}, #{sinaWeiBo,jdbcType=INTEGER}, 
+      #{douBan,jdbcType=INTEGER}, #{tengXunWeiBo,jdbcType=INTEGER}, #{renRen,jdbcType=INTEGER}, 
+      #{jingDong,jdbcType=INTEGER}, #{youKuMobile,jdbcType=INTEGER}, #{jingDongMobile,jdbcType=INTEGER}, 
+      #{taoBaoMobile,jdbcType=INTEGER}, #{meiTuanMobile,jdbcType=INTEGER}, #{aiQiYiMobile,jdbcType=INTEGER}, 
+      #{kuGouMobile,jdbcType=INTEGER}, #{daZhongDianPingMobile,jdbcType=INTEGER}, #{baiDuDiTuMobile,jdbcType=INTEGER}, 
+      #{baoFengYingYinMobile,jdbcType=INTEGER}, #{pptvMobile,jdbcType=INTEGER}, #{kuWoYinYueMobile,jdbcType=INTEGER}, 
+      #{duoMiYinYueMobile,jdbcType=INTEGER}, #{qqNewsMobile,jdbcType=INTEGER}, #{baiDuYinYueMobile,jdbcType=INTEGER}, 
+      #{aliYunMobile,jdbcType=INTEGER}, #{tianTianDongTingMobile,jdbcType=INTEGER}, #{renRenMobile,jdbcType=INTEGER}, 
+      #{wifiWanNengYaoShi,jdbcType=INTEGER}, #{moJiTianQiMobile,jdbcType=INTEGER}, #{haoDouCaiPuMobile,jdbcType=INTEGER}, 
+      #{leAnQuan,jdbcType=INTEGER}, #{leShiMobile,jdbcType=INTEGER}, #{qqVideoMobile,jdbcType=INTEGER}, 
+      #{tongHuaShunMobile,jdbcType=INTEGER}, #{wangYiNewsMobile,jdbcType=INTEGER}, #{baiDuWeiShi,jdbcType=INTEGER}, 
+      #{mangGouTvMobile,jdbcType=INTEGER}, #{meiTuXiuXiuMobile,jdbcType=INTEGER}, #{daiDuTieBaMobile,jdbcType=INTEGER}, 
+      #{meiPaiMobile,jdbcType=INTEGER}, #{train12306Mobile,jdbcType=INTEGER}, #{tongCheng58Mobile,jdbcType=INTEGER}, 
+      #{qqYueDuMobile,jdbcType=INTEGER}, #{sanGuoShaMobile,jdbcType=INTEGER}, #{youDaoCiDianMobile,jdbcType=INTEGER}, 
+      #{huaShuTvMobile,jdbcType=INTEGER}, #{qqChat,jdbcType=INTEGER}, #{wangWangChat,jdbcType=INTEGER}, 
+      #{fetionChat,jdbcType=INTEGER}, #{smtp,jdbcType=INTEGER}, #{pop3,jdbcType=INTEGER}, 
+      #{qqChatMobile,jdbcType=INTEGER}, #{sinaWeiboMobile,jdbcType=INTEGER}, #{qqWeiboMobile,jdbcType=INTEGER}, 
+      #{changBaMobile,jdbcType=INTEGER}, #{diDiChuXing,jdbcType=INTEGER}, #{eLeMeMobile,jdbcType=INTEGER}, 
+      #{yiXin,jdbcType=INTEGER}, #{laiWang,jdbcType=INTEGER}, #{moMo,jdbcType=INTEGER}, 
+      #{weiXinMobile,jdbcType=INTEGER}, #{weiPinHuiMobile,jdbcType=INTEGER}, #{qqKongJianMobile,jdbcType=INTEGER}, 
+      #{dangDangMobile,jdbcType=INTEGER}, #{yiHaoDianMobile,jdbcType=INTEGER}, #{mail139Mobile,jdbcType=INTEGER}, 
+      #{zhiFuBaoMobile,jdbcType=INTEGER}, #{dingDingMobile,jdbcType=INTEGER}, #{touTiaoMobile,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.RecordPerDayStatistics">
+    insert into RECORD_PER_DAY_STATISTICS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="recordDate != null">
+        RECORD_DATE,
+      </if>
+      <if test="macMachineNo != null">
+        MAC_MACHINE_NO,
+      </if>
+      <if test="compression != null">
+        COMPRESSION,
+      </if>
+      <if test="macCount != null">
+        MAC_COUNT,
+      </if>
+      <if test="apMacCount != null">
+        AP_MAC_COUNT,
+      </if>
+      <if test="viCount != null">
+        VI_COUNT,
+      </if>
+      <if test="tianYaLunTan != null">
+        TIAN_YA_LUN_TAN,
+      </if>
+      <if test="baiDuTieBa != null">
+        BAI_DU_TIE_BA,
+      </if>
+      <if test="maoPu != null">
+        MAO_PU,
+      </if>
+      <if test="wangYi163 != null">
+        WANG_YI_163,
+      </if>
+      <if test="qqKongJian != null">
+        QQ_KONG_JIAN,
+      </if>
+      <if test="sinaWeiBo != null">
+        SINA_WEI_BO,
+      </if>
+      <if test="douBan != null">
+        DOU_BAN,
+      </if>
+      <if test="tengXunWeiBo != null">
+        TENG_XUN_WEI_BO,
+      </if>
+      <if test="renRen != null">
+        REN_REN,
+      </if>
+      <if test="jingDong != null">
+        JING_DONG,
+      </if>
+      <if test="youKuMobile != null">
+        YOU_KU_MOBILE,
+      </if>
+      <if test="jingDongMobile != null">
+        JING_DONG_MOBILE,
+      </if>
+      <if test="taoBaoMobile != null">
+        TAO_BAO_MOBILE,
+      </if>
+      <if test="meiTuanMobile != null">
+        MEI_TUAN_MOBILE,
+      </if>
+      <if test="aiQiYiMobile != null">
+        AI_QI_YI_MOBILE,
+      </if>
+      <if test="kuGouMobile != null">
+        KU_GOU_MOBILE,
+      </if>
+      <if test="daZhongDianPingMobile != null">
+        DA_ZHONG_DIAN_PING_MOBILE,
+      </if>
+      <if test="baiDuDiTuMobile != null">
+        BAI_DU_DI_TU_MOBILE,
+      </if>
+      <if test="baoFengYingYinMobile != null">
+        BAO_FENG_YING_YIN_MOBILE,
+      </if>
+      <if test="pptvMobile != null">
+        PPTV_MOBILE,
+      </if>
+      <if test="kuWoYinYueMobile != null">
+        KU_WO_YIN_YUE_MOBILE,
+      </if>
+      <if test="duoMiYinYueMobile != null">
+        DUO_MI_YIN_YUE_MOBILE,
+      </if>
+      <if test="qqNewsMobile != null">
+        QQ_NEWS_MOBILE,
+      </if>
+      <if test="baiDuYinYueMobile != null">
+        BAI_DU_YIN_YUE_MOBILE,
+      </if>
+      <if test="aliYunMobile != null">
+        ALI_YUN_MOBILE,
+      </if>
+      <if test="tianTianDongTingMobile != null">
+        TIAN_TIAN_DONG_TING_MOBILE,
+      </if>
+      <if test="renRenMobile != null">
+        REN_REN_MOBILE,
+      </if>
+      <if test="wifiWanNengYaoShi != null">
+        WIFI_WAN_NENG_YAO_SHI,
+      </if>
+      <if test="moJiTianQiMobile != null">
+        MO_JI_TIAN_QI_MOBILE,
+      </if>
+      <if test="haoDouCaiPuMobile != null">
+        HAO_DOU_CAI_PU_MOBILE,
+      </if>
+      <if test="leAnQuan != null">
+        LE_AN_QUAN,
+      </if>
+      <if test="leShiMobile != null">
+        LE_SHI_MOBILE,
+      </if>
+      <if test="qqVideoMobile != null">
+        QQ_VIDEO_MOBILE,
+      </if>
+      <if test="tongHuaShunMobile != null">
+        TONG_HUA_SHUN_MOBILE,
+      </if>
+      <if test="wangYiNewsMobile != null">
+        WANG_YI_NEWS_MOBILE,
+      </if>
+      <if test="baiDuWeiShi != null">
+        BAI_DU_WEI_SHI,
+      </if>
+      <if test="mangGouTvMobile != null">
+        MANG_GOU_TV_MOBILE,
+      </if>
+      <if test="meiTuXiuXiuMobile != null">
+        MEI_TU_XIU_XIU_MOBILE,
+      </if>
+      <if test="daiDuTieBaMobile != null">
+        DAI_DU_TIE_BA_MOBILE,
+      </if>
+      <if test="meiPaiMobile != null">
+        MEI_PAI_MOBILE,
+      </if>
+      <if test="train12306Mobile != null">
+        TRAIN_12306_MOBILE,
+      </if>
+      <if test="tongCheng58Mobile != null">
+        TONG_CHENG_58_MOBILE,
+      </if>
+      <if test="qqYueDuMobile != null">
+        QQ_YUE_DU_MOBILE,
+      </if>
+      <if test="sanGuoShaMobile != null">
+        SAN_GUO_SHA_MOBILE,
+      </if>
+      <if test="youDaoCiDianMobile != null">
+        YOU_DAO_CI_DIAN_MOBILE,
+      </if>
+      <if test="huaShuTvMobile != null">
+        HUA_SHU_TV_MOBILE,
+      </if>
+      <if test="qqChat != null">
+        QQ_CHAT,
+      </if>
+      <if test="wangWangChat != null">
+        WANG_WANG_CHAT,
+      </if>
+      <if test="fetionChat != null">
+        FETION_CHAT,
+      </if>
+      <if test="smtp != null">
+        SMTP,
+      </if>
+      <if test="pop3 != null">
+        POP3,
+      </if>
+      <if test="qqChatMobile != null">
+        QQ_CHAT_MOBILE,
+      </if>
+      <if test="sinaWeiboMobile != null">
+        SINA_WEIBO_MOBILE,
+      </if>
+      <if test="qqWeiboMobile != null">
+        QQ_WEIBO_MOBILE,
+      </if>
+      <if test="changBaMobile != null">
+        CHANG_BA_MOBILE,
+      </if>
+      <if test="diDiChuXing != null">
+        DI_DI_CHU_XING,
+      </if>
+      <if test="eLeMeMobile != null">
+        E_LE_ME_MOBILE,
+      </if>
+      <if test="yiXin != null">
+        YI_XIN,
+      </if>
+      <if test="laiWang != null">
+        LAI_WANG,
+      </if>
+      <if test="moMo != null">
+        MO_MO,
+      </if>
+      <if test="weiXinMobile != null">
+        WEI_XIN_MOBILE,
+      </if>
+      <if test="weiPinHuiMobile != null">
+        WEI_PIN_HUI_MOBILE,
+      </if>
+      <if test="qqKongJianMobile != null">
+        QQ_KONG_JIAN_MOBILE,
+      </if>
+      <if test="dangDangMobile != null">
+        DANG_DANG_MOBILE,
+      </if>
+      <if test="yiHaoDianMobile != null">
+        YI_HAO_DIAN_MOBILE,
+      </if>
+      <if test="mail139Mobile != null">
+        MAIL_139_MOBILE,
+      </if>
+      <if test="zhiFuBaoMobile != null">
+        ZHI_FU_BAO_MOBILE,
+      </if>
+      <if test="dingDingMobile != null">
+        DING_DING_MOBILE,
+      </if>
+      <if test="touTiaoMobile != null">
+        TOU_TIAO_MOBILE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="recordDate != null">
+        #{recordDate,jdbcType=DATE},
+      </if>
+      <if test="macMachineNo != null">
+        #{macMachineNo,jdbcType=VARCHAR},
+      </if>
+      <if test="compression != null">
+        #{compression,jdbcType=BIT},
+      </if>
+      <if test="macCount != null">
+        #{macCount,jdbcType=INTEGER},
+      </if>
+      <if test="apMacCount != null">
+        #{apMacCount,jdbcType=INTEGER},
+      </if>
+      <if test="viCount != null">
+        #{viCount,jdbcType=INTEGER},
+      </if>
+      <if test="tianYaLunTan != null">
+        #{tianYaLunTan,jdbcType=INTEGER},
+      </if>
+      <if test="baiDuTieBa != null">
+        #{baiDuTieBa,jdbcType=INTEGER},
+      </if>
+      <if test="maoPu != null">
+        #{maoPu,jdbcType=INTEGER},
+      </if>
+      <if test="wangYi163 != null">
+        #{wangYi163,jdbcType=INTEGER},
+      </if>
+      <if test="qqKongJian != null">
+        #{qqKongJian,jdbcType=INTEGER},
+      </if>
+      <if test="sinaWeiBo != null">
+        #{sinaWeiBo,jdbcType=INTEGER},
+      </if>
+      <if test="douBan != null">
+        #{douBan,jdbcType=INTEGER},
+      </if>
+      <if test="tengXunWeiBo != null">
+        #{tengXunWeiBo,jdbcType=INTEGER},
+      </if>
+      <if test="renRen != null">
+        #{renRen,jdbcType=INTEGER},
+      </if>
+      <if test="jingDong != null">
+        #{jingDong,jdbcType=INTEGER},
+      </if>
+      <if test="youKuMobile != null">
+        #{youKuMobile,jdbcType=INTEGER},
+      </if>
+      <if test="jingDongMobile != null">
+        #{jingDongMobile,jdbcType=INTEGER},
+      </if>
+      <if test="taoBaoMobile != null">
+        #{taoBaoMobile,jdbcType=INTEGER},
+      </if>
+      <if test="meiTuanMobile != null">
+        #{meiTuanMobile,jdbcType=INTEGER},
+      </if>
+      <if test="aiQiYiMobile != null">
+        #{aiQiYiMobile,jdbcType=INTEGER},
+      </if>
+      <if test="kuGouMobile != null">
+        #{kuGouMobile,jdbcType=INTEGER},
+      </if>
+      <if test="daZhongDianPingMobile != null">
+        #{daZhongDianPingMobile,jdbcType=INTEGER},
+      </if>
+      <if test="baiDuDiTuMobile != null">
+        #{baiDuDiTuMobile,jdbcType=INTEGER},
+      </if>
+      <if test="baoFengYingYinMobile != null">
+        #{baoFengYingYinMobile,jdbcType=INTEGER},
+      </if>
+      <if test="pptvMobile != null">
+        #{pptvMobile,jdbcType=INTEGER},
+      </if>
+      <if test="kuWoYinYueMobile != null">
+        #{kuWoYinYueMobile,jdbcType=INTEGER},
+      </if>
+      <if test="duoMiYinYueMobile != null">
+        #{duoMiYinYueMobile,jdbcType=INTEGER},
+      </if>
+      <if test="qqNewsMobile != null">
+        #{qqNewsMobile,jdbcType=INTEGER},
+      </if>
+      <if test="baiDuYinYueMobile != null">
+        #{baiDuYinYueMobile,jdbcType=INTEGER},
+      </if>
+      <if test="aliYunMobile != null">
+        #{aliYunMobile,jdbcType=INTEGER},
+      </if>
+      <if test="tianTianDongTingMobile != null">
+        #{tianTianDongTingMobile,jdbcType=INTEGER},
+      </if>
+      <if test="renRenMobile != null">
+        #{renRenMobile,jdbcType=INTEGER},
+      </if>
+      <if test="wifiWanNengYaoShi != null">
+        #{wifiWanNengYaoShi,jdbcType=INTEGER},
+      </if>
+      <if test="moJiTianQiMobile != null">
+        #{moJiTianQiMobile,jdbcType=INTEGER},
+      </if>
+      <if test="haoDouCaiPuMobile != null">
+        #{haoDouCaiPuMobile,jdbcType=INTEGER},
+      </if>
+      <if test="leAnQuan != null">
+        #{leAnQuan,jdbcType=INTEGER},
+      </if>
+      <if test="leShiMobile != null">
+        #{leShiMobile,jdbcType=INTEGER},
+      </if>
+      <if test="qqVideoMobile != null">
+        #{qqVideoMobile,jdbcType=INTEGER},
+      </if>
+      <if test="tongHuaShunMobile != null">
+        #{tongHuaShunMobile,jdbcType=INTEGER},
+      </if>
+      <if test="wangYiNewsMobile != null">
+        #{wangYiNewsMobile,jdbcType=INTEGER},
+      </if>
+      <if test="baiDuWeiShi != null">
+        #{baiDuWeiShi,jdbcType=INTEGER},
+      </if>
+      <if test="mangGouTvMobile != null">
+        #{mangGouTvMobile,jdbcType=INTEGER},
+      </if>
+      <if test="meiTuXiuXiuMobile != null">
+        #{meiTuXiuXiuMobile,jdbcType=INTEGER},
+      </if>
+      <if test="daiDuTieBaMobile != null">
+        #{daiDuTieBaMobile,jdbcType=INTEGER},
+      </if>
+      <if test="meiPaiMobile != null">
+        #{meiPaiMobile,jdbcType=INTEGER},
+      </if>
+      <if test="train12306Mobile != null">
+        #{train12306Mobile,jdbcType=INTEGER},
+      </if>
+      <if test="tongCheng58Mobile != null">
+        #{tongCheng58Mobile,jdbcType=INTEGER},
+      </if>
+      <if test="qqYueDuMobile != null">
+        #{qqYueDuMobile,jdbcType=INTEGER},
+      </if>
+      <if test="sanGuoShaMobile != null">
+        #{sanGuoShaMobile,jdbcType=INTEGER},
+      </if>
+      <if test="youDaoCiDianMobile != null">
+        #{youDaoCiDianMobile,jdbcType=INTEGER},
+      </if>
+      <if test="huaShuTvMobile != null">
+        #{huaShuTvMobile,jdbcType=INTEGER},
+      </if>
+      <if test="qqChat != null">
+        #{qqChat,jdbcType=INTEGER},
+      </if>
+      <if test="wangWangChat != null">
+        #{wangWangChat,jdbcType=INTEGER},
+      </if>
+      <if test="fetionChat != null">
+        #{fetionChat,jdbcType=INTEGER},
+      </if>
+      <if test="smtp != null">
+        #{smtp,jdbcType=INTEGER},
+      </if>
+      <if test="pop3 != null">
+        #{pop3,jdbcType=INTEGER},
+      </if>
+      <if test="qqChatMobile != null">
+        #{qqChatMobile,jdbcType=INTEGER},
+      </if>
+      <if test="sinaWeiboMobile != null">
+        #{sinaWeiboMobile,jdbcType=INTEGER},
+      </if>
+      <if test="qqWeiboMobile != null">
+        #{qqWeiboMobile,jdbcType=INTEGER},
+      </if>
+      <if test="changBaMobile != null">
+        #{changBaMobile,jdbcType=INTEGER},
+      </if>
+      <if test="diDiChuXing != null">
+        #{diDiChuXing,jdbcType=INTEGER},
+      </if>
+      <if test="eLeMeMobile != null">
+        #{eLeMeMobile,jdbcType=INTEGER},
+      </if>
+      <if test="yiXin != null">
+        #{yiXin,jdbcType=INTEGER},
+      </if>
+      <if test="laiWang != null">
+        #{laiWang,jdbcType=INTEGER},
+      </if>
+      <if test="moMo != null">
+        #{moMo,jdbcType=INTEGER},
+      </if>
+      <if test="weiXinMobile != null">
+        #{weiXinMobile,jdbcType=INTEGER},
+      </if>
+      <if test="weiPinHuiMobile != null">
+        #{weiPinHuiMobile,jdbcType=INTEGER},
+      </if>
+      <if test="qqKongJianMobile != null">
+        #{qqKongJianMobile,jdbcType=INTEGER},
+      </if>
+      <if test="dangDangMobile != null">
+        #{dangDangMobile,jdbcType=INTEGER},
+      </if>
+      <if test="yiHaoDianMobile != null">
+        #{yiHaoDianMobile,jdbcType=INTEGER},
+      </if>
+      <if test="mail139Mobile != null">
+        #{mail139Mobile,jdbcType=INTEGER},
+      </if>
+      <if test="zhiFuBaoMobile != null">
+        #{zhiFuBaoMobile,jdbcType=INTEGER},
+      </if>
+      <if test="dingDingMobile != null">
+        #{dingDingMobile,jdbcType=INTEGER},
+      </if>
+      <if test="touTiaoMobile != null">
+        #{touTiaoMobile,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.RecordPerDayStatistics">
+    update RECORD_PER_DAY_STATISTICS
+    <set>
+      <if test="macCount != null">
+        MAC_COUNT = #{macCount,jdbcType=INTEGER},
+      </if>
+      <if test="apMacCount != null">
+        AP_MAC_COUNT = #{apMacCount,jdbcType=INTEGER},
+      </if>
+      <if test="viCount != null">
+        VI_COUNT = #{viCount,jdbcType=INTEGER},
+      </if>
+      <if test="tianYaLunTan != null">
+        TIAN_YA_LUN_TAN = #{tianYaLunTan,jdbcType=INTEGER},
+      </if>
+      <if test="baiDuTieBa != null">
+        BAI_DU_TIE_BA = #{baiDuTieBa,jdbcType=INTEGER},
+      </if>
+      <if test="maoPu != null">
+        MAO_PU = #{maoPu,jdbcType=INTEGER},
+      </if>
+      <if test="wangYi163 != null">
+        WANG_YI_163 = #{wangYi163,jdbcType=INTEGER},
+      </if>
+      <if test="qqKongJian != null">
+        QQ_KONG_JIAN = #{qqKongJian,jdbcType=INTEGER},
+      </if>
+      <if test="sinaWeiBo != null">
+        SINA_WEI_BO = #{sinaWeiBo,jdbcType=INTEGER},
+      </if>
+      <if test="douBan != null">
+        DOU_BAN = #{douBan,jdbcType=INTEGER},
+      </if>
+      <if test="tengXunWeiBo != null">
+        TENG_XUN_WEI_BO = #{tengXunWeiBo,jdbcType=INTEGER},
+      </if>
+      <if test="renRen != null">
+        REN_REN = #{renRen,jdbcType=INTEGER},
+      </if>
+      <if test="jingDong != null">
+        JING_DONG = #{jingDong,jdbcType=INTEGER},
+      </if>
+      <if test="youKuMobile != null">
+        YOU_KU_MOBILE = #{youKuMobile,jdbcType=INTEGER},
+      </if>
+      <if test="jingDongMobile != null">
+        JING_DONG_MOBILE = #{jingDongMobile,jdbcType=INTEGER},
+      </if>
+      <if test="taoBaoMobile != null">
+        TAO_BAO_MOBILE = #{taoBaoMobile,jdbcType=INTEGER},
+      </if>
+      <if test="meiTuanMobile != null">
+        MEI_TUAN_MOBILE = #{meiTuanMobile,jdbcType=INTEGER},
+      </if>
+      <if test="aiQiYiMobile != null">
+        AI_QI_YI_MOBILE = #{aiQiYiMobile,jdbcType=INTEGER},
+      </if>
+      <if test="kuGouMobile != null">
+        KU_GOU_MOBILE = #{kuGouMobile,jdbcType=INTEGER},
+      </if>
+      <if test="daZhongDianPingMobile != null">
+        DA_ZHONG_DIAN_PING_MOBILE = #{daZhongDianPingMobile,jdbcType=INTEGER},
+      </if>
+      <if test="baiDuDiTuMobile != null">
+        BAI_DU_DI_TU_MOBILE = #{baiDuDiTuMobile,jdbcType=INTEGER},
+      </if>
+      <if test="baoFengYingYinMobile != null">
+        BAO_FENG_YING_YIN_MOBILE = #{baoFengYingYinMobile,jdbcType=INTEGER},
+      </if>
+      <if test="pptvMobile != null">
+        PPTV_MOBILE = #{pptvMobile,jdbcType=INTEGER},
+      </if>
+      <if test="kuWoYinYueMobile != null">
+        KU_WO_YIN_YUE_MOBILE = #{kuWoYinYueMobile,jdbcType=INTEGER},
+      </if>
+      <if test="duoMiYinYueMobile != null">
+        DUO_MI_YIN_YUE_MOBILE = #{duoMiYinYueMobile,jdbcType=INTEGER},
+      </if>
+      <if test="qqNewsMobile != null">
+        QQ_NEWS_MOBILE = #{qqNewsMobile,jdbcType=INTEGER},
+      </if>
+      <if test="baiDuYinYueMobile != null">
+        BAI_DU_YIN_YUE_MOBILE = #{baiDuYinYueMobile,jdbcType=INTEGER},
+      </if>
+      <if test="aliYunMobile != null">
+        ALI_YUN_MOBILE = #{aliYunMobile,jdbcType=INTEGER},
+      </if>
+      <if test="tianTianDongTingMobile != null">
+        TIAN_TIAN_DONG_TING_MOBILE = #{tianTianDongTingMobile,jdbcType=INTEGER},
+      </if>
+      <if test="renRenMobile != null">
+        REN_REN_MOBILE = #{renRenMobile,jdbcType=INTEGER},
+      </if>
+      <if test="wifiWanNengYaoShi != null">
+        WIFI_WAN_NENG_YAO_SHI = #{wifiWanNengYaoShi,jdbcType=INTEGER},
+      </if>
+      <if test="moJiTianQiMobile != null">
+        MO_JI_TIAN_QI_MOBILE = #{moJiTianQiMobile,jdbcType=INTEGER},
+      </if>
+      <if test="haoDouCaiPuMobile != null">
+        HAO_DOU_CAI_PU_MOBILE = #{haoDouCaiPuMobile,jdbcType=INTEGER},
+      </if>
+      <if test="leAnQuan != null">
+        LE_AN_QUAN = #{leAnQuan,jdbcType=INTEGER},
+      </if>
+      <if test="leShiMobile != null">
+        LE_SHI_MOBILE = #{leShiMobile,jdbcType=INTEGER},
+      </if>
+      <if test="qqVideoMobile != null">
+        QQ_VIDEO_MOBILE = #{qqVideoMobile,jdbcType=INTEGER},
+      </if>
+      <if test="tongHuaShunMobile != null">
+        TONG_HUA_SHUN_MOBILE = #{tongHuaShunMobile,jdbcType=INTEGER},
+      </if>
+      <if test="wangYiNewsMobile != null">
+        WANG_YI_NEWS_MOBILE = #{wangYiNewsMobile,jdbcType=INTEGER},
+      </if>
+      <if test="baiDuWeiShi != null">
+        BAI_DU_WEI_SHI = #{baiDuWeiShi,jdbcType=INTEGER},
+      </if>
+      <if test="mangGouTvMobile != null">
+        MANG_GOU_TV_MOBILE = #{mangGouTvMobile,jdbcType=INTEGER},
+      </if>
+      <if test="meiTuXiuXiuMobile != null">
+        MEI_TU_XIU_XIU_MOBILE = #{meiTuXiuXiuMobile,jdbcType=INTEGER},
+      </if>
+      <if test="daiDuTieBaMobile != null">
+        DAI_DU_TIE_BA_MOBILE = #{daiDuTieBaMobile,jdbcType=INTEGER},
+      </if>
+      <if test="meiPaiMobile != null">
+        MEI_PAI_MOBILE = #{meiPaiMobile,jdbcType=INTEGER},
+      </if>
+      <if test="train12306Mobile != null">
+        TRAIN_12306_MOBILE = #{train12306Mobile,jdbcType=INTEGER},
+      </if>
+      <if test="tongCheng58Mobile != null">
+        TONG_CHENG_58_MOBILE = #{tongCheng58Mobile,jdbcType=INTEGER},
+      </if>
+      <if test="qqYueDuMobile != null">
+        QQ_YUE_DU_MOBILE = #{qqYueDuMobile,jdbcType=INTEGER},
+      </if>
+      <if test="sanGuoShaMobile != null">
+        SAN_GUO_SHA_MOBILE = #{sanGuoShaMobile,jdbcType=INTEGER},
+      </if>
+      <if test="youDaoCiDianMobile != null">
+        YOU_DAO_CI_DIAN_MOBILE = #{youDaoCiDianMobile,jdbcType=INTEGER},
+      </if>
+      <if test="huaShuTvMobile != null">
+        HUA_SHU_TV_MOBILE = #{huaShuTvMobile,jdbcType=INTEGER},
+      </if>
+      <if test="qqChat != null">
+        QQ_CHAT = #{qqChat,jdbcType=INTEGER},
+      </if>
+      <if test="wangWangChat != null">
+        WANG_WANG_CHAT = #{wangWangChat,jdbcType=INTEGER},
+      </if>
+      <if test="fetionChat != null">
+        FETION_CHAT = #{fetionChat,jdbcType=INTEGER},
+      </if>
+      <if test="smtp != null">
+        SMTP = #{smtp,jdbcType=INTEGER},
+      </if>
+      <if test="pop3 != null">
+        POP3 = #{pop3,jdbcType=INTEGER},
+      </if>
+      <if test="qqChatMobile != null">
+        QQ_CHAT_MOBILE = #{qqChatMobile,jdbcType=INTEGER},
+      </if>
+      <if test="sinaWeiboMobile != null">
+        SINA_WEIBO_MOBILE = #{sinaWeiboMobile,jdbcType=INTEGER},
+      </if>
+      <if test="qqWeiboMobile != null">
+        QQ_WEIBO_MOBILE = #{qqWeiboMobile,jdbcType=INTEGER},
+      </if>
+      <if test="changBaMobile != null">
+        CHANG_BA_MOBILE = #{changBaMobile,jdbcType=INTEGER},
+      </if>
+      <if test="diDiChuXing != null">
+        DI_DI_CHU_XING = #{diDiChuXing,jdbcType=INTEGER},
+      </if>
+      <if test="eLeMeMobile != null">
+        E_LE_ME_MOBILE = #{eLeMeMobile,jdbcType=INTEGER},
+      </if>
+      <if test="yiXin != null">
+        YI_XIN = #{yiXin,jdbcType=INTEGER},
+      </if>
+      <if test="laiWang != null">
+        LAI_WANG = #{laiWang,jdbcType=INTEGER},
+      </if>
+      <if test="moMo != null">
+        MO_MO = #{moMo,jdbcType=INTEGER},
+      </if>
+      <if test="weiXinMobile != null">
+        WEI_XIN_MOBILE = #{weiXinMobile,jdbcType=INTEGER},
+      </if>
+      <if test="weiPinHuiMobile != null">
+        WEI_PIN_HUI_MOBILE = #{weiPinHuiMobile,jdbcType=INTEGER},
+      </if>
+      <if test="qqKongJianMobile != null">
+        QQ_KONG_JIAN_MOBILE = #{qqKongJianMobile,jdbcType=INTEGER},
+      </if>
+      <if test="dangDangMobile != null">
+        DANG_DANG_MOBILE = #{dangDangMobile,jdbcType=INTEGER},
+      </if>
+      <if test="yiHaoDianMobile != null">
+        YI_HAO_DIAN_MOBILE = #{yiHaoDianMobile,jdbcType=INTEGER},
+      </if>
+      <if test="mail139Mobile != null">
+        MAIL_139_MOBILE = #{mail139Mobile,jdbcType=INTEGER},
+      </if>
+      <if test="zhiFuBaoMobile != null">
+        ZHI_FU_BAO_MOBILE = #{zhiFuBaoMobile,jdbcType=INTEGER},
+      </if>
+      <if test="dingDingMobile != null">
+        DING_DING_MOBILE = #{dingDingMobile,jdbcType=INTEGER},
+      </if>
+      <if test="touTiaoMobile != null">
+        TOU_TIAO_MOBILE = #{touTiaoMobile,jdbcType=INTEGER},
+      </if>
+    </set>
+    where RECORD_DATE = #{recordDate,jdbcType=DATE}
+      and MAC_MACHINE_NO = #{macMachineNo,jdbcType=VARCHAR}
+      and COMPRESSION = #{compression,jdbcType=BIT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.RecordPerDayStatistics">
+    update RECORD_PER_DAY_STATISTICS
+    set MAC_COUNT = #{macCount,jdbcType=INTEGER},
+      AP_MAC_COUNT = #{apMacCount,jdbcType=INTEGER},
+      VI_COUNT = #{viCount,jdbcType=INTEGER},
+      TIAN_YA_LUN_TAN = #{tianYaLunTan,jdbcType=INTEGER},
+      BAI_DU_TIE_BA = #{baiDuTieBa,jdbcType=INTEGER},
+      MAO_PU = #{maoPu,jdbcType=INTEGER},
+      WANG_YI_163 = #{wangYi163,jdbcType=INTEGER},
+      QQ_KONG_JIAN = #{qqKongJian,jdbcType=INTEGER},
+      SINA_WEI_BO = #{sinaWeiBo,jdbcType=INTEGER},
+      DOU_BAN = #{douBan,jdbcType=INTEGER},
+      TENG_XUN_WEI_BO = #{tengXunWeiBo,jdbcType=INTEGER},
+      REN_REN = #{renRen,jdbcType=INTEGER},
+      JING_DONG = #{jingDong,jdbcType=INTEGER},
+      YOU_KU_MOBILE = #{youKuMobile,jdbcType=INTEGER},
+      JING_DONG_MOBILE = #{jingDongMobile,jdbcType=INTEGER},
+      TAO_BAO_MOBILE = #{taoBaoMobile,jdbcType=INTEGER},
+      MEI_TUAN_MOBILE = #{meiTuanMobile,jdbcType=INTEGER},
+      AI_QI_YI_MOBILE = #{aiQiYiMobile,jdbcType=INTEGER},
+      KU_GOU_MOBILE = #{kuGouMobile,jdbcType=INTEGER},
+      DA_ZHONG_DIAN_PING_MOBILE = #{daZhongDianPingMobile,jdbcType=INTEGER},
+      BAI_DU_DI_TU_MOBILE = #{baiDuDiTuMobile,jdbcType=INTEGER},
+      BAO_FENG_YING_YIN_MOBILE = #{baoFengYingYinMobile,jdbcType=INTEGER},
+      PPTV_MOBILE = #{pptvMobile,jdbcType=INTEGER},
+      KU_WO_YIN_YUE_MOBILE = #{kuWoYinYueMobile,jdbcType=INTEGER},
+      DUO_MI_YIN_YUE_MOBILE = #{duoMiYinYueMobile,jdbcType=INTEGER},
+      QQ_NEWS_MOBILE = #{qqNewsMobile,jdbcType=INTEGER},
+      BAI_DU_YIN_YUE_MOBILE = #{baiDuYinYueMobile,jdbcType=INTEGER},
+      ALI_YUN_MOBILE = #{aliYunMobile,jdbcType=INTEGER},
+      TIAN_TIAN_DONG_TING_MOBILE = #{tianTianDongTingMobile,jdbcType=INTEGER},
+      REN_REN_MOBILE = #{renRenMobile,jdbcType=INTEGER},
+      WIFI_WAN_NENG_YAO_SHI = #{wifiWanNengYaoShi,jdbcType=INTEGER},
+      MO_JI_TIAN_QI_MOBILE = #{moJiTianQiMobile,jdbcType=INTEGER},
+      HAO_DOU_CAI_PU_MOBILE = #{haoDouCaiPuMobile,jdbcType=INTEGER},
+      LE_AN_QUAN = #{leAnQuan,jdbcType=INTEGER},
+      LE_SHI_MOBILE = #{leShiMobile,jdbcType=INTEGER},
+      QQ_VIDEO_MOBILE = #{qqVideoMobile,jdbcType=INTEGER},
+      TONG_HUA_SHUN_MOBILE = #{tongHuaShunMobile,jdbcType=INTEGER},
+      WANG_YI_NEWS_MOBILE = #{wangYiNewsMobile,jdbcType=INTEGER},
+      BAI_DU_WEI_SHI = #{baiDuWeiShi,jdbcType=INTEGER},
+      MANG_GOU_TV_MOBILE = #{mangGouTvMobile,jdbcType=INTEGER},
+      MEI_TU_XIU_XIU_MOBILE = #{meiTuXiuXiuMobile,jdbcType=INTEGER},
+      DAI_DU_TIE_BA_MOBILE = #{daiDuTieBaMobile,jdbcType=INTEGER},
+      MEI_PAI_MOBILE = #{meiPaiMobile,jdbcType=INTEGER},
+      TRAIN_12306_MOBILE = #{train12306Mobile,jdbcType=INTEGER},
+      TONG_CHENG_58_MOBILE = #{tongCheng58Mobile,jdbcType=INTEGER},
+      QQ_YUE_DU_MOBILE = #{qqYueDuMobile,jdbcType=INTEGER},
+      SAN_GUO_SHA_MOBILE = #{sanGuoShaMobile,jdbcType=INTEGER},
+      YOU_DAO_CI_DIAN_MOBILE = #{youDaoCiDianMobile,jdbcType=INTEGER},
+      HUA_SHU_TV_MOBILE = #{huaShuTvMobile,jdbcType=INTEGER},
+      QQ_CHAT = #{qqChat,jdbcType=INTEGER},
+      WANG_WANG_CHAT = #{wangWangChat,jdbcType=INTEGER},
+      FETION_CHAT = #{fetionChat,jdbcType=INTEGER},
+      SMTP = #{smtp,jdbcType=INTEGER},
+      POP3 = #{pop3,jdbcType=INTEGER},
+      QQ_CHAT_MOBILE = #{qqChatMobile,jdbcType=INTEGER},
+      SINA_WEIBO_MOBILE = #{sinaWeiboMobile,jdbcType=INTEGER},
+      QQ_WEIBO_MOBILE = #{qqWeiboMobile,jdbcType=INTEGER},
+      CHANG_BA_MOBILE = #{changBaMobile,jdbcType=INTEGER},
+      DI_DI_CHU_XING = #{diDiChuXing,jdbcType=INTEGER},
+      E_LE_ME_MOBILE = #{eLeMeMobile,jdbcType=INTEGER},
+      YI_XIN = #{yiXin,jdbcType=INTEGER},
+      LAI_WANG = #{laiWang,jdbcType=INTEGER},
+      MO_MO = #{moMo,jdbcType=INTEGER},
+      WEI_XIN_MOBILE = #{weiXinMobile,jdbcType=INTEGER},
+      WEI_PIN_HUI_MOBILE = #{weiPinHuiMobile,jdbcType=INTEGER},
+      QQ_KONG_JIAN_MOBILE = #{qqKongJianMobile,jdbcType=INTEGER},
+      DANG_DANG_MOBILE = #{dangDangMobile,jdbcType=INTEGER},
+      YI_HAO_DIAN_MOBILE = #{yiHaoDianMobile,jdbcType=INTEGER},
+      MAIL_139_MOBILE = #{mail139Mobile,jdbcType=INTEGER},
+      ZHI_FU_BAO_MOBILE = #{zhiFuBaoMobile,jdbcType=INTEGER},
+      DING_DING_MOBILE = #{dingDingMobile,jdbcType=INTEGER},
+      TOU_TIAO_MOBILE = #{touTiaoMobile,jdbcType=INTEGER}
+    where RECORD_DATE = #{recordDate,jdbcType=DATE}
+      and MAC_MACHINE_NO = #{macMachineNo,jdbcType=VARCHAR}
+      and COMPRESSION = #{compression,jdbcType=BIT}
+  </update>
+</mapper>

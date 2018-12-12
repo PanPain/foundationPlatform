@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.xd.ridelab.foundationplatform.mapperInterface.PlaceInfoMapper">
+  <resultMap id="BaseResultMap" type="edu.xd.ridelab.foundationplatform.mysql.vo.PlaceInfo">
+    <id column="PLACE_ID" jdbcType="BIGINT" property="placeId" />
+    <result column="PLACE_NO" jdbcType="VARCHAR" property="placeNo" />
+    <result column="PLACE_NAME" jdbcType="VARCHAR" property="placeName" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="LONGITUDE" jdbcType="VARCHAR" property="longitude" />
+    <result column="LATITUDE" jdbcType="VARCHAR" property="latitude" />
+    <result column="TYPE" jdbcType="VARCHAR" property="type" />
+    <result column="PROPERTY" jdbcType="VARCHAR" property="property" />
+    <result column="FK_POLICE_OFFICE_ID" jdbcType="BIGINT" property="fkPoliceOfficeId" />
+    <result column="LEGAL_PERSON" jdbcType="VARCHAR" property="legalPerson" />
+    <result column="CERT_TYPE" jdbcType="VARCHAR" property="certType" />
+    <result column="CERT_NO" jdbcType="VARCHAR" property="certNo" />
+    <result column="TEL" jdbcType="VARCHAR" property="tel" />
+    <result column="BEGIN_TIME" jdbcType="TIME" property="beginTime" typeHandler="edu.xd.ridelab.foundationplatform.mapperInterface.typehandler.TimeToLocalTimeTypeHandler"/>
+    <result column="END_TIME" jdbcType="TIME" property="endTime" typeHandler="edu.xd.ridelab.foundationplatform.mapperInterface.typehandler.TimeToLocalTimeTypeHandler"/>
+    <result column="ORG_CODE" jdbcType="DECIMAL" property="orgCode" />
+    <result column="CHECK_STATUS" jdbcType="TINYINT" property="checkStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PLACE_ID, PLACE_NO, PLACE_NAME, ADDRESS, LONGITUDE, LATITUDE, TYPE, PROPERTY, FK_POLICE_OFFICE_ID, 
+    LEGAL_PERSON, CERT_TYPE, CERT_NO, TEL, BEGIN_TIME, END_TIME, ORG_CODE, CHECK_STATUS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from PLACE_INFO
+    where PLACE_ID = #{placeId,jdbcType=BIGINT}
+  </select>
+  <select id="selectBySomeCondition" resultType="edu.xd.ridelab.foundationplatform.model.PlaceInfoDistrictModel">
+    SELECT
+    PLACE_INFO.PLACE_ID as placeId,
+    PLACE_INFO.PLACE_NO as placeNo,
+    PLACE_INFO.PLACE_NAME as placeName,
+    PLACE_INFO.ADDRESS as address,
+    PLACE_INFO.TYPE as type,
+    PLACE_INFO.PROPERTY as property,
+    PLACE_INFO.LEGAL_PERSON as legalPerson,
+    PLACE_INFO.ORG_CODE as orgCode,
+    DISTRICT_NO as districtNo,
+    DISTRICT_NAME as districtName,
+    LONGITUDE as longitude,
+    LATITUDE as latitude,
+    TEL as tel
+    from PLACE_INFO,POLICE_OFFICE,DISTRICT
+    <where>
+      PLACE_INFO.FK_POLICE_OFFICE_ID=POLICE_OFFICE.POLICE_OFFICE_ID
+      and POLICE_OFFICE.FK_DISTRICT_ID=DISTRICT.DISTRICT_ID
+      <if test="placeNo!=null">and PLACE_INFO.PLACE_NO=#{placeNo}</if>
+      <if test="placeName!=null">and PLACE_INFO.PLACE_NAME=#{placeName}</if>
+      <if test="address!=null">and PLACE_INFO.ADDRESS=#{address}</if>
+      <if test="type!=null">and PLACE_INFO.TYPE=#{type}</if>
+      <if test="property!=null">and PLACE_INFO.PROPERTY=#{property}</if>
+      <if test="legalPerson!=null">and PLACE_INFO.LEGAL_PERSON=#{legalPerson}</if>
+      <if test="orgCode!=null">and PLACE_INFO.ORG_CODE=#{orgCode}</if>
+    </where>
+    limit #{offset},#{pageNum}
+   <!--　　　 PLACE_NO=#{placeNo} -->
+    <!--   PLACE_NAME=#{placeName}-->
+
+  </select>
+
+
+  <select id="getPlaceInfoById" resultType="edu.xd.ridelab.foundationplatform.model.PlaceInfoDistrictModel">
+    SELECT
+    PLACE_INFO.PLACE_ID as placeId,
+    PLACE_INFO.PLACE_NO as placeNo,
+    PLACE_INFO.PLACE_NAME as placeName,
+    PLACE_INFO.ADDRESS as address,
+    PLACE_INFO.TYPE as type,
+    PLACE_INFO.PROPERTY as property,
+    PLACE_INFO.LEGAL_PERSON as legalPerson,
+    PLACE_INFO.ORG_CODE as orgCode,
+    DISTRICT_NO as districtNo,
+    DISTRICT_NAME as districtName,
+    LONGITUDE as longitude,
+    LATITUDE as latitude,
+    TEL as tel,
+    FK_POLICE_OFFICE_ID as fkPoliceOfficeId
+    from PLACE_INFO,POLICE_OFFICE,DISTRICT
+    <where>
+      PLACE_INFO.FK_POLICE_OFFICE_ID=POLICE_OFFICE.POLICE_OFFICE_ID
+      and POLICE_OFFICE.FK_DISTRICT_ID=DISTRICT.DISTRICT_ID
+      and PLACE_ID = #{placeId,jdbcType=BIGINT}
+    </where>
+    <!--　　　 PLACE_NO=#{placeNo} -->
+    <!--   PLACE_NAME=#{placeName}-->
+
+  </select>
+
+
+  <select id="selectAll" resultType="edu.xd.ridelab.foundationplatform.model.PlaceInfoDistrictModel">
+    SELECT
+    PLACE_INFO.PLACE_ID as placeId,
+    PLACE_INFO.PLACE_NO as placeNo,
+    PLACE_INFO.PLACE_NAME as placeName,
+    PLACE_INFO.ADDRESS as address,
+    PLACE_INFO.TYPE as type,
+    PLACE_INFO.PROPERTY as property,
+    PLACE_INFO.LEGAL_PERSON as legalPerson,
+    PLACE_INFO.ORG_CODE as orgCode,
+    DISTRICT_NO as districtNo,
+    DISTRICT_NAME as districtName,
+    LONGITUDE as longitude,
+    LATITUDE as latitude,
+    TEL as tel
+    from PLACE_INFO,POLICE_OFFICE,DISTRICT
+    <where>
+      PLACE_INFO.FK_POLICE_OFFICE_ID=POLICE_OFFICE.POLICE_OFFICE_ID
+      and POLICE_OFFICE.FK_DISTRICT_ID=DISTRICT.DISTRICT_ID
+    </where>
+    limit #{offset},#{pageNum}
+    <!--　　　 PLACE_NO=#{placeNo} -->
+    <!--   PLACE_NAME=#{placeName}-->
+
+  </select>
+
+  <select id="selectPlaceIdByPlaceName" parameterType="java.lang.String" resultType="java.lang.Long">
+    select PLACE_ID as placeId from PLACE_INFO where PLACE_NO= #{placeNo}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from PLACE_INFO
+    where PLACE_ID = #{placeId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.PlaceInfo">
+    insert into PLACE_INFO (PLACE_ID, PLACE_NO, PLACE_NAME, 
+      ADDRESS, LONGITUDE, LATITUDE, 
+      TYPE, PROPERTY, FK_POLICE_OFFICE_ID, 
+      LEGAL_PERSON, CERT_TYPE, CERT_NO, 
+      TEL, BEGIN_TIME, END_TIME, 
+      ORG_CODE, CHECK_STATUS)
+    values (#{placeId,jdbcType=BIGINT}, #{placeNo,jdbcType=VARCHAR}, #{placeName,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{longitude,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{property,jdbcType=VARCHAR}, #{fkPoliceOfficeId,jdbcType=BIGINT}, 
+      #{legalPerson,jdbcType=VARCHAR}, #{certType,jdbcType=VARCHAR}, #{certNo,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR}, #{beginTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{orgCode,jdbcType=DECIMAL}, #{checkStatus,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.PlaceInfo">
+    insert into PLACE_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="placeId != null">
+        PLACE_ID,
+      </if>
+      <if test="placeNo != null">
+        PLACE_NO,
+      </if>
+      <if test="placeName != null">
+        PLACE_NAME,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="longitude != null">
+        LONGITUDE,
+      </if>
+      <if test="latitude != null">
+        LATITUDE,
+      </if>
+      <if test="type != null">
+        TYPE,
+      </if>
+      <if test="property != null">
+        PROPERTY,
+      </if>
+      <if test="fkPoliceOfficeId != null">
+        FK_POLICE_OFFICE_ID,
+      </if>
+      <if test="legalPerson != null">
+        LEGAL_PERSON,
+      </if>
+      <if test="certType != null">
+        CERT_TYPE,
+      </if>
+      <if test="certNo != null">
+        CERT_NO,
+      </if>
+      <if test="tel != null">
+        TEL,
+      </if>
+      <if test="beginTime != null">
+        BEGIN_TIME,
+      </if>
+      <if test="endTime != null">
+        END_TIME,
+      </if>
+      <if test="orgCode != null">
+        ORG_CODE,
+      </if>
+      <if test="checkStatus != null">
+        CHECK_STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="placeId != null">
+        #{placeId,jdbcType=BIGINT},
+      </if>
+      <if test="placeNo != null">
+        #{placeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="placeName != null">
+        #{placeName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="property != null">
+        #{property,jdbcType=VARCHAR},
+      </if>
+      <if test="fkPoliceOfficeId != null">
+        #{fkPoliceOfficeId,jdbcType=BIGINT},
+      </if>
+      <if test="legalPerson != null">
+        #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="certType != null">
+        #{certType,jdbcType=VARCHAR},
+      </if>
+      <if test="certNo != null">
+        #{certNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="beginTime != null">
+        #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orgCode != null">
+        #{orgCode,jdbcType=DECIMAL},
+      </if>
+      <if test="checkStatus != null">
+        #{checkStatus,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.PlaceInfo">
+    update PLACE_INFO
+    <set>
+      <if test="placeNo != null">
+        PLACE_NO = #{placeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="placeName != null">
+        PLACE_NAME = #{placeName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        LONGITUDE = #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        LATITUDE = #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="property != null">
+        PROPERTY = #{property,jdbcType=VARCHAR},
+      </if>
+      <if test="fkPoliceOfficeId != null">
+        FK_POLICE_OFFICE_ID = #{fkPoliceOfficeId,jdbcType=BIGINT},
+      </if>
+      <if test="legalPerson != null">
+        LEGAL_PERSON = #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="certType != null">
+        CERT_TYPE = #{certType,jdbcType=VARCHAR},
+      </if>
+      <if test="certNo != null">
+        CERT_NO = #{certNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        TEL = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="beginTime != null">
+        BEGIN_TIME = #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orgCode != null">
+        ORG_CODE = #{orgCode,jdbcType=DECIMAL},
+      </if>
+      <if test="checkStatus != null">
+        CHECK_STATUS = #{checkStatus,jdbcType=TINYINT},
+      </if>
+    </set>
+    where PLACE_ID = #{placeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.PlaceInfo">
+    update PLACE_INFO
+    set PLACE_NO = #{placeNo,jdbcType=VARCHAR},
+      PLACE_NAME = #{placeName,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      LONGITUDE = #{longitude,jdbcType=VARCHAR},
+      LATITUDE = #{latitude,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      PROPERTY = #{property,jdbcType=VARCHAR},
+      FK_POLICE_OFFICE_ID = #{fkPoliceOfficeId,jdbcType=BIGINT},
+      LEGAL_PERSON = #{legalPerson,jdbcType=VARCHAR},
+      CERT_TYPE = #{certType,jdbcType=VARCHAR},
+      CERT_NO = #{certNo,jdbcType=VARCHAR},
+      TEL = #{tel,jdbcType=VARCHAR},
+      BEGIN_TIME = #{beginTime,jdbcType=TIMESTAMP},
+      END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      ORG_CODE = #{orgCode,jdbcType=DECIMAL},
+      CHECK_STATUS = #{checkStatus,jdbcType=TINYINT}
+    where PLACE_ID = #{placeId,jdbcType=BIGINT}
+  </update>
+  <select id="countPlaceByProp" resultType="edu.xd.ridelab.foundationplatform.model.PlacePropCount">
+    SELECT PROPERTY as prop,
+            COUNT(*) as count
+    from POLICE_OFFICE,PLACE_INFO
+    <where>
+     <if test="districtId != null">
+       FK_DISTRICT_ID = #{districtId, jdbcType=BIGINT}
+     </if>
+      and POLICE_OFFICE_ID = FK_POLICE_OFFICE_ID
+    </where>
+    GROUP BY PROPERTY
+  </select>
+
+  <select id="countPlaceByType" resultType="edu.xd.ridelab.foundationplatform.model.PlaceTypeCount">
+    SELECT TYPE as type,
+          COUNT(*) as count
+    from POLICE_OFFICE,PLACE_INFO
+    <where>
+      <if test="districtId != null">
+        FK_DISTRICT_ID = #{districtId, jdbcType=BIGINT}
+      </if>
+      and POLICE_OFFICE_ID = FK_POLICE_OFFICE_ID
+    </where>
+    GROUP BY TYPE
+  </select>
+
+  <select id="selectAllPlaceInfo" resultType="edu.xd.ridelab.foundationplatform.mysql.vo.PlaceInfo">
+    SELECT
+    PLACE_INFO.PLACE_ID as placeId,
+    PLACE_INFO.PLACE_NO as placeNo,
+    PLACE_INFO.PLACE_NAME as placeName,
+    PLACE_INFO.ADDRESS as address,
+    LONGITUDE as longitude,
+    LATITUDE as latitude,
+    PLACE_INFO.TYPE as type,
+    PLACE_INFO.PROPERTY as property,
+    PLACE_INFO.FK_POLICE_OFFICE_ID as fkPoliceOfficeId,
+    PLACE_INFO.LEGAL_PERSON as legalPerson,
+    PLACE_INFO.CERT_TYPE as certType,
+    PLACE_INFO.CERT_NO as certNo,
+    PLACE_INFO.TEL as tel,
+    PLACE_INFO.BEGIN_TIME as beginTime,
+    PLACE_INFO.END_TIME as endTime,
+    PLACE_INFO.ORG_CODE as orgCode,
+    PLACE_INFO.CHECK_STATUS as checkStatus
+    from PLACE_INFO
+  </select>
+</mapper>

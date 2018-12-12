@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//ibatis.apache.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--<typeAliases>
+        <typeAlias alias="Manufacturer" type="edu.xd.ridelab.foundationplatform.mysql.vo.Manufacturer"/>
+
+    </typeAliases>-->
+
+    <settings>
+        <setting name="cacheEnabled" value="false"/>
+        <!--lazyLoadingEnabled: lazy loading开关,默认为true。
+        全局性设置懒加载。如果设为‘false’，则所有相关联的都会被初始化加载-->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!--aggressiveLazyLoading 默认true：当访问任何一个属性都会加载所有的其他lazy load属性,
+        即使你根本没有调用哪个lazy load属性,说白了就是aggressiveLazyLoading=true,则lazy load等于没用,
+        所以要使用lazy load还是将其设为false    -->
+        <setting name="aggressiveLazyLoading" value="false"/>
+    </settings>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="username" value="root"/>
+                <property name="password" value="123456"/>
+                <property name="url" value="jdbc:mysql://192.168.0.20:3306/foundationplatform?characterEncoding=utf-8&amp;allowMultiQueries=true"/>
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="mapper/DistrictMapper.xml"/>
+        <mapper resource="mapper/MachineStatusLogMapper.xml"/>
+        <mapper resource="mapper/MacMachineMapper.xml"/>
+        <mapper resource="mapper/ManufacturerMapper.xml"/>
+        <mapper resource="mapper/PermissionMapper.xml"/>
+        <mapper resource="mapper/PlaceInfoMapper.xml"/>
+        <mapper resource="mapper/PoliceOfficeMapper.xml"/>
+        <mapper resource="mapper/RecordPerDayStatisticsMapper.xml"/>
+        <mapper resource="mapper/RoleMapper.xml"/>
+        <mapper resource="mapper/RolePermissionRelationMapper.xml"/>
+        <mapper resource="mapper/RuleMapper.xml"/>
+        <mapper resource="mapper/SystemLogMapper.xml"/>
+        <mapper resource="mapper/UserMapper.xml"/>
+        <mapper resource="mapper/UserRoleRelationMapper.xml"/>
+    </mappers>
+
+</configuration>

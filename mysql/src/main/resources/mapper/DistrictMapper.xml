@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.xd.ridelab.foundationplatform.mapperInterface.DistrictMapper">
+  <resultMap id="BaseResultMap" type="edu.xd.ridelab.foundationplatform.mysql.vo.District">
+    <id column="DISTRICT_ID" jdbcType="BIGINT" property="districtId" />
+    <result column="DISTRICT_NO" jdbcType="VARCHAR" property="districtNo" />
+    <result column="DISTRICT_NAME" jdbcType="VARCHAR" property="districtName" />
+    <result column="DISTRICT_LEVEL" jdbcType="DECIMAL" property="districtLevel" />
+    <result column="DISTRICT_AREA" jdbcType="VARCHAR" property="districtArea" />
+    <result column="DISTRICT_REMARK" jdbcType="VARCHAR" property="districtRemark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    DISTRICT_ID, DISTRICT_NO, DISTRICT_NAME, DISTRICT_LEVEL, DISTRICT_AREA, DISTRICT_REMARK
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from DISTRICT
+    where DISTRICT_ID = #{districtId,jdbcType=BIGINT}
+  </select>
+  <select id="selectBySomeCondition" resultType="edu.xd.ridelab.foundationplatform.mysql.vo.District">
+    SELECT
+    DISTRICT_ID as districtId,
+    DISTRICT_NO as districtNo,
+    DISTRICT_NAME as districtName,
+    DISTRICT_LEVEL as districtLevel,
+    DISTRICT_AREA as districtArea,
+    DISTRICT_REMARK as districtRemark
+    from DISTRICT
+    <where>
+      <if test="districtNo!=null">and DISTRICT_NO=#{districtNo}</if>
+      <if test="districtName!=null">and DISTRICT_NAME=#{districtName}</if>
+      <if test="districtLevel!=null">and DISTRICT_LEVEL=#{districtLevel}</if>
+    </where>
+    limit #{offset},#{pageNum}
+  </select>
+
+  <select id="selectAll" resultType="edu.xd.ridelab.foundationplatform.mysql.vo.District">
+    SELECT
+    DISTRICT_ID as districtId,
+    DISTRICT_NO as districtNo,
+    DISTRICT_NAME as districtName,
+    DISTRICT_LEVEL as districtLevel,
+    DISTRICT_AREA as districtArea,
+    DISTRICT_REMARK as districtRemark
+    from DISTRICT
+    limit #{offset},#{pageNum}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from DISTRICT
+    where DISTRICT_ID = #{districtId,jdbcType=BIGINT}
+  </delete>
+  <!--批量删除-->
+  <delete id="deleteBatchByPrimaryKey" parameterType="java.util.List">
+    delete from DISTRICT
+    where DISTRICT_ID
+    in
+    <foreach collection="list" item="id" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+  </delete>
+  <insert id="insert" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.District">
+    insert into DISTRICT (DISTRICT_ID, DISTRICT_NO, DISTRICT_NAME, 
+      DISTRICT_LEVEL, DISTRICT_AREA, DISTRICT_REMARK
+      )
+    values (#{districtId,jdbcType=BIGINT}, #{districtNo,jdbcType=VARCHAR}, #{districtName,jdbcType=VARCHAR}, 
+      #{districtLevel,jdbcType=DECIMAL}, #{districtArea,jdbcType=VARCHAR}, #{districtRemark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.District">
+    insert into DISTRICT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="districtId != null">
+        DISTRICT_ID,
+      </if>
+      <if test="districtNo != null">
+        DISTRICT_NO,
+      </if>
+      <if test="districtName != null">
+        DISTRICT_NAME,
+      </if>
+      <if test="districtLevel != null">
+        DISTRICT_LEVEL,
+      </if>
+      <if test="districtArea != null">
+        DISTRICT_AREA,
+      </if>
+      <if test="districtRemark != null">
+        DISTRICT_REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="districtId != null">
+        #{districtId,jdbcType=BIGINT},
+      </if>
+      <if test="districtNo != null">
+        #{districtNo,jdbcType=VARCHAR},
+      </if>
+      <if test="districtName != null">
+        #{districtName,jdbcType=VARCHAR},
+      </if>
+      <if test="districtLevel != null">
+        #{districtLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="districtArea != null">
+        #{districtArea,jdbcType=VARCHAR},
+      </if>
+      <if test="districtRemark != null">
+        #{districtRemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.District">
+    update DISTRICT
+    <set>
+      <if test="districtNo != null">
+        DISTRICT_NO = #{districtNo,jdbcType=VARCHAR},
+      </if>
+      <if test="districtName != null">
+        DISTRICT_NAME = #{districtName,jdbcType=VARCHAR},
+      </if>
+      <if test="districtLevel != null">
+        DISTRICT_LEVEL = #{districtLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="districtArea != null">
+        DISTRICT_AREA = #{districtArea,jdbcType=VARCHAR},
+      </if>
+      <if test="districtRemark != null">
+        DISTRICT_REMARK = #{districtRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DISTRICT_ID = #{districtId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.District">
+    update DISTRICT
+    set DISTRICT_NO = #{districtNo,jdbcType=VARCHAR},
+      DISTRICT_NAME = #{districtName,jdbcType=VARCHAR},
+      DISTRICT_LEVEL = #{districtLevel,jdbcType=DECIMAL},
+      DISTRICT_AREA = #{districtArea,jdbcType=VARCHAR},
+      DISTRICT_REMARK = #{districtRemark,jdbcType=VARCHAR}
+    where DISTRICT_ID = #{districtId,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectAllDistrict" resultType="edu.xd.ridelab.foundationplatform.mysql.vo.District">
+    SELECT
+    DISTRICT_ID as districtId,
+    DISTRICT_NO as districtNo,
+    DISTRICT_NAME as districtName,
+    DISTRICT_LEVEL as districtLevel,
+    DISTRICT_AREA as districtArea,
+    DISTRICT_REMARK as districtRemark
+    from DISTRICT
+  </select>
+</mapper>

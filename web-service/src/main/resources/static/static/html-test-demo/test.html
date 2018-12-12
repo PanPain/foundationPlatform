@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        button {
+            background: #db701f;
+            border: solid 7px #000;
+            padding: 20px;
+            box-shadow: inset 0 0 6px #824212;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-family: "Tahoma", sans-serif;
+            text-shadow: 1px 1px 3px #824212;
+            color: #fff;
+            position: relative;
+            width: 300px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: green;
+        }
+
+        button:hover:before {
+            /* ------- THIS IS THE MAGIC ----------------*/
+            content: attr(data-hover);
+            /* ------------------------------------------*/
+            display: block;
+            background: #000;
+            position: absolute;
+            top: 100%;
+            left: -7px;
+            right: -7px;
+            padding: 15px;
+        }
+
+        button:hover:after {
+            content: "";
+            position: absolute;
+            display: block;
+            width: 0;
+            height: 0;
+            border: solid 10px transparent;
+            border-bottom-color: #000;
+            bottom: 0;
+            left: 50%;
+            margin-left: -10px;
+            z-index: 2;
+        }
+
+        .note {
+            margin-top: 100px;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <span style="font-size: 30px">Hbase</span>
+    <button data-hover="爱编程（w2bc.com）收集编程资料，web前端案例">
+        爱编程
+    </button>
+
+    <button onclick="outFrame()">弹窗</button>
+</body>
+<script>
+    function outFrame(){
+        // alert("确定删除吗？");
+        var r=confirm("sure to delete?");
+        if(r==true){
+            console.log("点击了是");
+        }else{
+            console.log("点击了否")
+        }
+    }
+</script>
+</html>

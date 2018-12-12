@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.xd.ridelab.foundationplatform.mapperInterface.UserRoleRelationMapper">
+  <resultMap id="BaseResultMap" type="edu.xd.ridelab.foundationplatform.mysql.vo.UserRoleRelation">
+    <id column="RELATION_ID" jdbcType="BIGINT" property="relationId" />
+    <result column="FK_USER_ID" jdbcType="BIGINT" property="fkUserId" />
+    <result column="FK_ROLE_ID" jdbcType="BIGINT" property="fkRoleId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="MODIFY_TIME" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    RELATION_ID, FK_USER_ID, FK_ROLE_ID, CREATE_TIME, MODIFY_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from USER_ROLE_RELATION
+    where RELATION_ID = #{relationId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from USER_ROLE_RELATION
+    where RELATION_ID = #{relationId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.UserRoleRelation">
+    insert into USER_ROLE_RELATION (RELATION_ID, FK_USER_ID, FK_ROLE_ID, 
+      CREATE_TIME, MODIFY_TIME)
+    values (#{relationId,jdbcType=BIGINT}, #{fkUserId,jdbcType=BIGINT}, #{fkRoleId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.UserRoleRelation">
+    insert into USER_ROLE_RELATION
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="relationId != null">
+        RELATION_ID,
+      </if>
+      <if test="fkUserId != null">
+        FK_USER_ID,
+      </if>
+      <if test="fkRoleId != null">
+        FK_ROLE_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="relationId != null">
+        #{relationId,jdbcType=BIGINT},
+      </if>
+      <if test="fkUserId != null">
+        #{fkUserId,jdbcType=BIGINT},
+      </if>
+      <if test="fkRoleId != null">
+        #{fkRoleId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.UserRoleRelation">
+    update USER_ROLE_RELATION
+    <set>
+      <if test="fkUserId != null">
+        FK_USER_ID = #{fkUserId,jdbcType=BIGINT},
+      </if>
+      <if test="fkRoleId != null">
+        FK_ROLE_ID = #{fkRoleId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where RELATION_ID = #{relationId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.UserRoleRelation">
+    update USER_ROLE_RELATION
+    set FK_USER_ID = #{fkUserId,jdbcType=BIGINT},
+      FK_ROLE_ID = #{fkRoleId,jdbcType=BIGINT},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+    where RELATION_ID = #{relationId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByUserId" resultType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT *
+    FROM USER_ROLE_RELATION
+    WHERE FK_USER_ID = #{userId,jdbcType=BIGINT}
+  </select>
+</mapper>

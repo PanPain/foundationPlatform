@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.xd.ridelab.foundationplatform.mapperInterface.SystemLogMapper">
+  <resultMap id="BaseResultMap" type="edu.xd.ridelab.foundationplatform.mysql.vo.SystemLog">
+    <id column="LOG_ID" jdbcType="BIGINT" property="logId" />
+    <result column="LOG_TYPE" jdbcType="INTEGER" property="logType" />
+    <result column="MODULE" jdbcType="VARCHAR" property="module" />
+    <result column="CONTOLLER" jdbcType="VARCHAR" property="contoller" />
+    <result column="METHOD" jdbcType="VARCHAR" property="method" />
+    <result column="FK_USER_ID" jdbcType="BIGINT" property="fkUserId" />
+    <result column="DATE" jdbcType="TIMESTAMP" property="date" />
+    <result column="MESSAGE" jdbcType="VARCHAR" property="message" />
+    <result column="LOG" jdbcType="VARCHAR" property="log" />
+  </resultMap>
+
+  <resultMap id="LogInfoResultMap" type="edu.xd.ridelab.foundationplatform.model.SystemLogInfo">
+      <id column="LOG_ID" jdbcType="BIGINT" property="logId" />
+      <result column="LOG_TYPE" jdbcType="INTEGER" property="logType" />
+      <result column="MODULE" jdbcType="VARCHAR" property="module" />
+      <result column="CONTOLLER" jdbcType="VARCHAR" property="contoller" />
+      <result column="METHOD" jdbcType="VARCHAR" property="method" />
+      <result column="DATE" jdbcType="TIMESTAMP" property="date" />
+      <result column="MESSAGE" jdbcType="VARCHAR" property="message" />
+      <result column="LOG" jdbcType="VARCHAR" property="log" />
+      <result column="USER_ACCOUNT" jdbcType="VARCHAR" property="userName" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    LOG_ID, LOG_TYPE, MODULE, CONTOLLER, METHOD, FK_USER_ID, DATE, MESSAGE, LOG
+  </sql>
+  <sql id="Log_Column_List">
+    LOG_ID, LOG_TYPE, MODULE, CONTOLLER, METHOD, DATE, MESSAGE, LOG, USER_ACCOUNT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SYSTEM_LOG
+    where LOG_ID = #{logId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from SYSTEM_LOG
+    where LOG_ID = #{logId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.SystemLog">
+    insert into SYSTEM_LOG (LOG_ID, LOG_TYPE, MODULE, 
+      CONTOLLER, METHOD, FK_USER_ID,
+      DATE, MESSAGE, LOG
+      )
+    values (#{logId,jdbcType=BIGINT}, #{logType,jdbcType=INTEGER}, #{module,jdbcType=VARCHAR}, 
+      #{contoller,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR}, #{fkUserId,jdbcType=BIGINT}, 
+      #{date,jdbcType=TIMESTAMP}, #{message,jdbcType=VARCHAR}, #{log,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.SystemLog">
+    insert into SYSTEM_LOG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="logId != null">
+        LOG_ID,
+      </if>
+      <if test="logType != null">
+        LOG_TYPE,
+      </if>
+      <if test="module != null">
+        MODULE,
+      </if>
+      <if test="contoller != null">
+        CONTOLLER,
+      </if>
+      <if test="method != null">
+        METHOD,
+      </if>
+      <if test="fkUserId != null">
+        FK_USER_ID,
+      </if>
+      <if test="date != null">
+        DATE,
+      </if>
+      <if test="message != null">
+        MESSAGE,
+      </if>
+      <if test="log != null">
+        LOG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="logId != null">
+        #{logId,jdbcType=BIGINT},
+      </if>
+      <if test="logType != null">
+        #{logType,jdbcType=INTEGER},
+      </if>
+      <if test="module != null">
+        #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="contoller != null">
+        #{contoller,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="fkUserId != null">
+        #{fkUserId,jdbcType=BIGINT},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="message != null">
+        #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="log != null">
+        #{log,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.SystemLog">
+    update SYSTEM_LOG
+    <set>
+      <if test="logType != null">
+        LOG_TYPE = #{logType,jdbcType=INTEGER},
+      </if>
+      <if test="module != null">
+        MODULE = #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="contoller != null">
+        CONTOLLER = #{contoller,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        METHOD = #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="fkUserId != null">
+        FK_USER_ID = #{fkUserId,jdbcType=BIGINT},
+      </if>
+      <if test="date != null">
+        DATE = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="message != null">
+        MESSAGE = #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="log != null">
+        LOG = #{log,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where LOG_ID = #{logId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.SystemLog">
+    update SYSTEM_LOG
+    set LOG_TYPE = #{logType,jdbcType=INTEGER},
+      MODULE = #{module,jdbcType=VARCHAR},
+      CONTOLLER = #{contoller,jdbcType=VARCHAR},
+      METHOD = #{method,jdbcType=VARCHAR},
+      FK_USER_ID = #{fkUserId,jdbcType=BIGINT},
+      DATE = #{date,jdbcType=TIMESTAMP},
+      MESSAGE = #{message,jdbcType=VARCHAR},
+      LOG = #{log,jdbcType=VARCHAR}
+    where LOG_ID = #{logId,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectAllLog" resultMap="LogInfoResultMap">
+    SELECT
+      <include refid="Log_Column_List"/>
+    FROM
+      SYSTEM_LOG,USER
+    WHERE FK_USER_ID = USER_ID
+    limit #{offset},#{pageSize}
+  </select>
+
+  <select id="selectBySomeConditions" resultMap="LogInfoResultMap">
+    SELECT
+      <include refid="Log_Column_List" />
+    FROM
+      SYSTEM_LOG,USER
+    <where>
+      FK_USER_ID = USER_ID
+      <if test="logType != null"> AND LOG_TYPE = #{logType} </if>
+      <if test="module != null"> AND MODULE = #{module} </if>
+      <if test="userName != null"> AND USER_ACCOUNT = #{userName} </if>
+      <if test="message != null"> AND MESSAGE = #{message} </if>
+      <if test="startTime != null"> AND DATE &gt;= #{startTime}</if>
+      <if test="endTime != null">AND DATE &lt;= #{endTime}</if>
+    </where>
+    limit #{offset},#{pageSize}
+  </select>
+</mapper>

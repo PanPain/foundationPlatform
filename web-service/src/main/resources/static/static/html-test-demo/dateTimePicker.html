@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>时间选择插件</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.css">
+    <link rel="stylesheet" href="../../static/assets/css/bootstrap-datepicker3.css">
+</head>
+
+<body>
+
+
+    <script src="../assets/js/jquery.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../../static/assets/js/date-time/bootstrap-datepicker.js"></script>
+    <script src="../../static/assets/js/date-time/locales/bootstrap-datepicker.zh-CN.js"></script>
+
+
+
+    <div class="row">
+        <div class="col-md-5" id="sandbox-container">
+            <input type="text" class="form-control">
+        </div>
+        <button id="button">按钮</button>
+    </div>
+    <script>
+        $("#sandbox-container input").datepicker({
+            language: 'zh-CN'
+        });
+        $("#button").click(function(){
+            console.log($(".form-control").val())
+        })
+    </script>
+</body>
+
+</html>

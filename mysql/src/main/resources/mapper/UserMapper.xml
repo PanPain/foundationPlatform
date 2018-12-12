@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.xd.ridelab.foundationplatform.mapperInterface.UserMapper">
+  <resultMap id="BaseResultMap" type="edu.xd.ridelab.foundationplatform.mysql.vo.User">
+    <id column="USER_ID" jdbcType="BIGINT" property="userId" />
+    <result column="USER_ACCOUNT" jdbcType="VARCHAR" property="userAccount" />
+    <result column="USER_PASSWORD" jdbcType="VARCHAR" property="userPassword" />
+    <result column="FK_POLICE_OFFICE_ID" jdbcType="BIGINT" property="fkPoliceOfficeId" />
+    <result column="USER_PHONE" jdbcType="VARCHAR" property="userPhone" />
+    <result column="USER_REAL_NAME" jdbcType="VARCHAR" property="userRealName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    USER_ID, USER_ACCOUNT, USER_PASSWORD, FK_POLICE_OFFICE_ID, USER_PHONE, USER_REAL_NAME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from USER
+    where USER_ID = #{userId,jdbcType=BIGINT}
+  </select>
+  <select id="selectByUserAccount" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--根据用户名查看User，用于用户登录验证-->
+    SELECT *
+    FROM  USER
+    WHERE USER_ACCOUNT = #{userAccount,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from USER
+    where USER_ID = #{userId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.User">
+    insert into USER (USER_ID, USER_ACCOUNT, USER_PASSWORD, 
+      FK_POLICE_OFFICE_ID, USER_PHONE, USER_REAL_NAME
+      )
+    values (#{userId,jdbcType=BIGINT}, #{userAccount,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, 
+      #{fkPoliceOfficeId,jdbcType=BIGINT}, #{userPhone,jdbcType=VARCHAR}, #{userRealName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.User">
+    insert into USER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="userAccount != null">
+        USER_ACCOUNT,
+      </if>
+      <if test="userPassword != null">
+        USER_PASSWORD,
+      </if>
+      <if test="fkPoliceOfficeId != null">
+        FK_POLICE_OFFICE_ID,
+      </if>
+      <if test="userPhone != null">
+        USER_PHONE,
+      </if>
+      <if test="userRealName != null">
+        USER_REAL_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userAccount != null">
+        #{userAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="fkPoliceOfficeId != null">
+        #{fkPoliceOfficeId,jdbcType=BIGINT},
+      </if>
+      <if test="userPhone != null">
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userRealName != null">
+        #{userRealName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.User">
+    update USER
+    <set>
+      <if test="userAccount != null">
+        USER_ACCOUNT = #{userAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        USER_PASSWORD = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="fkPoliceOfficeId != null">
+        FK_POLICE_OFFICE_ID = #{fkPoliceOfficeId,jdbcType=BIGINT},
+      </if>
+      <if test="userPhone != null">
+        USER_PHONE = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userRealName != null">
+        USER_REAL_NAME = #{userRealName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where USER_ID = #{userId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.User">
+    update USER
+    set USER_ACCOUNT = #{userAccount,jdbcType=VARCHAR},
+      USER_PASSWORD = #{userPassword,jdbcType=VARCHAR},
+      FK_POLICE_OFFICE_ID = #{fkPoliceOfficeId,jdbcType=BIGINT},
+      USER_PHONE = #{userPhone,jdbcType=VARCHAR},
+      USER_REAL_NAME = #{userRealName,jdbcType=VARCHAR}
+    where USER_ID = #{userId,jdbcType=BIGINT}
+  </update>
+  <select id="selectAllUserInfo" resultType="edu.xd.ridelab.foundationplatform.model.UserInfoModel">
+    SELECT USER.USER_ID AS userId,
+            USER.USER_ACCOUNT AS userAccount,
+            POLICE_OFFICE.POLICE_OFFICE_NAME AS policeOfficeName,
+            ROLE.ROLE_NAME AS roleName,
+            USER.USER_PHONE AS userPhone,
+            USER.USER_REAL_NAME AS userRealName
+    FROM  USER,ROLE,POLICE_OFFICE,USER_ROLE_RELATION
+    WHERE USER.FK_POLICE_OFFICE_ID=POLICE_OFFICE.POLICE_OFFICE_ID
+      AND USER.USER_ID=USER_ROLE_RELATION.FK_USER_ID
+      AND USER_ROLE_RELATION.FK_ROLE_ID=ROLE.ROLE_ID
+    ORDER BY USER.USER_ID
+  </select>
+</mapper>

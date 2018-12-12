@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.xd.ridelab.foundationplatform.mapperInterface.RuleMapper">
+  <resultMap id="BaseResultMap" type="edu.xd.ridelab.foundationplatform.mysql.vo.Rule">
+    <id column="RULE_ID" jdbcType="BIGINT" property="ruleId" />
+    <result column="RULE_NAME" jdbcType="VARCHAR" property="ruleName" />
+    <result column="RULE_AREA" jdbcType="VARCHAR" property="ruleArea" />
+    <result column="RULE_CREATE_TIME" jdbcType="TIMESTAMP" property="ruleCreateTime"/>
+    <result column="RULE_EXPIRE_TIME" jdbcType="TIMESTAMP" property="ruleExpireTime" />
+    <result column="RULE_TYPE" jdbcType="VARCHAR" property="ruleType" />
+    <result column="TARGET_MAC" jdbcType="VARCHAR" property="targetMac" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="USER_ID" jdbcType="BIGINT" property="userId" />
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    RULE_ID, RULE_NAME, RULE_AREA, RULE_CREATE_TIME, RULE_EXPIRE_TIME,RULE_TYPE, TARGET_MAC,
+    STATUS, USER_ID,PHONE, REMARK
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from RULE
+    where RULE_ID = #{ruleId,jdbcType=BIGINT}
+  </select>
+  <select id="getRulesBySomeConditions" resultType="edu.xd.ridelab.foundationplatform.mysql.vo.Rule">
+    select
+    RULE_ID as ruleId,
+    RULE_NAME as ruleName,
+    RULE_AREA as ruleArea,
+    RULE_CREATE_TIME as ruleCreateTime,
+    RULE_EXPIRE_TIME as ruleExpireTime,
+    RULE_TYPE as ruleType,
+    TARGET_MAC as targetMac,
+    STATUS as status,
+    USER_ID as userId,
+    PHONE as phone,
+    REMARK as remark
+    from RULE
+    <where>
+      <if test="ruleName != null"> AND RULE_NAME LIKE  '%${ruleName}%' </if>
+      <if test="ruleType != null"> AND RULE_TYPE = #{ruleType} </if>
+      <if test="targetMac != null"> AND TARGET_MAC = #{targetMac} </if>
+      <if test="status != null"> AND STATUS = #{status} </if>
+    </where>
+    limit #{offset},#{pageNum}
+  </select>
+  <select id="getRule" resultType="edu.xd.ridelab.foundationplatform.mysql.vo.Rule">
+    select
+    RULE_ID as ruleId,
+    RULE_NAME as ruleName,
+    RULE_AREA as ruleArea,
+    RULE_CREATE_TIME as ruleCreateTime,
+    RULE_EXPIRE_TIME as ruleExpireTime,
+    RULE_TYPE as ruleType,
+    TARGET_MAC as targetMac,
+    STATUS as status,
+    USER_ID as userId,
+    PHONE as phone,
+    REMARK as remark
+    from RULE
+    <where>
+    <if test="ruleId != null"> AND RULE_ID = #{ruleId} </if>
+    </where>
+  </select>
+  <select id="selectAllRules"  resultType="edu.xd.ridelab.foundationplatform.mysql.vo.Rule">
+    select
+    RULE_ID as ruleId,
+    RULE_NAME as ruleName,
+    RULE_AREA as ruleArea,
+    RULE_CREATE_TIME as ruleCreateTime,
+    RULE_EXPIRE_TIME as ruleExpireTime,
+    RULE_TYPE as ruleType,
+    TARGET_MAC as targetMac,
+    STATUS as status,
+    USER_ID as userId,
+    PHONE as phone,
+    REMARK as remark
+    from RULE
+    limit #{offset},#{pageNum}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from RULE
+    where RULE_ID = #{ruleId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.Rule">
+    insert into RULE (RULE_ID, RULE_NAME,
+      RULE_AREA, RULE_CREATE_TIME,RULE_CREATE_TIME, RULE_TYPE,
+      TARGET_MAC, STATUS,USER_ID, PHONE,
+      REMARK)
+    values (#{ruleId,jdbcType=BIGINT}, #{ruleName,jdbcType=VARCHAR},
+      #{ruleArea,jdbcType=VARCHAR}, #{ruleCreateTime,jdbcType=TIMESTAMP}, #{ruleExpireTime,jdbcType=TIMESTAMP},
+      #{ruleType,jdbcType=VARCHAR}, #{targetMac,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR},
+      #{userId,jdbcType=BIGINT},#{phone,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.Rule">
+    insert into RULE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ruleId != null">
+        RULE_ID,
+      </if>
+      <if test="ruleName != null">
+        RULE_NAME,
+      </if>
+      <if test="ruleArea != null">
+        RULE_AREA,
+      </if>
+      <if test="ruleCreateTime != null">
+        RULE_CREATE_TIME,
+      </if>
+      <if test="ruleExpireTime != null">
+        RULE_EXPIRE_TIME,
+      </if>
+      <if test="ruleType != null">
+        RULE_TYPE,
+      </if>
+      <if test="targetMac != null">
+        TARGET_MAC,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="phone != null">
+        PHONE,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ruleId != null">
+        #{ruleId,jdbcType=BIGINT},
+      </if>
+      <if test="ruleName != null">
+        #{ruleName,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleArea != null">
+        #{ruleArea,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleCreateTime != null">
+        #{ruleCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ruleExpireTime != null">
+        #{ruleExpireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ruleType != null">
+        #{ruleType,jdbcType=VARCHAR},
+      </if>
+      <if test="targetMac != null">
+        #{targetMac,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.Rule">
+    update RULE
+    <set>
+      <if test="ruleName != null">
+        RULE_NAME = #{ruleName,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleArea != null">
+        RULE_AREA = #{ruleArea,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleCreateTime != null">
+        RULE_CREATE_TIME = #{ruleCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ruleExpireTime != null">
+        RULE_EXPIRE_TIME = #{ruleExpireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ruleType != null">
+        RULE_TYPE = #{ruleType,jdbcType=VARCHAR},
+      </if>
+      <if test="targetMac != null">
+        TARGET_MAC = #{targetMac,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="phone != null">
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where RULE_ID = #{ruleId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.Rule">
+    update RULE
+    set
+      RULE_NAME = #{ruleName,jdbcType=VARCHAR},
+      RULE_AREA = #{ruleArea,jdbcType=VARCHAR},
+      RULE_CREATE_TIME = #{ruleCreateTime,jdbcType=TIMESTAMP},
+      RULE_EXPIRE_TIME = #{ruleExpireTime,jdbcType=TIMESTAMP},
+      RULE_TYPE = #{ruleType,jdbcType=VARCHAR},
+      TARGET_MAC = #{targetMac,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=BIGINT},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where RULE_ID = #{ruleId,jdbcType=BIGINT}
+  </update>
+</mapper>
