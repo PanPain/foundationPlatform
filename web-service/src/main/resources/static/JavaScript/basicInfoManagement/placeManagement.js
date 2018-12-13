@@ -198,7 +198,7 @@ $(function(){
     var tby=$('#dynamic-table tbody').eq(0);
     $.ajax({
         type: "get",
-      url:"http:192.168.0.1:8080/place/getAllPlaceInfo",
+      url:"/place/getAllPlaceInfo",
 
         data: {
         },
@@ -242,7 +242,7 @@ $('#simple-table').on('click','.editRow',function(e){
 
      $.ajax({
         type: "get",
-        url:"http:192.168.0.217:8080/policeOffice/getAllPoliceOfficeInfo",
+        url:"/policeOffice/getAllPoliceOfficeInfo",
         success: function(response){
             if(response.meta.success){
                 var bjData = response.data;
@@ -277,7 +277,7 @@ $('#simple-table').on('click','.editRow',function(e){
 	$.ajax({
        
 			type: "get",
-			url:"http:192.168.0.1:8080/place/getPlaceInfoById",
+			url:"/place/getPlaceInfoById",
             contentType:"application/json;charset=UTF-8",
 		data: {
 			"placeId": editId,
@@ -337,7 +337,7 @@ console.log(editPlace);
 //向后端传送数据保存
 $.ajax({
 type: "POST",
-url: "http:192.168.0.1:8080/place/updatePlaceInfo",
+url: "/place/updatePlaceInfo",
 data: JSON.stringify(editPlace),
 contentType: "application/json;charset=UTF-8",
 success: function(response){
@@ -465,7 +465,7 @@ $('#search').click(function (e) {
     var tby=$('#dynamic-table tbody').eq(0);
     $.ajax({
         type: "get",
-        url:"http:192.168.0.1:8080/place/searchPlaceInfo",
+        url:"/place/searchPlaceInfo",
         
         data: data1,
         success: function(response){
@@ -496,7 +496,7 @@ $('#simple-table').on('click','#addRow',function(e){
     
     $.ajax({
         type: "get",
-        url:"http:192.168.0.217:8080/policeOffice/getAllPoliceOfficeInfo",
+        url:"/policeOffice/getAllPoliceOfficeInfo",
         success: function(response){
             if(response.meta.success){
                 var mfData = response.data;
@@ -571,7 +571,7 @@ var newPlace=newPlaceObject['dat'][0];
 //向后端传送数据保存
 $.ajax({
 type: "POST",
-url: "http:192.168.0.1:8080/place/addPlaceInfo",
+url: "/place/addPlaceInfo",
 data: JSON.stringify(newPlace),
 contentType: "application/json;charset=UTF-8",
 success: function(response){
@@ -601,7 +601,7 @@ $('#simple-table').on('click','.delRow',function(e){
            // alert(this.parentNode.parentNode.parentNode.tagName);
             $.ajax({
                 type: "get",
-                url:"http:192.168.0.1:8080/place/deletePlaceInfo",
+                url:"/place/deletePlaceInfo",
             // url:"http:127.0.0.1:8080/district/deleteDistrict",
                 data: {
                 "placeId": delId

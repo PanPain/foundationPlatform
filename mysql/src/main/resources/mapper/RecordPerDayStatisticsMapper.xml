@@ -78,6 +78,10 @@
     <result column="DING_DING_MOBILE" jdbcType="INTEGER" property="dingDingMobile" />
     <result column="TOU_TIAO_MOBILE" jdbcType="INTEGER" property="touTiaoMobile" />
   </resultMap>
+  <resultMap id="MachineCollectMap" type="edu.xd.ridelab.foundationplatform.model.MachineCollectCount">
+    <result column="count" jdbcType="DECIMAL" property="count" />
+    <association column="macMachineNo" jdbcType="VARCHAR" select="edu.xd.ridelab.foundationplatform.mapperInterface.MacMachineMapper.selectByMacMachineNo" property="macMachine" />
+  </resultMap>
   <sql id="Base_Column_List">
     RECORD_DATE, MAC_MACHINE_NO, COMPRESSION, MAC_COUNT, AP_MAC_COUNT, VI_COUNT, TIAN_YA_LUN_TAN, 
     BAI_DU_TIE_BA, MAO_PU, WANG_YI_163, QQ_KONG_JIAN, SINA_WEI_BO, DOU_BAN, TENG_XUN_WEI_BO, 
@@ -94,6 +98,37 @@
     QQ_KONG_JIAN_MOBILE, DANG_DANG_MOBILE, YI_HAO_DIAN_MOBILE, MAIL_139_MOBILE, ZHI_FU_BAO_MOBILE, 
     DING_DING_MOBILE, TOU_TIAO_MOBILE
   </sql>
+
+  <select id="selectMacCount" parameterType="java.lang.Long" resultType="java.lang.Integer">
+    select count(*) from MAC_MACHINE
+    where FK_POLICEOFFICE_ID = #{id}
+  </select>
+
+  <select id="selectOfflineMacCount" parameterType="java.lang.Long" resultType="java.lang.Integer">
+    select count(*) from MAC_MACHINE
+    where FK_POLICEOFFICE_ID = #{id} AND STATUS = "00"
+  </select>
+
+  <select id="selectOnlineMacCount" parameterType="java.lang.Long" resultType="java.lang.Integer">
+    select count(*) from MAC_MACHINE
+    where FK_POLICEOFFICE_ID = #{id} AND STATUS = "01"
+  </select>
+
+  <select id="getSumMacCount" resultType="java.lang.Integer">
+    select sum(MAC_COUNT) from RECORD_PER_DAY_STATISTICS
+    <where>
+      COMPRESSION = 0
+
+      <if test="date != null">
+        AND RECORD_DATE = str_to_date(#{date,jdbcType=VARCHAR},'%Y-%m-%d')
+      </if>
+
+      <if test="macNo != null">
+        AND MAC_MACHINE_NO = #{macNo}
+      </if>
+    </where>
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.RecordPerDayStatisticsKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -101,6 +136,41 @@
     where RECORD_DATE = #{recordDate,jdbcType=DATE}
       and MAC_MACHINE_NO = #{macMachineNo,jdbcType=VARCHAR}
       and COMPRESSION = #{compression,jdbcType=BIT}
+  </select>
+  <select id="countColumnByCompressionAndDate" resultType="bigDecimal" statementType="STATEMENT">
+    select
+      COALESCE(SUM(${column}),0)
+    from RECORD_PER_DAY_STATISTICS
+    <where>
+      <if test="recordDate != '' ">
+        AND RECORD_DATE = ${recordDate}
+      </if>
+      <if test="compression != null">
+        AND COMPRESSION = ${compression}
+      </if>
+    </where>
+  </select>
+  <select id="getTotalCountByDates"  resultType="edu.xd.ridelab.foundationplatform.model.TotalCollectCount">
+    select
+      RECORD_DATE as date, COALESCE(SUM(MAC_COUNT),0) as count
+    from RECORD_PER_DAY_STATISTICS
+    <where>
+    RECORD_DATE <![CDATA[>=]]> #{startDate,jdbcType=DATE}
+    AND RECORD_DATE <![CDATA[<=]]> #{endDate,jdbcType=DATE}
+    AND COMPRESSION = 0
+    </where>
+    GROUP BY RECORD_DATE
+  </select>
+  <select id="getLeastCollectMachine"  resultMap="MachineCollectMap">
+    select
+    MAC_MACHINE_NO as macMachineNo, SUM(MAC_COUNT) as count
+    from RECORD_PER_DAY_STATISTICS
+    <where>
+       COMPRESSION = 0
+    </where>
+    GROUP BY MAC_MACHINE_NO
+    ORDER BY count ASC
+    limit 0,#{num}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.RecordPerDayStatisticsKey">
     delete from RECORD_PER_DAY_STATISTICS
@@ -921,4 +991,9 @@
       and MAC_MACHINE_NO = #{macMachineNo,jdbcType=VARCHAR}
       and COMPRESSION = #{compression,jdbcType=BIT}
   </update>
+  <select id="countViRecord" resultType="edu.xd.ridelab.foundationplatform.model.ViCountModel">
+    SELECT SUM(QQ_CHAT) as qqChat, SUM(SINA_WEI_BO) as sinaWeiBo, SUM(WEI_XIN_MOBILE) as weiXinMobile, SUM(VI_COUNT) as viCount
+    FROM RECORD_PER_DAY_STATISTICS
+    WHERE COMPRESSION = 1
+  </select>
 </mapper>

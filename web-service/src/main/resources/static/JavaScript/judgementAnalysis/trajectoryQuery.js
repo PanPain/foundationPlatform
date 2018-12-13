@@ -116,7 +116,7 @@ $("#searchTrack").click(function(e){
     }));
       $.ajax({
       type: "get",
-      url:theUrl+"/judgeAnalyze/trackQuery?mac="
+      url:"/judgeAnalyze/trackQuery?mac="
           +macId+"&startTime="+startTime+"&endTime="+endTime,
     success: function(response){
       if(response.meta.success){

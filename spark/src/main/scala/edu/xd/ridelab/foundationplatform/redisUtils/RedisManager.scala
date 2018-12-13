@@ -116,4 +116,8 @@ object RedisManager {
   def subscribeRules(): Unit ={
     new SubscriberThread(new RuleSubscriber(), getRedisManager.rules, getConnection).start()
   }
+
+  def main(args: Array[String]): Unit = {
+    RedisManager.incBy("test", "key", 1)
+  }
 }

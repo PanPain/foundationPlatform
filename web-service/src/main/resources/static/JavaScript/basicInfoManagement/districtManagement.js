@@ -52,7 +52,7 @@ $(function(){
     var disul=$('#distriList');
     $.ajax({
     	type: "get",
-    	url:theUrl+"/district/getAllDistrict",
+    	url:"/district/getAllDistrict",
     	data: {
     	},
     	success: function(response){
@@ -80,7 +80,7 @@ $('.page-cont').on('click','#searchDis',function(e){
 	var value=$("#searchInput").val();
 	$.ajax({
 		type: "get",
-		url:theUrl+"/district/searchDistrict",
+		url:"/district/searchDistrict",
 		data: {
 			"districtName": value,
 		},
@@ -108,7 +108,7 @@ $('#distriList').on('click','.list-group-item',function(e){
 	theliId= theli.attr("id");
 	$.ajax({
 		type: "get",
-		url:theUrl+"/district/getDistrictDetailInfo",
+		url:"/district/getDistrictDetailInfo",
 		data: {
 			"districtId": theliId
 		},
@@ -164,7 +164,7 @@ $('#distriList').on('click','.editNew',function(e){
 	editId=this.parentNode.parentNode.parentNode.id;
 	$.ajax({
 		type: "get",
-		url:theUrl+"/district/getDistrictDetailInfo",
+		url:"/district/getDistrictDetailInfo",
 		data: {
 			"districtId": editId
 		},
@@ -225,7 +225,7 @@ $('.page-cont').on('click','#saveNew',function(e){
 //向后端传送数据保存
 $.ajax({
 	type: "POST",
-	url: theUrl+"/district/addDistrict",
+	url: "/district/addDistrict",
 	data: JSON.stringify(newDistrict),
 	contentType: "application/json;charset=UTF-8",
 	success: function(response){
@@ -269,7 +269,7 @@ $('.page-cont').on('click','#saveEdit',function(e){
 //向后端传送数据保存
 $.ajax({
 	type: "POST",
-	url: theUrl+"/district/updateDistrict",
+	url: "/district/updateDistrict",
 	data: JSON.stringify(editDistrict),
 	contentType: "application/json;charset=UTF-8",
 	success: function(response){
@@ -297,7 +297,7 @@ $('#distriList').on('click','.delRow',function(e){
 		var delELe=$(this).parent().parent().parent();
 		$.ajax({
 			type: "delete",
-			url:theUrl+"/district/deleteDistrict?districtId="+delId,
+			url:"/district/deleteDistrict?districtId="+delId,
 		//     data: JSON.stringify({
 		// 	"districtId": delId
 		// }),

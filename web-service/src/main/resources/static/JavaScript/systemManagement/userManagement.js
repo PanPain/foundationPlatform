@@ -161,7 +161,7 @@ $(function () {
 
     //拼接参数：获取所有的人员不需要传递参数
     // var params='';
-    var URL = 'http://192.168.0.200:8888/user/getAllUserInfo';    //对应到接口的位置
+    var URL = '/user/getAllUserInfo';    //对应到接口的位置
     $.ajax({
         type: 'GET',
         url: URL,
@@ -203,7 +203,7 @@ $('.page-content').on('click', '#usraddUser', function (e) {
         //向后端传送数据保存
         $.ajax({
             type: "POST",
-            url: "http://192.168.0.200:8888/user/addUser",
+            url: "/user/addUser",
             data: JSON.stringify(newUser),
             contentType: "application/json;charset=UTF-8",
             success: function (response) {
@@ -339,7 +339,7 @@ $('#usrsaveEdit').click(function (e) {
         //向后端传送数据保存
         $.ajax({
             type: "POST",
-            url: "http://192.168.0.200:8888/user/modifyUserInfo",
+            url: "/user/modifyUserInfo",
             data: JSON.stringify(editUser1),
             contentType: "application/json;charset=UTF-8",
             success: function (response) {
@@ -376,7 +376,7 @@ $('#usrdelRow').click(function (e) {
             var delId = $("td :checked").attr('data-id');
             $.ajax({
                 type: "get",
-                url: "http://192.168.0.200:8888/user/deleteUser",
+                url: "/user/deleteUser",
                 data: {"userId":delId},
                 contentType: "application/json;charset=UTF-8",
                 success: function (response) {
@@ -407,7 +407,7 @@ $('#usrchaxun1').click(function (e) {
     //向后端传送数据保存 
     $.ajax({
     type: "get",
-    url:"http://192.168.0.200:8888/user/getAllUserInfo",
+    url:"/user/getAllUserInfo",
     data:{},
     contentType: "application/json;charset=UTF-8",
     success: function(response){
@@ -449,7 +449,7 @@ $('#usrchaxun1').click(function (e) {
     }
     });
 }else{
-    var URL = 'http://192.168.0.200:8888/user/getAllUserInfo';    //对应到接口的位置
+    var URL = '/user/getAllUserInfo';    //对应到接口的位置
     $.ajax({
         type: 'GET',
         url: URL,

@@ -278,7 +278,7 @@ $(function(){
         type:"get",
         async:false,    //同步
         contentType: "application/json;charset=UTF-8",
-        url:"http://192.168.0.1:8080/placeCount/countByProp",
+        url:"/placeCount/countByProp",
         data: "",
         success: function(resp) {
             console.log(JSON.stringify(resp));
@@ -321,7 +321,7 @@ $(function(){
         type:"get",
         async:false,    //同步
         contentType: "application/json;charset=UTF-8",
-        url:"http://192.168.0.1:8080/placeCount/countByType",
+        url:"/placeCount/countByType",
         data: "",
         success: function(resp) {
             console.log(JSON.stringify(resp));

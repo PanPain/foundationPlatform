@@ -26,9 +26,10 @@ object CompressAndStatistics {
   var popInterval = 20
 
   def main(args: Array[String]): Unit = {
+    System.setProperty("hadoop.home.dir", "D:\\hadoop-common-2.2.0-bin-master\\hadoop-common-2.2.0-bin-master")
 
-    val ssc = StreamingContext.getOrCreate("/app/checkpoint/cas", functionToCreateContext)
-//    val ssc = StreamingContext.getOrCreate("./cas", functionToCreateContext)
+//    val ssc = StreamingContext.getOrCreate("/app/checkpoint/cas", functionToCreateContext)
+    val ssc = StreamingContext.getOrCreate("./cas", functionToCreateContext)
     ssc.start()
     ssc.awaitTermination()
 
@@ -47,8 +48,8 @@ object CompressAndStatistics {
     val batchInterval = conf.getTimeAsSeconds("spark.batch.interval", "10")
     val ssc = new StreamingContext(conf, Seconds(batchInterval))
 
-    ssc.checkpoint("/app/checkpoint/cas")
-//    ssc.checkpoint("./cas")
+//    ssc.checkpoint("/app/checkpoint/cas")
+    ssc.checkpoint("./cas")
 
     // 读取kafka配置
     val prop = PropertyFileReader.readProperties("kafka-cas.properties")
@@ -70,13 +71,14 @@ object CompressAndStatistics {
 
     // 根据json串进行转换
     val records = sources.mapPartitions(messageIter => {
-      messageIter.map{case (macType, record) => messageToRecord(macType, record)}
+      messageIter.map{case (macType, record) =>
+        messageToRecord(macType, record)
+      }
     })
 
 
     // 按照记录类型，设备mac进行分组
     val macRecords = records.map{ case (macType, record) => ((macType, record.getMac), record)}.groupByKey()
-
 
     // 进行合并操作
     macRecords.mapWithState(StateSpec.function(mappingFunc).initialState(initialRDD).timeout(Milliseconds(compressInterval * 1000)))
@@ -87,6 +89,7 @@ object CompressAndStatistics {
 
   val mappingFunc = (key:(String, String), records: Option[Iterable[TransferRecord]], state: State[TransferRecord]) => {
     // 判断是否超过合并时间间隔，此mac都没有更新过，超过则插入HBase,更新Redis计数
+
     if(state.isTimingOut()){
       state.getOption().foreach(record => {
         val redisKey = getRedisKey(record, key._1)

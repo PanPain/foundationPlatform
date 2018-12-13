@@ -118,7 +118,7 @@ var vm = new Vue({
                 console.log("点击了 确定按钮");
                 $.ajax({
                     type: "POST",
-                    url: "http:192.168.0.1:8080/manufacturer/addManu",
+                    url: "/manufacturer/addManu",
                     contentType: "application/json;charset=UTF-8;",
                     data: JSON.stringify({
                         mfName: $("#add-mfName").val(),
@@ -229,7 +229,7 @@ var vm = new Vue({
                 //发送ajax请求
                 $.ajax({
                     type: "POST",
-                    url: "http:192.168.0.1:8080/manufacturer/modifyManufacturer",
+                    url: "/manufacturer/modifyManufacturer",
                     data: JSON.stringify(modifiedData),
                     contentType: "application/json;charset=UTF-8",
                     success: function (data) {
@@ -269,7 +269,7 @@ var vm = new Vue({
             if (delResult == true) {
                 $.ajax({
                     type: "DELETE",
-                    url: "http:192.168.0.1:8080/manufacturer/deleteManu?manuId=" + id,
+                    url: "/manufacturer/deleteManu?manuId=" + id,
                     // get 请求会自动把data里的数据作为参数格式拼接到url后
 
                     dataType: "json",
@@ -299,7 +299,7 @@ var vm = new Vue({
             console.log("点击了查询！")
             $.ajax({
                 type: "GET",
-                url: "http:192.168.0.1:8080/manufacturer/queryManuByCond",
+                url: "/manufacturer/queryManuByCond",
                 data: {
                     mfName: condition.mfName,
                     mfOrgNo: condition.mfOrgNo,

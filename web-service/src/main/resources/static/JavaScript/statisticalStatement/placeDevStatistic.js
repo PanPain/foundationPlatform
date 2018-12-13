@@ -132,7 +132,7 @@ $(function(){
         type:"get",
         async:false,    //同步
         contentType: "application/json;charset=UTF-8",
-        url:"http://192.168.0.1:8080/deviceCount/getAllDistrict",
+        url:"/deviceCount/getAllDistrict",
         data: "",
         success: function(resp) {
             console.log(JSON.stringify(resp));
@@ -162,7 +162,7 @@ $(function(){
             type:"get",
             async:false,    //同步
             contentType: "application/json;charset=UTF-8",
-            url:"http://192.168.0.1:8080/deviceCount/getDeviceCount",
+            url:"/deviceCount/getDeviceCount",
             data: {"districtId":id},
             success: function(resp) {
                 console.log(JSON.stringify(resp));
@@ -224,7 +224,7 @@ $(function(){
                 type:"get",
                 async:false,    //同步
                 contentType: "application/json;charset=UTF-8",
-                url:"http://192.168.0.1:8080/deviceCount/getDeviceCount",
+                url:"/deviceCount/getDeviceCount",
                 data: {"districtId":areaId},
                 success: function(resp) {
                     console.log(JSON.stringify(resp));

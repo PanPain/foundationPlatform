@@ -14,6 +14,14 @@ public class RuleMessage {
 
     Rule rule;
 
+    public RuleMessage() {
+    }
+
+    public RuleMessage(String modifyType, Rule rule) {
+        this.modifyType = modifyType;
+        this.rule = rule;
+    }
+
     public Rule getRule() {
         return rule;
     }

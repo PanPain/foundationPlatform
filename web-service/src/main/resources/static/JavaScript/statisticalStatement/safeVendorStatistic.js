@@ -90,7 +90,7 @@ function getResources(){
     }
     //拼接参数：获取所有的厂商统计不需要传递参数
     var params='';
-    var URL='http:192.168.0.1:8080/manufacturerCount/getManufacturerCountByMfName';    //对应到接口的位置
+    var URL='/manufacturerCount/getManufacturerCountByMfName';    //对应到接口的位置
     request.open('GET',URL);
     request.send();      //发送请求
 }
@@ -99,7 +99,7 @@ function getResources(){
 function getResourcesjQuery(){
     //拼接参数：获取所有的厂商统计不需要传递参数
     var params='';
-    var URL='http:192.168.0.1:8080/manufacturerCount/getManufacturerCountByMfName';    //对应到接口的位置
+    var URL='/manufacturerCount/getManufacturerCountByMfName';    //对应到接口的位置
     $.ajax({
         url:URL,
         type:'GET',
@@ -145,7 +145,7 @@ $(function(){
     var tby=$('#dynamic-table tbody').eq(0);
     $.ajax({
         type: "get",
-        url:"http:192.168.0.1:8080/manufacturerCount/getManufacturerCountByMfName",
+        url:"/manufacturerCount/getManufacturerCountByMfName",
         data: {
         },
         success: function(response){
@@ -207,7 +207,7 @@ $('#getRow').click(function (e) {
     var tby=$('#dynamic-table tbody').eq(0);
     $.ajax({
         type: "get",
-        url:"http:192.168.0.1:8080/manufacturerCount/getManufacturerCountByMfName",
+        url:"/manufacturerCount/getManufacturerCountByMfName",
         data: {
             mfName: name
         },

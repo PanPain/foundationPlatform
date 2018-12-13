@@ -55,7 +55,7 @@ var vm = new Vue({
             console.log("点击了查询！")
             $.ajax({
                 type: "GET",
-                url: "http:192.168.0.1:8080/manufacturer/queryManuByCond",
+                url: "/manufacturer/queryManuByCond",
                 data: {
                     controlName: $("#controlName").val()
                 },

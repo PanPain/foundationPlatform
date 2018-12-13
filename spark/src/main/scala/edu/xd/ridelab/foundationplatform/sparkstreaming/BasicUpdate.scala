@@ -17,8 +17,10 @@ import org.apache.spark.streaming.{Milliseconds, Seconds, StreamingContext}
   */
 object BasicUpdate {
   def main(args: Array[String]): Unit = {
+    System.setProperty("hadoop.home.dir", "D:\\hadoop-common-2.2.0-bin-master\\hadoop-common-2.2.0-bin-master")
 
-    val ssc = StreamingContext.getOrCreate("/app/checkpoint/bu", functionToCreateContext)
+//    val ssc = StreamingContext.getOrCreate("/app/checkpoint/bu", functionToCreateContext)
+    val ssc = StreamingContext.getOrCreate("./bu", functionToCreateContext)
 
     ssc.start()
     ssc.awaitTermination()
@@ -35,7 +37,8 @@ object BasicUpdate {
       .setAppName("BasicUpdate")
     val batchInterval = conf.getTimeAsSeconds("spark.batch.interval", "10")
     val ssc = new StreamingContext(conf, Seconds(batchInterval))
-    ssc.checkpoint("/app/checkpoint/bu")
+    ssc.checkpoint("./bu")
+//    ssc.checkpoint("/app/checkpoint/bu")
 
     // 读取Kafka配置
     val prop = PropertyFileReader.readProperties("kafka-bu.properties")

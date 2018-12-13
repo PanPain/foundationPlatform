@@ -215,4 +215,14 @@ public class PlaceInfo implements Serializable{
     public void setCheckStatus(Byte checkStatus) {
         this.checkStatus = checkStatus;
     }
+
+    @Override
+    public String toString() {
+        return "PlaceInfo{" +
+                "placeId=" + placeId +
+                ", placeNo='" + placeNo + '\'' +
+                ", placeName='" + placeName + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }

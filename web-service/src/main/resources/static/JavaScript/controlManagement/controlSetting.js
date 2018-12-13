@@ -141,7 +141,7 @@ var vm = new Vue({
 
                 $.ajax({
                     type: "post",
-                    url: "http://192.168.0.1:8080/rule/addRule",
+                    url: "/rule/addRule",
                     contentType: "application/json;charset=UTF-8;",
                     data: JSON.stringify(data),
                     success: function (response) {
@@ -159,7 +159,7 @@ var vm = new Vue({
                 // 编辑成功要提交了！
                 $.ajax({
                     type: "post",
-                    url: "http://192.168.0.1:8080/rule/updateRule",
+                    url: "/rule/updateRule",
                     contentType: "application/json;charset=UTF-8;",
                     data: JSON.stringify(data),
                     success: function (response) {
@@ -193,7 +193,7 @@ var vm = new Vue({
             //发送ajax获取所有设备列表
             $.ajax({
                 type: "post",
-                url: "http://192.168.0.1:8080/macMachine/getMacMachineInfo",
+                url: "/macMachine/getMacMachineInfo",
                 data: JSON.stringify({}),
                 success: function (response) {
                     console.log("请求设备信息成功")
@@ -247,7 +247,7 @@ var vm = new Vue({
             }
             $.ajax({
                 type: "GET",
-                url: "http:192.168.0.1:8080/rule/getRulesBySomeConditions",
+                url: "/rule/getRulesBySomeConditions",
                 data: dataSend,
                 success: function (response, textStatus) {
                     // data 由服务器返回，并根据dataType参数进行处理 可能是 xmlDoc;jsonObj(这里已经是Obj)
@@ -275,7 +275,7 @@ var vm = new Vue({
                 var id = item.ruleId;
                 $.ajax({
                     type: "delete",
-                    url: "http://192.168.0.1:8080/rule/deleteRule?ruleId=" + id,
+                    url: "/rule/deleteRule?ruleId=" + id,
                     success: function (response) {
                         if (response.meta.success) {
                             alert("删除成功");

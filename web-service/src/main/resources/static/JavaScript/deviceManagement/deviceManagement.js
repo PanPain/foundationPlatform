@@ -90,7 +90,7 @@ var vm = new Vue({
         this.query(this.queryCondition);
         $.ajax({
             type: "post",
-            url: "http://192.168.0.1:8080/policeOffice/getPoliceOfficeInfo",
+            url: "/policeOffice/getPoliceOfficeInfo",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({}),
             success: function(response){
@@ -143,7 +143,7 @@ var vm = new Vue({
             console.log("查询条件："+JSON.stringify(queryArgu))
             $.ajax({
                 type: "get",
-                url: "http://192.168.0.224:8080/macMachine/getMacMachineInfo",
+                url: "/macMachine/getMacMachineInfo",
                 data: queryArgu,
                 // contentType: "application/json;charset=UTF-8",
                 // dataType: "json",
@@ -182,7 +182,7 @@ var vm = new Vue({
             };
             $.ajax({
                 type: "POST",
-                url: "http://192.168.1:8080/macMachine/addMacMachineInfo",
+                url: "/macMachine/addMacMachineInfo",
                 data: JSON.stringify(addItem),
                 contentType: "application/json;charset=UTF-8",
                 dataType: "json",
@@ -206,7 +206,7 @@ var vm = new Vue({
             var id = item.macMachineId
             $.ajax({
                 type: "get",
-                url: "http://192.168.1:8080/macMachine/getMacMachineDetailInfo",
+                url: "/macMachine/getMacMachineDetailInfo",
                 data: {
                     macMachineId: id
                 },
@@ -273,7 +273,7 @@ var vm = new Vue({
             };
             $.ajax({
                 type: "POST",
-                url: "http://192.168.1:8080/macMachine/updateMacMachineInfo",
+                url: "/macMachine/updateMacMachineInfo",
                 data: JSON.stringify(editItem),
                 contentType: "application/json;charset=UTF-8",
                 dataType: "json",
@@ -298,7 +298,7 @@ var vm = new Vue({
             if (confirm("确定要删除这条数据吗？")) {
                 $.ajax({
                     type: "get",
-                    url: "http://192.168.1:8080/macMachine/deleteMacMachineInfo",
+                    url: "/macMachine/deleteMacMachineInfo",
                     data: {
                         macMachineId: id
                     },

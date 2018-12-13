@@ -27,4 +27,8 @@ public interface PoliceOfficeMapper {
     List<PoliceOffice> selectByDistrictId(@Param("fkDistrictId") Long districtId);
 
     long selectPoliceOfficeIdByName(@Param("policeOfficeName") String policeOfficeName);
+
+    List<Long> getAllId();
+
+    String getPoliceOfficeNameById(Long id);
 }

@@ -24,8 +24,8 @@ import scala.collection.JavaConverters._
 object AlarmAndStatistics {
   def main(args: Array[String]): Unit = {
 
-    val ssc = StreamingContext.getOrCreate("/app/checkpoint/aas", functionToCreateContext)
-//    val ssc = StreamingContext.getOrCreate("./aas", functionToCreateContext)
+//    val ssc = StreamingContext.getOrCreate("/app/checkpoint/aas", functionToCreateContext)
+    val ssc = StreamingContext.getOrCreate("./aas", functionToCreateContext)
 
     ssc.start()
     ssc.awaitTermination()
@@ -45,8 +45,8 @@ object AlarmAndStatistics {
     val batchInterval = conf.getTimeAsSeconds("spark.batch.interval", "10")
     val ssc = new StreamingContext(conf, Seconds(batchInterval))
 
-    ssc.checkpoint("/app/checkpoint/aas")
-//    ssc.checkpoint("./aas")
+//    ssc.checkpoint("/app/checkpoint/aas")
+    ssc.checkpoint("./aas")
 
 
     // 读取kafka配置

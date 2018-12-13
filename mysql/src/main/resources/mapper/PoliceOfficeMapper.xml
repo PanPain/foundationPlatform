@@ -21,6 +21,15 @@
     POLICE_OFFICE_NAME as policeOfficeName,ADDRESS as address,PHONE as phone,DISTRICT_NO as districtNo,DISTRICT_NAME as districtName
   </sql>
 
+  <select id="getAllId" resultType="java.lang.Long">
+    select POLICE_OFFICE_ID from POLICE_OFFICE
+  </select>
+
+  <select id="getPoliceOfficeNameById" parameterType="java.lang.Long" resultType="java.lang.String">
+    select POLICE_OFFICE_NAME from POLICE_OFFICE
+    where POLICE_OFFICE_ID = #{id}
+  </select>
+
   <select id="selectByPrimaryKeySelective" resultType="edu.xd.ridelab.foundationplatform.model.PoliceOfficeModel">
     select
     <include refid="Base_Column_List" />

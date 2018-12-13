@@ -71,7 +71,7 @@ $(function(){
    //对应到接口的位置
     $.ajax({
         type:'post',
-        url:"http:192.168.0.1:8080/policeOffice/getPoliceOfficeInfo",
+        url:"/policeOffice/getPoliceOfficeInfo",
         data: JSON.stringify(queryAllPoliceOffice),
         contentType: "application/json;charset=UTF-8",
         // dataType:'jsonp',       //指定服务器返回的数据类型
@@ -113,7 +113,7 @@ $('#search').click(function (e) {
 //向后端传送数据保存     
     $.ajax({
         type: "post",
-        url:"http:192.168.0.1:8080/policeOffice/getPoliceOfficeInfo",
+        url:"/policeOffice/getPoliceOfficeInfo",
         data: JSON.stringify(data1),
         contentType: "application/json;charset=UTF-8",
         success: function(response){
@@ -253,7 +253,7 @@ var editPoliceOfficeObject={
 //向后端传送数据保存
       $.ajax({
       type: "POST",
-      url: "http:192.168.0.1:8080/policeOffice/updatePoliceOfficeInfo",
+      url: "/policeOffice/updatePoliceOfficeInfo",
       data: JSON.stringify(editPoliceOffice1),
       contentType: "application/json;charset=UTF-8",
       success: function(response){
@@ -283,7 +283,7 @@ $('#dynamic-table').on('click','.delRow',function(e){
        
         $.ajax({
             type:"post",
-            url:"http:192.168.0.1:8080/policeOffice/deletePoliceOfficeInfo",      
+            url:"/policeOffice/deletePoliceOfficeInfo",
             data:JSON.stringify([deleteList[0]]),
             contentType: "application/json;charset=UTF-8",
         success: function(response){
@@ -348,7 +348,7 @@ var newPoliceOfficeObject={
 //向后端传送数据保存
       $.ajax({
       type: "POST",
-      url: "http:192.168.0.1:8080/policeOffice/addPoliceOfficeInfo",
+      url: "/policeOffice/addPoliceOfficeInfo",
       data: JSON.stringify(newPoliceOffice),
       contentType: "application/json;charset=UTF-8",
       success: function(response){

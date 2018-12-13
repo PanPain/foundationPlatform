@@ -234,7 +234,7 @@ $(function(){
                 type:"get",
                 async:false,    //同步
                 contentType: "application/json;charset=UTF-8",
-                url:"http://192.168.0.1:8080/recordStatistic/getTotalByConds",
+                url:"/recordStatistic/getTotalByConds",
                 data:params,
                 success: function(resp) {
                     console.log(JSON.stringify(resp));
@@ -270,7 +270,7 @@ $(function(){
         type:"get",
         async:false,    //同步
         contentType: "application/json;charset=UTF-8",
-        url:"http://192.168.0.1:8080/machineCount/getMachineStatusCount",
+        url:"/machineCount/getMachineStatusCount",
         data:"",
         success: function(resp) {
             console.log(JSON.stringify(resp));
@@ -297,7 +297,7 @@ $(function(){
         type:"get",
         async:false,    //同步
         contentType: "application/json;charset=UTF-8",
-        url:"http://192.168.0.1:8080/machineCount/getMachineStatusCountByDistrict",
+        url:"/machineCount/getMachineStatusCountByDistrict",
         data: "",
         success: function(resp) {
             console.log(JSON.stringify(resp));
@@ -328,7 +328,7 @@ $(function(){
         type:"get",
         async:false,    //同步
         contentType: "application/json;charset=UTF-8",
-        url:"http://192.168.0.1:8080/recordStatistic/getMacStatusInfo",
+        url:"/recordStatistic/getMacStatusInfo",
         data: "",
         success: function(resp) {
             console.log(JSON.stringify(resp));
@@ -365,7 +365,7 @@ $(function(){
         type:"get",
         async:false,    //同步
         contentType: "application/json;charset=UTF-8",
-        url:"http://192.168.0.1:8080/recordStatistic/getTotalByDates",
+        url:"/recordStatistic/getTotalByDates",
         data: {
             "startDate":'2018-05-21',
             "endDate":'2018-05-23',
@@ -394,7 +394,7 @@ $(function(){
         type:"get",
         async:false,    //同步
         contentType: "application/json;charset=UTF-8",
-        url:"http://192.168.0.1:8080/recordStatistic/getLeastCollectMachine",
+        url:"/recordStatistic/getLeastCollectMachine",
         data: {
             "num":20,
         },
@@ -422,7 +422,7 @@ $(function(){
         type:"get",
         async:false,    //同步
         contentType: "application/json;charset=UTF-8",
-        url:"http://192.168.0.1:8080/recordStatistic/countViModel",
+        url:"/recordStatistic/countViModel",
         data:"",
         success: function(resp) {
             console.log(JSON.stringify(resp));
@@ -465,7 +465,7 @@ $(function(){
         type:"get",
         async:false,    //同步
         contentType: "application/json;charset=UTF-8",
-        url:"http://192.168.0.1:8080/rule/getAllRules",
+        url:"/rule/getAllRules",
         data: "",
         success: function(resp) {
             console.log(JSON.stringify(resp));

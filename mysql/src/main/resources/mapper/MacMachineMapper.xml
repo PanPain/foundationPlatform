@@ -36,6 +36,11 @@
     FK_POLICEOFFICE_ID,ORG_NUM,PLACE_NO
   </sql>
 
+  <select id="getAllMacNoById" parameterType="java.lang.Long" resultType="java.lang.String">
+    select MAC_MACHINE_NO from MAC_MACHINE
+    where FK_POLICEOFFICE_ID = #{id}
+  </select>
+
   <select id="selectAll" parameterType="edu.xd.ridelab.foundationplatform.mysql.vo.MacMachine" resultType="edu.xd.ridelab.foundationplatform.mysql.vo.MacMachine">
     SELECT
     MAC_MACHINE_ID AS macMachineId,
@@ -161,6 +166,12 @@
     <include refid="All_Column_List" />
     from MAC_MACHINE
     where MAC_MACHINE_ID = #{macMachineId,jdbcType=BIGINT}
+  </select>
+  <select id="selectByMacMachineNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="All_Column_List" />
+    from MAC_MACHINE
+    where MAC_MACHINE_NO = #{macMachineNo,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from MAC_MACHINE
@@ -418,7 +429,7 @@
     where MAC_MACHINE_ID = #{macMachineId,jdbcType=BIGINT}
   </update>
 
-  <select id="getAllMacMachine" resultMap="BaseResultMap">
+  <select id="getAllMacMachine" resultType="edu.xd.ridelab.foundationplatform.mysql.vo.MacMachine">
     SELECT
       <include refid="Base_Column_List" />
     FROM MAC_MACHINE

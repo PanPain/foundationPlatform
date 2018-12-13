@@ -1,10 +1,13 @@
+/*
 package edu.xd.ridelab.foundationplatform.redisUtils;
+*/
 /**
  * @ClassName Publisher
  * @Author：WW
  * @Description  发布者测试demo
  * @Date: 11:30$ 2018/5/10$
- **/
+ **//*
+
 import com.google.gson.Gson;
 import edu.xd.ridelab.foundationplatform.mysql.vo.Rule;
 import redis.clients.jedis.Jedis;
@@ -70,3 +73,4 @@ public class Publisher extends Thread {
     }
 }
 
+*/

@@ -55,4 +55,6 @@ public interface MacMachineMapper {
     List<MachineCountByPolice> getMachineStatusCountByPolice(@Param(value="districtId") Long districtId);
 
     List<MacMachine> getAllMacMachine();
+
+    List<String> getAllMacNoById(Long id);
 }
